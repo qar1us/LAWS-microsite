@@ -1,0 +1,16 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Dependency dirs (in case tooling is added later)
+node_modules/
+
+# Build / render artifacts
+_print_*.html
+social/output/

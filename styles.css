@@ -1,0 +1,67 @@
+/* ---- Tokens ------------------------------------------------------------ */
+:root {
+  --paper: #faf7f2;
+  --ink: #1a1a18;
+  --ink-muted: #5c5a55;
+  --rule: #d9d3c8;
+  --signal: #d1421f;
+
+  --measure: 68ch;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ---- Base -------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1.0625rem/1.65 Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 { line-height: 1.15; letter-spacing: -0.01em; }
+
+a { color: var(--signal); }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: var(--gutter);
+  top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---- Layout ------------------------------------------------------------ */
+.site-header,
+.section,
+.site-footer {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-header { padding-block: clamp(3rem, 10vh, 6rem) 2rem; }
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font: 0.75rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.section { padding-block: 2rem; }
+
+.site-footer {
+  margin-top: 4rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
