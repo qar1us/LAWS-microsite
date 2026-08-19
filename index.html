@@ -1,31 +1,269 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LAWS Microsite</title>
-  <meta name="description" content="Working title — scope TBD.">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAWS Tracker — Lethal Autonomous Weapon Systems</title>
+<meta name="description" content="A survey of deployed and operational lethal autonomous weapon systems worldwide, classified by degree of human control. Americans for Responsible Innovation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <p class="eyebrow">Working title</p>
-    <h1>LAWS Microsite</h1>
-  </header>
+<!-- ============ SVG defs: duotone filters + icon sprite ============ -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Duotone: flatten to luminance, then remap shadows->navy, highlights->pale.
+         Unifies 155 photos drawn from ~80 different sources into one visual system. -->
+    <filter id="duo" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.055 0.847"/>
+        <feFuncG type="table" tableValues="0.078 0.886"/>
+        <feFuncB type="table" tableValues="0.180 0.945"/>
+      </feComponentTransfer>
+    </filter>
+    <!-- Signal duotone: used for the hero and for A1 (unsupervised) systems -->
+    <filter id="duo-signal" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.086 0.925"/>
+        <feFuncG type="table" tableValues="0.055 0.702"/>
+        <feFuncB type="table" tableValues="0.145 0.706"/>
+      </feComponentTransfer>
+    </filter>
 
-  <main id="main">
-    <section class="section" id="intro">
-      <h2>Scaffold</h2>
-      <p>Content pending. Replace this section once scope is set.</p>
-    </section>
-  </main>
+    <!-- Domain icons -->
+    <symbol id="i-air" viewBox="0 0 24 24">
+      <path d="M2 13.5 22 6l-4.5 7.2L22 20l-8.6-3.4L4 21l4.2-6.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-land" viewBox="0 0 24 24">
+      <path d="M3 17h18M6 17v-3.5h12V17M8 13.5V10h8v3.5M10 10V7h4v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="7.5" cy="19.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="16.5" cy="19.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="i-sea" viewBox="0 0 24 24">
+      <path d="M3 16.5h18l-2.5 4H5.5zM6 16.5V10h12v6.5M9 10V6h6v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-undersea" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="13" rx="8.5" ry="4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 9V5M9.5 5h5M2 20c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-multi" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 2v5M12 17v5M2 12h5M17 12h5M5 5l3.2 3.2M15.8 15.8 19 19M19 5l-3.2 3.2M8.2 15.8 5 19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
 
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span></p>
-  </footer>
+    <!-- UI icons -->
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M15.5 15.5 21 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-combat" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M12 1.5v4M12 18.5v4M1.5 12h4M18.5 12h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-human" viewBox="0 0 24 24">
+      <circle cx="12" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M5 21v-1.5A6.5 6.5 0 0 1 11.5 13h1A6.5 6.5 0 0 1 19 19.5V21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24">
+      <path d="M12 3 22 20H2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M12 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="12" cy="17" r="1.1" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
 
-  <script src="script.js"></script>
+<a class="skip-link" href="#explorer">Skip to the tracker</a>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="org" href="https://ari.us" target="_blank" rel="noopener">
+      Americans for <em>Responsible</em> Innovation
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="#classification">Classification</a>
+      <a href="#explorer">Tracker</a>
+      <a href="#landscape">Landscape</a>
+      <a href="#methodology">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <p class="eyebrow">National Security &amp; Strategic Competition</p>
+    <h1>The machines already<br>choosing targets.</h1>
+    <p class="standfirst">
+      <strong id="stat-systems">—</strong> lethal autonomous weapon systems are fielded today across
+      <strong id="stat-origins">—</strong> countries of origin and <strong id="stat-ops">—</strong> operator states.
+      This is not a forecast. Every system below has been deployed.
+    </p>
+
+    <div class="statbar" role="list">
+      <div class="stat" role="listitem">
+        <span class="stat-n" id="s-systems">—</span>
+        <span class="stat-l">Systems fielded</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-n" id="s-combat">—</span>
+        <span class="stat-l">With confirmed combat use</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-n" id="s-nohuman">—</span>
+        <span class="stat-l">Select &amp; engage without per-engagement approval</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-n" id="s-ops">—</span>
+        <span class="stat-l">Operator countries</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLASSIFICATION ============ -->
+<section id="classification" class="band">
+  <div class="container">
+    <p class="kicker">01 — The spectrum of human control</p>
+    <h2 class="h-display">Autonomy is not a switch.<br>It is a question of when the human stops mattering.</h2>
+    <p class="lede measure">
+      Every system in this dataset can select or complete an engagement without a human approving that
+      specific act. What separates them is <em>where</em> in the kill chain human judgement drops out —
+      and whether anyone retains a real opportunity to intervene.
+    </p>
+    <div class="tiers" id="tier-cards"><!-- injected --></div>
+    <p class="note measure">
+      <svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>
+      The B1 class was not anticipated by the project's original criteria — a human selects the target,
+      but the system completes the engagement unaided, including after link loss. It is the largest and
+      fastest-growing class here. Excluding it entirely would remove roughly a third of the dataset and
+      most of the current combat evidence.
+    </p>
+  </div>
+</section>
+
+<!-- ============ EXPLORER ============ -->
+<section id="explorer" class="explorer">
+  <div class="container">
+    <p class="kicker">02 — The tracker</p>
+    <h2 class="h-display">Every fielded system.</h2>
+
+    <div class="controls">
+      <div class="search">
+        <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+        <input type="search" id="q" placeholder="Search system, manufacturer, country, theater…" aria-label="Search systems">
+      </div>
+      <div class="filters" id="filters"><!-- injected --></div>
+      <div class="resultline">
+        <span id="count">—</span>
+        <button type="button" class="reset" id="reset" hidden>Clear filters</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"><!-- injected --></div>
+    <p class="empty" id="empty" hidden>No systems match those filters.</p>
+  </div>
+</section>
+
+<!-- ============ LANDSCAPE ============ -->
+<section id="landscape" class="band band-alt">
+  <div class="container">
+    <p class="kicker">03 — The landscape</p>
+    <h2 class="h-display">Who builds them, and who flies them.</h2>
+    <div class="two-col">
+      <div>
+        <h3 class="h-sub">By country of origin</h3>
+        <div class="bars" id="bars-origin"></div>
+      </div>
+      <div>
+        <h3 class="h-sub">By operator</h3>
+        <p class="sub-note">Operator counts exceed origin counts: these systems export widely.</p>
+        <div class="bars" id="bars-operator"></div>
+      </div>
+    </div>
+    <div class="two-col two-col-b">
+      <div>
+        <h3 class="h-sub">By domain</h3>
+        <div class="bars" id="bars-domain"></div>
+      </div>
+      <div>
+        <h3 class="h-sub">By autonomy class</h3>
+        <div class="bars" id="bars-tier"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHODOLOGY ============ -->
+<section id="methodology" class="band">
+  <div class="container">
+    <p class="kicker">04 — Methodology &amp; limits</p>
+    <h2 class="h-display">What this dataset does and does not claim.</h2>
+    <div class="two-col">
+      <div class="measure">
+        <h3 class="h-sub">Inclusion</h3>
+        <p>A system qualifies only if it is capable of kinetic force, can select a target from the
+          environment after activation, can initiate or complete engagement without further human
+          approval, exists in an operationally relevant configuration, and is evidenced as fielded.</p>
+        <p>Directed energy, electronic warfare and cyber are excluded by scope decision. Retired
+          systems are excluded; systems retired by the originator but in service elsewhere are coded
+          to the current operator.</p>
+        <h3 class="h-sub">Capability, not doctrine</h3>
+        <p>What is coded is what a system <em>can</em> do. Doctrinal restriction is recorded separately,
+          so the dataset tracks technology rather than policy — a state's rules of engagement can change
+          without notice, and rarely appear in open sources.</p>
+      </div>
+      <div class="measure">
+        <h3 class="h-sub">Known limitations</h3>
+        <ul class="limits">
+          <li><strong>Manufacturer claims are inflated.</strong> Where a vendor claim and an independent
+            assessment conflict, the entry is coded <em>Contested</em> rather than averaged.</li>
+          <li><strong>Combat evidence is asymmetric.</strong> Systems used in Ukraine and the Middle East
+            are far better evidenced than Chinese, Iranian and North Korean equivalents. Absence of
+            confirmed effects for PLA systems reflects absence of employment, not absence of capability.</li>
+          <li><strong>Variant granularity is approximate.</strong> Loitering munition families iterate
+            faster than open sources track.</li>
+          <li><strong>Confidence lives at claim level.</strong> The overall rating shown on each system is
+            a summary judgement; fielding evidence and autonomy evidence frequently diverge.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="excluded">
+      <h3 class="h-sub">Excluded systems <span id="excl-count"></span></h3>
+      <p class="sub-note">Preserved so that omissions are visible rather than silent.</p>
+      <div class="excl-grid" id="excl-grid"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container foot-inner">
+    <p><strong>LAWS Tracker</strong> — Americans for Responsible Innovation.
+       Dataset V1, compiled 27 July 2026. Tranche 1: broad across categories, not exhaustive within them.</p>
+    <p class="foot-note">Imagery is credited per system. See <code>img/CREDITS.md</code> for full attribution.</p>
+  </div>
+</footer>
+
+<!-- ============ DETAIL DRAWER ============ -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer-scrim" data-close></div>
+  <article class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="d-name">
+    <button class="drawer-close" type="button" data-close aria-label="Close">
+      <svg class="ico" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <div id="drawer-body"><!-- injected --></div>
+  </article>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

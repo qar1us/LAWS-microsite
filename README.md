@@ -1,41 +1,57 @@
-# LAWS Microsite
+# LAWS Tracker
 
-Working title — scope and final name TBD.
+An interactive survey of deployed and operational **lethal autonomous weapon systems**,
+classified by where human judgement drops out of the kill chain.
+A National Security & Strategic Competition project for *Americans for Responsible Innovation*.
 
-A single-page static microsite. Plain HTML, CSS, and vanilla JavaScript — no build step.
+Built on Dataset V1 (compiled 27 July 2026): 86 fielded systems, 17 countries of origin,
+54 operator states. Tranche 1 — broad across categories, not exhaustive within them.
+
+Plain HTML, CSS and vanilla JavaScript. Fonts load from Google Fonts.
+
+## Design
+
+Dark navy instrument surface for the tracker, cool paper for the reading sections, ARI
+crimson as the single signal colour. Photographs are duotoned to the navy palette through
+an inline SVG filter and washed with a class-tinted gradient — 155 images drawn from roughly
+80 different sources otherwise read as a scrapbook rather than a dataset. The gradient tint
+is keyed to autonomy class, so the imagery carries the analytical variable.
 
 ## Structure
 
-- `index.html` — all content lives here, so the page stays readable with JavaScript disabled.
-- `styles.css` — design tokens at the top of the file, then layout and section styles.
-- `script.js` — progressive enhancement only (nav highlighting, scroll effects).
-- `img/` — image assets.
-- `social/` — social card sources.
+Single page, no build step for the site itself. Data is generated ahead of time.
+
+- `index.html` — page structure, inline SVG icon sprite and duotone filter definitions
+- `styles.css` — design tokens at the top, then sections
+- `script.js` — renders everything from `data.json`; no system facts are hardcoded
+- `data.json` — generated from `Data/LAWS_Dataset_V1.xlsx`
+- `img/` — photo set, manifest, and attribution
+- `tools/` — regeneration scripts
+
+## Regenerating
+
+Run from the repository root after the workbook or photo set changes:
+
+```bash
+python3 tools/build_data.py       # workbook  -> data.json
+python3 tools/build_credits.py    # workbook  -> img/credits.json
+bash    tools/build_images.sh     # originals -> img/
+```
+
+`build_images.sh` reads from `~/LAWS-photos-originals/`, which is deliberately outside
+this repository. Originals are never modified.
 
 ## Local preview
 
-```bash
-python3 -m http.server 8000
-```
+`data.json` is fetched over HTTP, so the page will not work from the file system.
 
-Then open http://localhost:8000
+```bash
+python3 -m http.server 8747
+```
 
 ## Deploy
 
-GitHub Pages, served from `main` at the repository root. Add a `CNAME` file when a custom domain is assigned.
+GitHub Pages from `main` at the repository root. Pages is currently disabled because the
+repository is private on a plan without private Pages; re-enable it when the repository
+goes public or the plan changes.
 
-## Images
-
-`img/` holds the web-optimized photo set (155 files, ~18 MB), derived from originals kept
-outside this repository. Filenames follow the dataset identifier scheme — `<SystemID>-<slot>.<ext>`,
-where slot is `a`/`b`/`c` — so images join to the dataset by system ID. There is no filename
-column in the workbook; the convention *is* the join.
-
-- `manifest.json` — systemId → image files
-- `credits.json` — per-image attribution, machine-readable
-- `CREDITS.md` — the same, human-readable
-- `_filename-map.csv` — original → shipped filename, with before/after byte counts
-
-**Rights:** each image carries a `status`. Only `status: include` (government, Wikimedia, or
-manufacturer press material) may be rendered. `status: hold` files are stored but must not be
-displayed until rights are cleared — currently 103 of 155.
