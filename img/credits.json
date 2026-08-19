@@ -1,0 +1,1411 @@
+{
+  "note": "Per-image attribution. status=include -> may be displayed; status=hold -> file present but must not be rendered until rights are cleared.",
+  "policy": {
+    "include": [
+      "government",
+      "wikimedia",
+      "manufacturer"
+    ],
+    "hold": [
+      "third-party-editorial",
+      "unsourced"
+    ]
+  },
+  "images": {
+    "CHN-AIR-001-a.jpg": {
+      "systemId": "CHN-AIR-001",
+      "system": "CASC CH-901 / FH-901",
+      "slot": "a",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:CASC_FH-901",
+      "sourceDomain": "commons.wikimedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "CHN-AIR-001-b.jpg": {
+      "systemId": "CHN-AIR-001",
+      "system": "CASC CH-901 / FH-901",
+      "slot": "b",
+      "sourceUrl": "https://www.janes.com/defence-intelligence-insights/defence-news/air/china-demonstrates-new-uav-capabilities",
+      "sourceDomain": "janes.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-AIR-002-a.webp": {
+      "systemId": "CHN-AIR-002",
+      "system": "ASN-301",
+      "slot": "a",
+      "sourceUrl": "https://www.armyrecognition.com/archives/archives-land-defense/land-defense-2024/china-unveils-asn-301-loitering-munition-similar-to-iranian-shahed-136-and-israeli-harpy",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-AIR-002-b.jpg": {
+      "systemId": "CHN-AIR-002",
+      "system": "ASN-301",
+      "slot": "b",
+      "sourceUrl": "https://x.com/Defense_Talks/status/1741356307305898219",
+      "sourceDomain": "x.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-AIR-003-a.webp": {
+      "systemId": "CHN-AIR-003",
+      "system": "CASIC CM-501",
+      "slot": "a",
+      "sourceUrl": "https://www.armyrecognition.com/archives/archives-land-defense/land-defense-2024/china-promotes-new-cm-501ga-lightweight-multi-purpose-missile-at-dimdex-2024",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-LAND-001-a.webp": {
+      "systemId": "CHN-LAND-001",
+      "system": "GL-6 APS",
+      "slot": "a",
+      "sourceUrl": "https://www.zona-militar.com/en/2025/02/10/tests-of-the-most-modern-aps-gl-6-system-to-equip-chinese-army-tanks-are-recorded/",
+      "sourceDomain": "zona-militar.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-LAND-002-a.webp": {
+      "systemId": "CHN-LAND-002",
+      "system": "LD-2000 land CIWS",
+      "slot": "a",
+      "sourceUrl": "https://defencesecurityasia.com/en/pakistan-china-ld2000-ciws-air-defense-system-drone-cruise-missile-threat-india/",
+      "sourceDomain": "defencesecurityasia.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-LAND-002-b.jpg": {
+      "systemId": "CHN-LAND-002",
+      "system": "LD-2000 land CIWS",
+      "slot": "b",
+      "sourceUrl": "https://defencesecurityasia.com/en/pakistan-china-ld2000-ciws-air-defense-system-drone-cruise-missile-threat-india/",
+      "sourceDomain": "defencesecurityasia.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-SEA-001-a.jpg": {
+      "systemId": "CHN-SEA-001",
+      "system": "Type 730 CIWS",
+      "slot": "a",
+      "sourceUrl": "https://www.deagel.com/Components/Type%20730/a001831",
+      "sourceDomain": "deagel.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-SEA-002-a.webp": {
+      "systemId": "CHN-SEA-002",
+      "system": "Type 1130 CIWS (H/PJ-11)",
+      "slot": "a",
+      "sourceUrl": "https://www.twz.com/42532/chinas-massive-11-barrel-naval-gatling-gun-has-been-adapted-for-close-in-defense-on-land",
+      "sourceDomain": "twz.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-SEA-003-a.jpg": {
+      "systemId": "CHN-SEA-003",
+      "system": "HQ-10 / FL-3000N",
+      "slot": "a",
+      "sourceUrl": "https://en.missilery.info/missile/fl-3000n",
+      "sourceDomain": "en.missilery.info",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-SEA-003-b.jpg": {
+      "systemId": "CHN-SEA-003",
+      "system": "HQ-10 / FL-3000N",
+      "slot": "b",
+      "sourceUrl": "https://en.missilery.info/missile/fl-3000n",
+      "sourceDomain": "en.missilery.info",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "DEU-AIR-001-a.jpg": {
+      "systemId": "DEU-AIR-001",
+      "system": "Helsing HX-2",
+      "slot": "a",
+      "sourceUrl": "https://helsing.ai/newsroom/helsing-unveils-intelligent-strike-drone-for-mass-and-precision",
+      "sourceDomain": "helsing.ai",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "DEU-AIR-001-b.webp": {
+      "systemId": "DEU-AIR-001",
+      "system": "Helsing HX-2",
+      "slot": "b",
+      "sourceUrl": "https://defence-blog.com/ukraine-halts-additional-orders-of-german-hx-2-attack-drones/",
+      "sourceDomain": "defence-blog.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "DEU-AIR-002-a.jpg": {
+      "systemId": "DEU-AIR-002",
+      "system": "Helsing HF-1",
+      "slot": "a",
+      "sourceUrl": "https://en.defence-ua.com/weapon_and_tech/smart_plywood_drone_helsing_hf_1_makes_difference_in_ukraine_quantities_and_operational_details_revealed-14090.html",
+      "sourceDomain": "en.defence-ua.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "DEU-AIR-002-b.jpg": {
+      "systemId": "DEU-AIR-002",
+      "system": "Helsing HF-1",
+      "slot": "b",
+      "sourceUrl": "https://en.defence-ua.com/weapon_and_tech/smart_plywood_drone_helsing_hf_1_makes_difference_in_ukraine_quantities_and_operational_details_revealed-14090.html",
+      "sourceDomain": "en.defence-ua.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "DEU-LAND-001-a.jpg": {
+      "systemId": "DEU-LAND-001",
+      "system": "NBS MANTIS",
+      "slot": "a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/MANTIS_Air_Defence_System",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "DEU-LAND-001-b.jpg": {
+      "systemId": "DEU-LAND-001",
+      "system": "NBS MANTIS",
+      "slot": "b",
+      "sourceUrl": "https://www.militaryperiscope.com/weapons/ground-combat-vehicles/air-defense/nbs-mantis/overview/",
+      "sourceDomain": "militaryperiscope.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "DEU-LAND-002-a.jpg": {
+      "systemId": "DEU-LAND-002",
+      "system": "SMArt 155 (DM702)",
+      "slot": "a",
+      "sourceUrl": "https://www.gdots.com/munitions/artillery/155mm-smart/",
+      "sourceDomain": "gdots.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "DEU-LAND-002-b.jpg": {
+      "systemId": "DEU-LAND-002",
+      "system": "SMArt 155 (DM702)",
+      "slot": "b",
+      "sourceUrl": "https://www.gdots.com/munitions/artillery/155mm-smart/",
+      "sourceDomain": "gdots.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "DEU-LAND-003-a.jpg": {
+      "systemId": "DEU-LAND-003",
+      "system": "Rheinmetall StrikeShield APS",
+      "slot": "a",
+      "sourceUrl": "https://www.rheinmetall.com/en/products/protection-systems/protection-systems-land/active-protection-systems",
+      "sourceDomain": "rheinmetall.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "DEU-LAND-004-a.jpg": {
+      "systemId": "DEU-LAND-004",
+      "system": "Rheinmetall Skynex",
+      "slot": "a",
+      "sourceUrl": "https://fragoutmag.com/first-rheinmetall-skynex-air-defence-system-for-italy/",
+      "sourceDomain": "fragoutmag.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "DEU-LAND-004-b.jpg": {
+      "systemId": "DEU-LAND-004",
+      "system": "Rheinmetall Skynex",
+      "slot": "b",
+      "sourceUrl": "https://www.rheinmetall.com/en/products/air-defence-systems/networked-air-defence-skynex",
+      "sourceDomain": "rheinmetall.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "FRA-LAND-001-a.avif": {
+      "systemId": "FRA-LAND-001",
+      "system": "BONUS Mk II",
+      "slot": "a",
+      "sourceUrl": "https://knds.com/en/products/ammunition/155mm-bonus",
+      "sourceDomain": "knds.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "FRA-LAND-001-b.jpg": {
+      "systemId": "FRA-LAND-001",
+      "system": "BONUS Mk II",
+      "slot": "b",
+      "sourceUrl": "https://turdef.com/article/finland-to-purchase-additional-155-mm-bonus-mk-ii",
+      "sourceDomain": "turdef.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "GBR-AIR-001-a.webp": {
+      "systemId": "GBR-AIR-001",
+      "system": "Brimstone 3",
+      "slot": "a",
+      "sourceUrl": "https://www.mbda-systems.com/products/tactical-strike/brimstone",
+      "sourceDomain": "mbda-systems.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "GBR-AIR-001-b.jpg": {
+      "systemId": "GBR-AIR-001",
+      "system": "Brimstone 3",
+      "slot": "b",
+      "sourceUrl": "https://thedefensepost.com/2026/07/22/raf-protector-brimstone-paveway/",
+      "sourceDomain": "thedefensepost.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "GBR-AIR-001-c.jpg": {
+      "systemId": "GBR-AIR-001",
+      "system": "Brimstone 3",
+      "slot": "c",
+      "sourceUrl": "https://www.mbda-systems.com/first-brimstone-3-missile-firing-tremendous-success",
+      "sourceDomain": "mbda-systems.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-AIR-001-a.webp": {
+      "systemId": "ISR-AIR-001",
+      "system": "IAI Harpy",
+      "slot": "a",
+      "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
+      "sourceDomain": "theaviationist.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-001-b.jpg": {
+      "systemId": "ISR-AIR-001",
+      "system": "IAI Harpy",
+      "slot": "b",
+      "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
+      "sourceDomain": "theaviationist.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-002-a.jpg": {
+      "systemId": "ISR-AIR-002",
+      "system": "IAI Mini Harpy",
+      "slot": "a",
+      "sourceUrl": "https://www.iai.co.il/product/mini-harpy/",
+      "sourceDomain": "iai.co.il",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-AIR-002-b.jpg": {
+      "systemId": "ISR-AIR-002",
+      "system": "IAI Mini Harpy",
+      "slot": "b",
+      "sourceUrl": "https://www.janes.com/defence-intelligence-insights/defence-news/iai-announces-new-mini-harpy-loitering-munition",
+      "sourceDomain": "janes.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-003-a.jpg": {
+      "systemId": "ISR-AIR-003",
+      "system": "IAI Harop",
+      "slot": "a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/IAI_Harop",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "ISR-AIR-003-b.avif": {
+      "systemId": "ISR-AIR-003",
+      "system": "IAI Harop",
+      "slot": "b",
+      "sourceUrl": "https://www.defensenews.com/unmanned/2021/02/02/israeli-firm-sells-harop-rotem-kamikaze-drones-to-several-asian-countries/",
+      "sourceDomain": "defensenews.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-004-a.jpg": {
+      "systemId": "ISR-AIR-004",
+      "system": "IAI Rotem L",
+      "slot": "a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/IAI_Rotem_L",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "ISR-AIR-004-b.jpg": {
+      "systemId": "ISR-AIR-004",
+      "system": "IAI Rotem L",
+      "slot": "b",
+      "sourceUrl": "https://www.ynetnews.com/article/5287209",
+      "sourceDomain": "ynetnews.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-005-A.avif": {
+      "systemId": "ISR-AIR-005-A",
+      "system": "UVision Hero-400EC",
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
+    "ISR-AIR-005-a.png": {
+      "systemId": "ISR-AIR-005",
+      "system": "UVision Hero-120",
+      "slot": "a",
+      "sourceUrl": "https://uvisionuav.com/loitering-munitions/hero-120/",
+      "sourceDomain": "uvisionuav.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-AIR-005-b.jpg": {
+      "systemId": "ISR-AIR-005",
+      "system": "UVision Hero-120",
+      "slot": "b",
+      "sourceUrl": "https://fragoutmag.com/uvision-unveils-game-changing-aerial-launch-capability-for-hero-120/",
+      "sourceDomain": "fragoutmag.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-005-c.jpg": {
+      "systemId": "ISR-AIR-005",
+      "system": "UVision Hero-120",
+      "slot": "c",
+      "sourceUrl": "https://www.edrmagazine.eu/rheinmetall-and-uvision-team-to-propose-hero-loitering-munitions-on-the-european-market",
+      "sourceDomain": "edrmagazine.eu",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-AIR-006-a.jpg": {
+      "systemId": "ISR-AIR-006",
+      "system": "Elbit LANIUS",
+      "slot": "a",
+      "sourceUrl": "https://www.elbitsystems.com/networked-warfare/robotic-and-autonomous-solutions/tactical-unmanned-aerial-systems/lanius-x",
+      "sourceDomain": "elbitsystems.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-AIR-006-b.jpg": {
+      "systemId": "ISR-AIR-006",
+      "system": "Elbit LANIUS",
+      "slot": "b",
+      "sourceUrl": "https://autonomousweaponswatch.org/weapon/elbit-lanius-uav",
+      "sourceDomain": "autonomousweaponswatch.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-LAND-001-a.jpg": {
+      "systemId": "ISR-LAND-001",
+      "system": "Iron Dome (Tamir)",
+      "slot": "a",
+      "sourceUrl": "https://www.rafael.co.il/system/iron-dome/",
+      "sourceDomain": "rafael.co.il",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-LAND-001-b.jpg": {
+      "systemId": "ISR-LAND-001",
+      "system": "Iron Dome (Tamir)",
+      "slot": "b",
+      "sourceUrl": "https://www.nytimes.com/2026/05/01/world/middleeast/israel-emirates-iron-dome.html",
+      "sourceDomain": "nytimes.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-LAND-002-a.jpg": {
+      "systemId": "ISR-LAND-002",
+      "system": "David's Sling (Stunner)",
+      "slot": "a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/David%27s_Sling",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "ISR-LAND-002-b.jpg": {
+      "systemId": "ISR-LAND-002",
+      "system": "David's Sling (Stunner)",
+      "slot": "b",
+      "sourceUrl": "https://defence-blog.com/israel-used-first-time-newest-davids-sling-missile-defense-systems/",
+      "sourceDomain": "defence-blog.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-LAND-003-a.jpg": {
+      "systemId": "ISR-LAND-003",
+      "system": "Trophy APS (ASPRO-A)",
+      "slot": "a",
+      "sourceUrl": "https://www.rafael-usa.com/programs/trophy/",
+      "sourceDomain": "rafael-usa.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-LAND-003-b.jpg": {
+      "systemId": "ISR-LAND-003",
+      "system": "Trophy APS (ASPRO-A)",
+      "slot": "b",
+      "sourceUrl": "https://www.rafael.co.il/system/trophy-aps/",
+      "sourceDomain": "rafael.co.il",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "ISR-LAND-004-a.jpg": {
+      "systemId": "ISR-LAND-004",
+      "system": "Iron Fist Light (IF-LD / IF-LK)",
+      "slot": "a",
+      "sourceUrl": "https://www.edrmagazine.eu/elbit-systems-iron-fist",
+      "sourceDomain": "edrmagazine.eu",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-LAND-004-b.jpg": {
+      "systemId": "ISR-LAND-004",
+      "system": "Iron Fist Light (IF-LD / IF-LK)",
+      "slot": "b",
+      "sourceUrl": "https://www.edrmagazine.eu/us-army-decides-to-proceed-with-the-iron-fist-light-aps-on-the-bradley",
+      "sourceDomain": "edrmagazine.eu",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-SEA-001-a.avif": {
+      "systemId": "ISR-SEA-001",
+      "system": "Elbit Seagull USV",
+      "slot": "a",
+      "sourceUrl": "https://www.naval-technology.com/news/newselbit-systems-uses-seagull-usv-for-live-demonstration-of-asw-mission-5928892/",
+      "sourceDomain": "naval-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-SEA-001-b.jpg": {
+      "systemId": "ISR-SEA-001",
+      "system": "Elbit Seagull USV",
+      "slot": "b",
+      "sourceUrl": "https://www.c4isrnet.com/unmanned/2022/12/13/israels-elbit-sends-seagull-usv-to-digital-horizon-event-in-bahrain/",
+      "sourceDomain": "c4isrnet.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "JPN-LAND-001-a.webp": {
+      "systemId": "JPN-LAND-001",
+      "system": "Type 03 Chu-SAM Kai",
+      "slot": "a",
+      "sourceUrl": "https://thaimilitaryandasianregion.wordpress.com/2015/11/12/chu-sam-kai-external-link-surface-to-air-missile-system-japan/",
+      "sourceDomain": "thaimilitaryandasianregion.wordpress.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "JPN-LAND-001-b.jpg": {
+      "systemId": "JPN-LAND-001",
+      "system": "Type 03 Chu-SAM Kai",
+      "slot": "b",
+      "sourceUrl": "https://alert5.com/2016/08/23/japan-deploying-type-3-chu-sam-kai-in-okinawa-prefecture/",
+      "sourceDomain": "alert5.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "KOR-LAND-001-a.jpg": {
+      "systemId": "KOR-LAND-001",
+      "system": "SGR-A1",
+      "slot": "a",
+      "sourceUrl": "https://www.techeblog.com/samsung-sgr-1-the-autonomous-self-aiming-turret-robot/",
+      "sourceDomain": "techeblog.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "KOR-LAND-001-b.webp": {
+      "systemId": "KOR-LAND-001",
+      "system": "SGR-A1",
+      "slot": "b",
+      "sourceUrl": "https://www.nbcnews.com/tech/security/future-tech-autonomous-killer-robots-are-already-here-n105656",
+      "sourceDomain": "nbcnews.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "KOR-LAND-002-a.webp": {
+      "systemId": "KOR-LAND-002",
+      "system": "Super aEgis II",
+      "slot": "a",
+      "sourceUrl": "https://www.bbc.com/future/article/20150715-killer-robots-the-soldiers-that-never-sleep",
+      "sourceDomain": "bbc.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "KOR-LAND-002-b.webp": {
+      "systemId": "KOR-LAND-002",
+      "system": "Super aEgis II",
+      "slot": "b",
+      "sourceUrl": "https://singularityhub.com/2010/12/16/south-koreas-robot-machine-gun-turret-can-see-you-coming-3-km-away/",
+      "sourceDomain": "singularityhub.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "KOR-LAND-003-a.jpg": {
+      "systemId": "KOR-LAND-003",
+      "system": "KAPS APS",
+      "slot": "a",
+      "sourceUrl": "https://x.com/RyszardJonski/status/1963698613865111717",
+      "sourceDomain": "x.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "KOR-LAND-004-a.jpg": {
+      "systemId": "KOR-LAND-004",
+      "system": "Hanwha Arion-SMET (armed variants)",
+      "slot": "a",
+      "sourceUrl": "https://hanwha-aerospace.eu/wp-content/uploads/2026/07/2.jpg",
+      "sourceDomain": "hanwha-aerospace.eu",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "KOR-LAND-004-b.jpg": {
+      "systemId": "KOR-LAND-004",
+      "system": "Hanwha Arion-SMET (armed variants)",
+      "slot": "b",
+      "sourceUrl": "https://hanwha-aerospace.eu/wp-content/uploads/2026/07/2.jpg",
+      "sourceDomain": "hanwha-aerospace.eu",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "NLD-SEA-001-a.jpg": {
+      "systemId": "NLD-SEA-001",
+      "system": "Goalkeeper CIWS",
+      "slot": "a",
+      "sourceUrl": "https://www.gdots.com/armaments/naval-platforms-system/goalkeeper/",
+      "sourceDomain": "gdots.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "NLD-SEA-001-b.jpg": {
+      "systemId": "NLD-SEA-001",
+      "system": "Goalkeeper CIWS",
+      "slot": "b",
+      "sourceUrl": "https://www.gdots.com/armaments/naval-platforms-system/goalkeeper/",
+      "sourceDomain": "gdots.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "NOR-AIR-001-a.jpg": {
+      "systemId": "NOR-AIR-001",
+      "system": "Kongsberg Joint Strike Missile (JSM)",
+      "slot": "a",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
+    "NOR-AIR-001-b.jpg": {
+      "systemId": "NOR-AIR-001",
+      "system": "Kongsberg Joint Strike Missile (JSM)",
+      "slot": "b",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
+    "NOR-SEA-001-a.webp": {
+      "systemId": "NOR-SEA-001",
+      "system": "Kongsberg Naval Strike Missile (NSM)",
+      "slot": "a",
+      "sourceUrl": "https://www.kongsberg.com/what-we-do/defence-and-security/missile-systems/nsm-naval-strike-missile/",
+      "sourceDomain": "kongsberg.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "NOR-SEA-001-b.jpg": {
+      "systemId": "NOR-SEA-001",
+      "system": "Kongsberg Naval Strike Missile (NSM)",
+      "slot": "b",
+      "sourceUrl": "https://www.kongsberg.com/what-we-do/defence-and-security/missile-systems/nsm-naval-strike-missile/",
+      "sourceDomain": "kongsberg.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "POL-AIR-001-a.jpg": {
+      "systemId": "POL-AIR-001",
+      "system": "WB Group Warmate",
+      "slot": "a",
+      "sourceUrl": "https://www.wbgroup.pl/en/produkt/warmate-loitering-munnitions/",
+      "sourceDomain": "wbgroup.pl",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "POL-AIR-001-b.jpg": {
+      "systemId": "POL-AIR-001",
+      "system": "WB Group Warmate",
+      "slot": "b",
+      "sourceUrl": "https://www.wbgroup.pl/en/produkt/warmate-loitering-munnitions/",
+      "sourceDomain": "wbgroup.pl",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "RUS-AIR-001-A-a.webp": {
+      "systemId": "RUS-AIR-001-A",
+      "system": "ZALA Lancet Izdeliye-51",
+      "slot": "a",
+      "sourceUrl": "https://zala-aero.com/en/product/izdelie-51-2/",
+      "sourceDomain": "zala-aero.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "RUS-AIR-001-A-b.webp": {
+      "systemId": "RUS-AIR-001-A",
+      "system": "ZALA Lancet Izdeliye-51",
+      "slot": "b",
+      "sourceUrl": "https://zala-aero.com/en/product/izdelie-51-2/",
+      "sourceDomain": "zala-aero.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "RUS-AIR-001-B-a.webp": {
+      "systemId": "RUS-AIR-001-B",
+      "system": "ZALA Lancet Izdeliye-53",
+      "slot": "a",
+      "sourceUrl": "https://zala-aero.com/en/product/izdelie-53/",
+      "sourceDomain": "zala-aero.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "RUS-AIR-001-B-b.webp": {
+      "systemId": "RUS-AIR-001-B",
+      "system": "ZALA Lancet Izdeliye-53",
+      "slot": "b",
+      "sourceUrl": "https://zala-aero.com/en/product/izdelie-53/",
+      "sourceDomain": "zala-aero.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "RUS-AIR-001-a.jpg": {
+      "systemId": "RUS-AIR-001",
+      "system": "ZALA Lancet-3",
+      "slot": "a",
+      "sourceUrl": "https://autonomousweaponswatch.org/weapon/kalashnikov-zala-lancet-3",
+      "sourceDomain": "autonomousweaponswatch.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-AIR-001-b.webp": {
+      "systemId": "RUS-AIR-001",
+      "system": "ZALA Lancet-3",
+      "slot": "b",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
+    "RUS-AIR-002-a.jpg": {
+      "systemId": "RUS-AIR-002",
+      "system": "KUB-BLA (KYB)",
+      "slot": "a",
+      "sourceUrl": "https://autonomousweaponswatch.org/weapon/kalashnikov-kyb",
+      "sourceDomain": "autonomousweaponswatch.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-AIR-002-b.jpg": {
+      "systemId": "RUS-AIR-002",
+      "system": "KUB-BLA (KYB)",
+      "slot": "b",
+      "sourceUrl": "https://www.deagel.com/Weapons/KUB-BLA/a003856",
+      "sourceDomain": "deagel.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-AIR-003-a.webp": {
+      "systemId": "RUS-AIR-003",
+      "system": "Yolka interceptor UAV",
+      "slot": "a",
+      "sourceUrl": "https://www.pravda.com.ua/eng/news/2026/04/08/8029225/",
+      "sourceDomain": "pravda.com.ua",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-AIR-003-b.jpg": {
+      "systemId": "RUS-AIR-003",
+      "system": "Yolka interceptor UAV",
+      "slot": "b",
+      "sourceUrl": "https://www.viory.video/en/videos/a3147_03032026/game-changer-moscow-developers-unveil-cutting-edge-yolka-portable-drone-interceptor",
+      "sourceDomain": "viory.video",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-001-a.webp": {
+      "systemId": "RUS-LAND-001",
+      "system": "Pantsir-S1 / S2",
+      "slot": "a",
+      "sourceUrl": "https://missilethreat.csis.org/defsys/pantsir-s-1/",
+      "sourceDomain": "missilethreat.csis.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-001-b.webp": {
+      "systemId": "RUS-LAND-001",
+      "system": "Pantsir-S1 / S2",
+      "slot": "b",
+      "sourceUrl": "https://defensefeeds.com/military-tech/army/air-defense-systems/pantsir-missile-system/",
+      "sourceDomain": "defensefeeds.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-002-a.jpg": {
+      "systemId": "RUS-LAND-002",
+      "system": "Tor-M2 / Tor-M2DT",
+      "slot": "a",
+      "sourceUrl": "https://defence-blog.com/russian-army-orders-more-tor-m2-anti-air-systems/",
+      "sourceDomain": "defence-blog.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-002-b.jpg": {
+      "systemId": "RUS-LAND-002",
+      "system": "Tor-M2 / Tor-M2DT",
+      "slot": "b",
+      "sourceUrl": "https://missilethreat.csis.org/defsys/tor/",
+      "sourceDomain": "missilethreat.csis.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-003-a.jpg": {
+      "systemId": "RUS-LAND-003",
+      "system": "S-400 Triumf",
+      "slot": "a",
+      "sourceUrl": "https://missilethreat.csis.org/defsys/s-400-triumf/",
+      "sourceDomain": "missilethreat.csis.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-003-b.webp": {
+      "systemId": "RUS-LAND-003",
+      "system": "S-400 Triumf",
+      "slot": "b",
+      "sourceUrl": "https://defencesecurityasia.com/en/s400-russia-ukraine-f16/",
+      "sourceDomain": "defencesecurityasia.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-004-a.webp": {
+      "systemId": "RUS-LAND-004",
+      "system": "Arena-M APS",
+      "slot": "a",
+      "sourceUrl": "https://www.forbes.com/sites/davidhambling/2026/08/10/russias-fpv-stopping-arena-system-for-tanks-gets-combat-debut/",
+      "sourceDomain": "forbes.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-004-b.jpg": {
+      "systemId": "RUS-LAND-004",
+      "system": "Arena-M APS",
+      "slot": "b",
+      "sourceUrl": "https://militarnyi.com/en/news/russian-arena-m-aps-intercepts-fpv-drones-on-the-front-line-for-the-first-time/",
+      "sourceDomain": "militarnyi.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-005-a.jpg": {
+      "systemId": "RUS-LAND-005",
+      "system": "Afghanit APS",
+      "slot": "a",
+      "sourceUrl": "https://www.armyrecognition.com/focus-analysis-conflicts/army/defence-security-industry-technology/analysis-russian-afganit-active-protection-system-is-able-to-intercept-uranium-tank-ammunition-tass-11012163",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-005-b.jpg": {
+      "systemId": "RUS-LAND-005",
+      "system": "Afghanit APS",
+      "slot": "b",
+      "sourceUrl": "https://www.armyrecognition.com/focus-analysis-conflicts/army/defence-security-industry-technology/analysis-russian-afganit-active-protection-system-is-able-to-intercept-uranium-tank-ammunition-tass-11012164",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-LAND-006-a.webp": {
+      "systemId": "RUS-LAND-006",
+      "system": "Marker UGV",
+      "slot": "a",
+      "sourceUrl": "https://automatedresearch.org/weapon/androidnaya-tekhnika-marker-ugv/",
+      "sourceDomain": "automatedresearch.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-SEA-001-a.jpg": {
+      "systemId": "RUS-SEA-001",
+      "system": "Kashtan / Kortik CIWS",
+      "slot": "a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Kortik_CIWS",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "RUS-SEA-001-b.jpg": {
+      "systemId": "RUS-SEA-001",
+      "system": "Kashtan / Kortik CIWS",
+      "slot": "b",
+      "sourceUrl": "https://weaponsystems.net/system/518-30mm+Kortik",
+      "sourceDomain": "weaponsystems.net",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-SEA-002-a.avif": {
+      "systemId": "RUS-SEA-002",
+      "system": "Pantsir-M / Pantsir-ME",
+      "slot": "a",
+      "sourceUrl": "https://www.naval-technology.com/news/russia-pantsir-me-naval-air-defence-system/",
+      "sourceDomain": "naval-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-SEA-002-b.webp": {
+      "systemId": "RUS-SEA-002",
+      "system": "Pantsir-M / Pantsir-ME",
+      "slot": "b",
+      "sourceUrl": "https://www.armyrecognition.com/archives/archives-naval-defense/naval-defense-2020/pantsir-m-missile-system-onboard-odintsovo-corvette-of-project-22800-able-to-destroy-cruise-missile-strike",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-SEA-003-a.jpg": {
+      "systemId": "RUS-SEA-003",
+      "system": "AK-630M / MR-123 Vympel",
+      "slot": "a",
+      "sourceUrl": "https://www.seaforces.org/wpnsys/SURFACE/AK-630-CIWS.htm",
+      "sourceDomain": "seaforces.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "RUS-SEA-003-b.jpg": {
+      "systemId": "RUS-SEA-003",
+      "system": "AK-630M / MR-123 Vympel",
+      "slot": "b",
+      "sourceUrl": "https://www.seaforces.org/wpnsys/SURFACE/AK-630-CIWS.htm",
+      "sourceDomain": "seaforces.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "SWE-AIR-001-a.jpg": {
+      "systemId": "SWE-AIR-001",
+      "system": "RBS-15 Mk3 / Mk4 Gungnir",
+      "slot": "a",
+      "sourceUrl": "https://www.saab.com/products/the-rbs15-family",
+      "sourceDomain": "saab.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "SWE-AIR-001-b.avif": {
+      "systemId": "SWE-AIR-001",
+      "system": "RBS-15 Mk3 / Mk4 Gungnir",
+      "slot": "b",
+      "sourceUrl": "https://www.naval-technology.com/projects/rbs-15-gungnir-next-generation-anti-ship-missile/",
+      "sourceDomain": "naval-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "TUR-AIR-001-a.jpg": {
+      "systemId": "TUR-AIR-001",
+      "system": "STM Kargu / Kargu-2",
+      "slot": "a",
+      "sourceUrl": "https://autonomousweaponswatch.org/weapon/stm-kargu-2-uav",
+      "sourceDomain": "autonomousweaponswatch.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "TUR-AIR-001-b.webp": {
+      "systemId": "TUR-AIR-001",
+      "system": "STM Kargu / Kargu-2",
+      "slot": "b",
+      "sourceUrl": "https://www.stm.com.tr/en/news/stm-deploys-rf-seeker-kargu-against-fpv-drone-threats",
+      "sourceDomain": "stm.com.tr",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "TUR-AIR-002-a.jpg": {
+      "systemId": "TUR-AIR-002",
+      "system": "STM Alpagu",
+      "slot": "a",
+      "sourceUrl": "https://www.stm.com.tr/en/press-releases/new-domestic-made-uav-set-join-turkish-arsenal",
+      "sourceDomain": "stm.com.tr",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "TUR-AIR-002-b.jpg": {
+      "systemId": "TUR-AIR-002",
+      "system": "STM Alpagu",
+      "slot": "b",
+      "sourceUrl": "https://www.stm.com.tr/en/alpagu-fixed-wing-loitering-munition-system",
+      "sourceDomain": "stm.com.tr",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "TUR-AIR-003-a.jpg": {
+      "systemId": "TUR-AIR-003",
+      "system": "STM KarguFPV",
+      "slot": "a",
+      "sourceUrl": "https://www.stm.com.tr/en/press-releases/new-player-takes-battlefield-kargu-fpv-drone",
+      "sourceDomain": "stm.com.tr",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "TUR-AIR-003-b.webp": {
+      "systemId": "TUR-AIR-003",
+      "system": "STM KarguFPV",
+      "slot": "b",
+      "sourceUrl": "https://defence-industry.eu/stm-kargufpv-drone-achieves-first-direct-hit-with-armour-piercing-warhead-in-live-test/",
+      "sourceDomain": "defence-industry.eu",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "TUR-LAND-001-a.jpg": {
+      "systemId": "TUR-LAND-001",
+      "system": "ASELSAN AKKOR APS",
+      "slot": "a",
+      "sourceUrl": "https://www.armyrecognition.com/archives/archives-land-defense/defense-news-army-2025/tuerkiye-adopts-akkor-10-system-to-provide-360-degree-active-protection-for-altay-and-leopard-2a4-tanks",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "TUR-LAND-003-a.avif": {
+      "systemId": "TUR-LAND-003",
+      "system": "ASELSAN Korkut SPAAG",
+      "slot": "a",
+      "sourceUrl": "https://www.army-technology.com/projects/korkut-self-propelled-air-defence-gun-system/",
+      "sourceDomain": "army-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "TUR-LAND-003-b.webp": {
+      "systemId": "TUR-LAND-003",
+      "system": "ASELSAN Korkut SPAAG",
+      "slot": "b",
+      "sourceUrl": "https://www.turkiyetoday.com/nation/aselsan-tests-korkut-14035-spaag-mounted-on-otokar-arma-ii-8x8-vehicle-3212610?s=1",
+      "sourceDomain": "turkiyetoday.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-001-a.webp": {
+      "systemId": "UKR-AIR-001",
+      "system": "Wild Hornets Sting",
+      "slot": "a",
+      "sourceUrl": "https://www.businessinsider.com/cheap-drone-shahed-sting-wild-hornets-bullet-train-speed-2025-8",
+      "sourceDomain": "businessinsider.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-001-b.jpg": {
+      "systemId": "UKR-AIR-001",
+      "system": "Wild Hornets Sting",
+      "slot": "b",
+      "sourceUrl": "https://united24media.com/war-in-ukraine/ukrainian-sting-interceptor-drone-sets-new-altitude-record-destroying-russian-uav-at-75-km-21806",
+      "sourceDomain": "united24media.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-002-a.jpg": {
+      "systemId": "UKR-AIR-002",
+      "system": "F-Drones LITAVR",
+      "slot": "a",
+      "sourceUrl": "https://thedefensepost.com/2026/08/13/ukraine-faster-litavr-uas/",
+      "sourceDomain": "thedefensepost.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-002-b.jpg": {
+      "systemId": "UKR-AIR-002",
+      "system": "F-Drones LITAVR",
+      "slot": "b",
+      "sourceUrl": "https://en.lb.ua/news/2026/08/10/39646_f-drones_unveils_litavr.html",
+      "sourceDomain": "en.lb.ua",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-003-a.jpg": {
+      "systemId": "UKR-AIR-003",
+      "system": "Bullet interceptor",
+      "slot": "a",
+      "sourceUrl": "https://thedefensepost.com/2026/08/05/general-cherry-bullet-french-ai/",
+      "sourceDomain": "thedefensepost.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-003-b.webp": {
+      "systemId": "UKR-AIR-003",
+      "system": "Bullet interceptor",
+      "slot": "b",
+      "sourceUrl": "https://www.bbc.com/news/articles/c1k2lmmjvzxo",
+      "sourceDomain": "bbc.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-004-a.jpg": {
+      "systemId": "UKR-AIR-004",
+      "system": "Saker Scout",
+      "slot": "a",
+      "sourceUrl": "https://saker.airforce/",
+      "sourceDomain": "saker.airforce",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-AIR-004-b.jpg": {
+      "systemId": "UKR-AIR-004",
+      "system": "Saker Scout",
+      "slot": "b",
+      "sourceUrl": "https://militarnyi.com/en/news/ukrainian-saker-uav-manufactured-in-denmark/",
+      "sourceDomain": "militarnyi.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-SEA-001-a.webp": {
+      "systemId": "UKR-SEA-001",
+      "system": "SBU Sea Baby",
+      "slot": "a",
+      "sourceUrl": "https://www.euronews.com/2025/10/23/ukraine-unveils-upgraded-sea-baby-drone-it-says-can-strike-anywhere-in-the-black-sea",
+      "sourceDomain": "euronews.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-SEA-001-b.webp": {
+      "systemId": "UKR-SEA-001",
+      "system": "SBU Sea Baby",
+      "slot": "b",
+      "sourceUrl": "https://www.euronews.com/2025/10/23/ukraine-unveils-upgraded-sea-baby-drone-it-says-can-strike-anywhere-in-the-black-sea",
+      "sourceDomain": "euronews.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-SEA-002-a.jpg": {
+      "systemId": "UKR-SEA-002",
+      "system": "MAGURA V5",
+      "slot": "a",
+      "sourceUrl": "https://euro-sd.com/2024/06/major-news/38905/magura-v5-at-eurosatory-2024-2/",
+      "sourceDomain": "euro-sd.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-SEA-002-b.jpg": {
+      "systemId": "UKR-SEA-002",
+      "system": "MAGURA V5",
+      "slot": "b",
+      "sourceUrl": "https://newsukraine.rbc.ua/news/russian-navy-s-nightmare-ukrainian-kamikaze-1713444419.html",
+      "sourceDomain": "newsukraine.rbc.ua",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-SEA-003-a.png": {
+      "systemId": "UKR-SEA-003",
+      "system": "MAGURA V7",
+      "slot": "a",
+      "sourceUrl": "https://united24media.com/latest-news/first-look-at-ukraines-magura-sea-drones-that-destroyed-15-russian-targets-8394",
+      "sourceDomain": "united24media.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "UKR-SEA-003-b.jpg": {
+      "systemId": "UKR-SEA-003",
+      "system": "MAGURA V7",
+      "slot": "b",
+      "sourceUrl": "https://united24media.com/latest-news/ukraine-tests-modernized-magura-v72-naval-drone-during-nato-trials-in-portugal-11877",
+      "sourceDomain": "united24media.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-001-a.webp": {
+      "systemId": "USA-AIR-001",
+      "system": "Switchblade 300 Block 20",
+      "slot": "a",
+      "sourceUrl": "https://www.avinc.com/solution/switchblade-300-block-20/",
+      "sourceDomain": "avinc.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-001-b.webp": {
+      "systemId": "USA-AIR-001",
+      "system": "Switchblade 300 Block 20",
+      "slot": "b",
+      "sourceUrl": "https://www.defenceconnect.com.au/air/11710-aerovironment-launch-new-switchblade300-block20-attack-drone",
+      "sourceDomain": "defenceconnect.com.au",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-002-a.jpg": {
+      "systemId": "USA-AIR-002",
+      "system": "Switchblade 600",
+      "slot": "a",
+      "sourceUrl": "https://www.avinc.com/solution/switchblade-600-block-2/",
+      "sourceDomain": "avinc.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-002-b.jpg": {
+      "systemId": "USA-AIR-002",
+      "system": "Switchblade 600",
+      "slot": "b",
+      "sourceUrl": "https://www.dvidshub.net/image/8767628/switchblade-600-loitering-munitions-training",
+      "sourceDomain": "dvidshub.net",
+      "category": "government",
+      "status": "include"
+    },
+    "USA-AIR-003-a.jpg": {
+      "systemId": "USA-AIR-003",
+      "system": "ALTIUS-600M",
+      "slot": "a",
+      "sourceUrl": "https://www.airforce-technology.com/projects/altius-600-small-unmanned-aircraft-system/",
+      "sourceDomain": "airforce-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-003-b.avif": {
+      "systemId": "USA-AIR-003",
+      "system": "ALTIUS-600M",
+      "slot": "b",
+      "sourceUrl": "https://www.airforce-technology.com/projects/altius-600-small-unmanned-aircraft-system/",
+      "sourceDomain": "airforce-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-003-c.jpg": {
+      "systemId": "USA-AIR-003",
+      "system": "ALTIUS-600M",
+      "slot": "c",
+      "sourceUrl": "https://www.eurasiantimes.com/direct-hit-altius-600-loitering-munition-now-being-delivered/",
+      "sourceDomain": "eurasiantimes.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-004-a.jpg": {
+      "systemId": "USA-AIR-004",
+      "system": "ALTIUS-700M",
+      "slot": "a",
+      "sourceUrl": "https://www.anduril.com/altius",
+      "sourceDomain": "anduril.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-004-b.jpg": {
+      "systemId": "USA-AIR-004",
+      "system": "ALTIUS-700M",
+      "slot": "b",
+      "sourceUrl": "https://www.anduril.com/altius",
+      "sourceDomain": "anduril.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-005-a.avif": {
+      "systemId": "USA-AIR-005",
+      "system": "Anduril Bolt-M",
+      "slot": "a",
+      "sourceUrl": "https://simpleflying.com/us-marine-corps-newest-drone-andruil-bolt/",
+      "sourceDomain": "simpleflying.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-005-b.avif": {
+      "systemId": "USA-AIR-005",
+      "system": "Anduril Bolt-M",
+      "slot": "b",
+      "sourceUrl": "https://simpleflying.com/us-marine-corps-newest-drone-andruil-bolt/",
+      "sourceDomain": "simpleflying.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-006-a.jpg": {
+      "systemId": "USA-AIR-006",
+      "system": "Anduril Roadrunner-M",
+      "slot": "a",
+      "sourceUrl": "https://www.anduril.com/news/anduril-unveils-roadrunner-and-roadrunner-m",
+      "sourceDomain": "anduril.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-006-b.webp": {
+      "systemId": "USA-AIR-006",
+      "system": "Anduril Roadrunner-M",
+      "slot": "b",
+      "sourceUrl": "https://www.businessinsider.com/anduril-roadrunner-raytheon-coyote-drones-us-navy-carriers-2025-5#expendable-loitering-munitions-5",
+      "sourceDomain": "businessinsider.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-007-a.jpg": {
+      "systemId": "USA-AIR-007",
+      "system": "Anduril Anvil / Anvil-M",
+      "slot": "a",
+      "sourceUrl": "https://www.anduril.com/anvil",
+      "sourceDomain": "anduril.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-007-b.jpg": {
+      "systemId": "USA-AIR-007",
+      "system": "Anduril Anvil / Anvil-M",
+      "slot": "b",
+      "sourceUrl": "https://defence-blog.com/u-s-steps-closer-to-fielding-autonomous-drone-interceptor/",
+      "sourceDomain": "defence-blog.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-008-a.jpg": {
+      "systemId": "USA-AIR-008",
+      "system": "AGM-158C LRASM",
+      "slot": "a",
+      "sourceUrl": "https://www.seaforces.org/wpnsys/AIRCRAFT/AGM-158C-LRASM.htm",
+      "sourceDomain": "seaforces.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-008-b.jpg": {
+      "systemId": "USA-AIR-008",
+      "system": "AGM-158C LRASM",
+      "slot": "b",
+      "sourceUrl": "https://www.seaforces.org/wpnsys/AIRCRAFT/AGM-158C-LRASM.htm",
+      "sourceDomain": "seaforces.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-008-c.jpg": {
+      "systemId": "USA-AIR-008",
+      "system": "AGM-158C LRASM",
+      "slot": "c",
+      "sourceUrl": "https://www.seaforces.org/wpnsys/AIRCRAFT/AGM-158C-LRASM.htm",
+      "sourceDomain": "seaforces.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-009-a.jpg": {
+      "systemId": "USA-AIR-009",
+      "system": "Harpoon Block II / II+",
+      "slot": "a",
+      "sourceUrl": "https://www.navair.navy.mil/product/Harpoon",
+      "sourceDomain": "navair.navy.mil",
+      "category": "government",
+      "status": "include"
+    },
+    "USA-AIR-009-b.avif": {
+      "systemId": "USA-AIR-009",
+      "system": "Harpoon Block II / II+",
+      "slot": "b",
+      "sourceUrl": "https://www.naval-technology.com/news/newsboeing-to-deliver-harpoon-block-ii-missiles-to-us-navy/",
+      "sourceDomain": "naval-technology.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-AIR-010-a.jpg": {
+      "systemId": "USA-AIR-010",
+      "system": "Coyote Block 2 / 2C",
+      "slot": "a",
+      "sourceUrl": "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/coyote",
+      "sourceDomain": "rtx.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-AIR-010-b.jpg": {
+      "systemId": "USA-AIR-010",
+      "system": "Coyote Block 2 / 2C",
+      "slot": "b",
+      "sourceUrl": "https://defensescoop.com/2024/02/09/army-600-coyote-counter-drone-rtx/",
+      "sourceDomain": "defensescoop.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-LAND-001-a.jpg": {
+      "systemId": "USA-LAND-001",
+      "system": "C-RAM LPWS (Land-based Phalanx)",
+      "slot": "a",
+      "sourceUrl": "https://www.dvidshub.net/image/9229736/land-phalanx-weapon-system-crew-optimizes-defense-capabilities",
+      "sourceDomain": "dvidshub.net",
+      "category": "government",
+      "status": "include"
+    },
+    "USA-LAND-001-b.jpg": {
+      "systemId": "USA-LAND-001",
+      "system": "C-RAM LPWS (Land-based Phalanx)",
+      "slot": "b",
+      "sourceUrl": "https://www.missiledefenseadvocacy.org/defense-systems/counter-rocket-artillery-mortar-c-ram/",
+      "sourceDomain": "missiledefenseadvocacy.org",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-LAND-002-a.jpg": {
+      "systemId": "USA-LAND-002",
+      "system": "MIM-104 Patriot",
+      "slot": "a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/MIM-104_Patriot",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    },
+    "USA-LAND-002-b.jpg": {
+      "systemId": "USA-LAND-002",
+      "system": "MIM-104 Patriot",
+      "slot": "b",
+      "sourceUrl": "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/global-patriot-solutions",
+      "sourceDomain": "rtx.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-SEA-001-a.jpg": {
+      "systemId": "USA-SEA-001",
+      "system": "Phalanx CIWS Block 1B",
+      "slot": "a",
+      "sourceUrl": "https://www.rtx.com/raytheon/what-we-do/sea/phalanx-close-in-weapon-system#gdpr",
+      "sourceDomain": "rtx.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-SEA-001-b.jpg": {
+      "systemId": "USA-SEA-001",
+      "system": "Phalanx CIWS Block 1B",
+      "slot": "b",
+      "sourceUrl": "https://defense.info/defense-systems/upgraded-phalanx-close-in-weapons-systems-for-royal-australian-navy/",
+      "sourceDomain": "defense.info",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-SEA-002-a.jpg": {
+      "systemId": "USA-SEA-002",
+      "system": "SeaRAM",
+      "slot": "a",
+      "sourceUrl": "https://www.rtx.com/raytheon/what-we-do/sea/searam-ship-defense-system",
+      "sourceDomain": "rtx.com",
+      "category": "manufacturer",
+      "status": "include"
+    },
+    "USA-SEA-002-b.avif": {
+      "systemId": "USA-SEA-002",
+      "system": "SeaRAM",
+      "slot": "b",
+      "sourceUrl": "https://www.popularmechanics.com/military/navy-ships/a20358/the-navys-ship-defense-missile-just-got-deadlier/",
+      "sourceDomain": "popularmechanics.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-SEA-003-a.avif": {
+      "systemId": "USA-SEA-003",
+      "system": "Aegis Combat System (Auto-Special)",
+      "slot": "a",
+      "sourceUrl": "https://www.military.com/equipment/aegis-weapon-system",
+      "sourceDomain": "military.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-SEA-003-b.avif": {
+      "systemId": "USA-SEA-003",
+      "system": "Aegis Combat System (Auto-Special)",
+      "slot": "b",
+      "sourceUrl": "https://www.military.com/equipment/aegis-weapon-system",
+      "sourceDomain": "military.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-SUB-001-a.webp": {
+      "systemId": "USA-SUB-001",
+      "system": "Mk 48 Mod 7 CBASS",
+      "slot": "a",
+      "sourceUrl": "https://www.armyrecognition.com/archives/archives-naval-defense/naval-defense-2020/netherlands-to-request-16-u-s-mk-48-mod-7-advanced-technology-torpedo-conversion-kits",
+      "sourceDomain": "armyrecognition.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "USA-SUB-001-b.jpg": {
+      "systemId": "USA-SUB-001",
+      "system": "Mk 48 Mod 7 CBASS",
+      "slot": "b",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Mark_48_torpedo",
+      "sourceDomain": "en.wikipedia.org",
+      "category": "wikimedia",
+      "status": "include"
+    }
+  }
+}

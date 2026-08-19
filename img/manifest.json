@@ -1,0 +1,333 @@
+{
+  "note": "systemId -> image files in img/. Generated; do not hand-edit.",
+  "systems": {
+    "CHN-AIR-001": [
+      "CHN-AIR-001-a.jpg",
+      "CHN-AIR-001-b.jpg"
+    ],
+    "CHN-AIR-002": [
+      "CHN-AIR-002-a.webp",
+      "CHN-AIR-002-b.jpg"
+    ],
+    "CHN-AIR-003": [
+      "CHN-AIR-003-a.webp"
+    ],
+    "CHN-LAND-001": [
+      "CHN-LAND-001-a.webp"
+    ],
+    "CHN-LAND-002": [
+      "CHN-LAND-002-a.webp",
+      "CHN-LAND-002-b.jpg"
+    ],
+    "CHN-SEA-001": [
+      "CHN-SEA-001-a.jpg"
+    ],
+    "CHN-SEA-002": [
+      "CHN-SEA-002-a.webp"
+    ],
+    "CHN-SEA-003": [
+      "CHN-SEA-003-a.jpg",
+      "CHN-SEA-003-b.jpg"
+    ],
+    "DEU-AIR-001": [
+      "DEU-AIR-001-a.jpg",
+      "DEU-AIR-001-b.webp"
+    ],
+    "DEU-AIR-002": [
+      "DEU-AIR-002-a.jpg",
+      "DEU-AIR-002-b.jpg"
+    ],
+    "DEU-LAND-001": [
+      "DEU-LAND-001-a.jpg",
+      "DEU-LAND-001-b.jpg"
+    ],
+    "DEU-LAND-002": [
+      "DEU-LAND-002-a.jpg",
+      "DEU-LAND-002-b.jpg"
+    ],
+    "DEU-LAND-003": [
+      "DEU-LAND-003-a.jpg"
+    ],
+    "DEU-LAND-004": [
+      "DEU-LAND-004-a.jpg",
+      "DEU-LAND-004-b.jpg"
+    ],
+    "FRA-LAND-001": [
+      "FRA-LAND-001-a.avif",
+      "FRA-LAND-001-b.jpg"
+    ],
+    "GBR-AIR-001": [
+      "GBR-AIR-001-a.webp",
+      "GBR-AIR-001-b.jpg",
+      "GBR-AIR-001-c.jpg"
+    ],
+    "ISR-AIR-001": [
+      "ISR-AIR-001-a.webp",
+      "ISR-AIR-001-b.jpg"
+    ],
+    "ISR-AIR-002": [
+      "ISR-AIR-002-a.jpg",
+      "ISR-AIR-002-b.jpg"
+    ],
+    "ISR-AIR-003": [
+      "ISR-AIR-003-a.jpg",
+      "ISR-AIR-003-b.avif"
+    ],
+    "ISR-AIR-004": [
+      "ISR-AIR-004-a.jpg",
+      "ISR-AIR-004-b.jpg"
+    ],
+    "ISR-AIR-005": [
+      "ISR-AIR-005-a.png",
+      "ISR-AIR-005-b.jpg",
+      "ISR-AIR-005-c.jpg"
+    ],
+    "ISR-AIR-005-A": [
+      "ISR-AIR-005-A.avif"
+    ],
+    "ISR-AIR-006": [
+      "ISR-AIR-006-a.jpg",
+      "ISR-AIR-006-b.jpg"
+    ],
+    "ISR-LAND-001": [
+      "ISR-LAND-001-a.jpg",
+      "ISR-LAND-001-b.jpg"
+    ],
+    "ISR-LAND-002": [
+      "ISR-LAND-002-a.jpg",
+      "ISR-LAND-002-b.jpg"
+    ],
+    "ISR-LAND-003": [
+      "ISR-LAND-003-a.jpg",
+      "ISR-LAND-003-b.jpg"
+    ],
+    "ISR-LAND-004": [
+      "ISR-LAND-004-a.jpg",
+      "ISR-LAND-004-b.jpg"
+    ],
+    "ISR-SEA-001": [
+      "ISR-SEA-001-a.avif",
+      "ISR-SEA-001-b.jpg"
+    ],
+    "JPN-LAND-001": [
+      "JPN-LAND-001-a.webp",
+      "JPN-LAND-001-b.jpg"
+    ],
+    "KOR-LAND-001": [
+      "KOR-LAND-001-a.jpg",
+      "KOR-LAND-001-b.webp"
+    ],
+    "KOR-LAND-002": [
+      "KOR-LAND-002-a.webp",
+      "KOR-LAND-002-b.webp"
+    ],
+    "KOR-LAND-003": [
+      "KOR-LAND-003-a.jpg"
+    ],
+    "KOR-LAND-004": [
+      "KOR-LAND-004-a.jpg",
+      "KOR-LAND-004-b.jpg"
+    ],
+    "NLD-SEA-001": [
+      "NLD-SEA-001-a.jpg",
+      "NLD-SEA-001-b.jpg"
+    ],
+    "NOR-AIR-001": [
+      "NOR-AIR-001-a.jpg",
+      "NOR-AIR-001-b.jpg"
+    ],
+    "POL-AIR-001": [
+      "POL-AIR-001-a.jpg",
+      "POL-AIR-001-b.jpg"
+    ],
+    "RUS-AIR-001": [
+      "RUS-AIR-001-a.jpg",
+      "RUS-AIR-001-b.webp"
+    ],
+    "RUS-AIR-001-A": [
+      "RUS-AIR-001-A-a.webp",
+      "RUS-AIR-001-A-b.webp"
+    ],
+    "RUS-AIR-001-B": [
+      "RUS-AIR-001-B-a.webp",
+      "RUS-AIR-001-B-b.webp"
+    ],
+    "RUS-AIR-002": [
+      "RUS-AIR-002-a.jpg",
+      "RUS-AIR-002-b.jpg"
+    ],
+    "RUS-AIR-003": [
+      "RUS-AIR-003-a.webp",
+      "RUS-AIR-003-b.jpg"
+    ],
+    "RUS-LAND-001": [
+      "RUS-LAND-001-a.webp",
+      "RUS-LAND-001-b.webp"
+    ],
+    "RUS-LAND-002": [
+      "RUS-LAND-002-a.jpg",
+      "RUS-LAND-002-b.jpg"
+    ],
+    "RUS-LAND-003": [
+      "RUS-LAND-003-a.jpg",
+      "RUS-LAND-003-b.webp"
+    ],
+    "RUS-LAND-004": [
+      "RUS-LAND-004-a.webp",
+      "RUS-LAND-004-b.jpg"
+    ],
+    "RUS-LAND-005": [
+      "RUS-LAND-005-a.jpg",
+      "RUS-LAND-005-b.jpg"
+    ],
+    "RUS-LAND-006": [
+      "RUS-LAND-006-a.webp"
+    ],
+    "RUS-SEA-001": [
+      "RUS-SEA-001-a.jpg",
+      "RUS-SEA-001-b.jpg"
+    ],
+    "RUS-SEA-002": [
+      "RUS-SEA-002-a.avif",
+      "RUS-SEA-002-b.webp"
+    ],
+    "RUS-SEA-003": [
+      "RUS-SEA-003-a.jpg",
+      "RUS-SEA-003-b.jpg"
+    ],
+    "SWE-AIR-001": [
+      "SWE-AIR-001-a.jpg",
+      "SWE-AIR-001-b.avif"
+    ],
+    "TUR-AIR-001": [
+      "TUR-AIR-001-a.jpg",
+      "TUR-AIR-001-b.webp"
+    ],
+    "TUR-AIR-002": [
+      "TUR-AIR-002-a.jpg",
+      "TUR-AIR-002-b.jpg"
+    ],
+    "TUR-AIR-003": [
+      "TUR-AIR-003-a.jpg",
+      "TUR-AIR-003-b.webp"
+    ],
+    "TUR-LAND-001": [
+      "TUR-LAND-001-a.jpg"
+    ],
+    "TUR-LAND-003": [
+      "TUR-LAND-003-a.avif",
+      "TUR-LAND-003-b.webp"
+    ],
+    "UKR-AIR-001": [
+      "UKR-AIR-001-a.webp",
+      "UKR-AIR-001-b.jpg"
+    ],
+    "UKR-AIR-002": [
+      "UKR-AIR-002-a.jpg",
+      "UKR-AIR-002-b.jpg"
+    ],
+    "UKR-AIR-003": [
+      "UKR-AIR-003-a.jpg",
+      "UKR-AIR-003-b.webp"
+    ],
+    "UKR-AIR-004": [
+      "UKR-AIR-004-a.jpg",
+      "UKR-AIR-004-b.jpg"
+    ],
+    "UKR-SEA-001": [
+      "UKR-SEA-001-a.webp",
+      "UKR-SEA-001-b.webp"
+    ],
+    "UKR-SEA-002": [
+      "UKR-SEA-002-a.jpg",
+      "UKR-SEA-002-b.jpg"
+    ],
+    "UKR-SEA-003": [
+      "UKR-SEA-003-a.png",
+      "UKR-SEA-003-b.jpg"
+    ],
+    "USA-AIR-001": [
+      "USA-AIR-001-a.webp",
+      "USA-AIR-001-b.webp"
+    ],
+    "USA-AIR-002": [
+      "USA-AIR-002-a.jpg",
+      "USA-AIR-002-b.jpg"
+    ],
+    "USA-AIR-003": [
+      "USA-AIR-003-a.jpg",
+      "USA-AIR-003-b.avif",
+      "USA-AIR-003-c.jpg"
+    ],
+    "USA-AIR-004": [
+      "USA-AIR-004-a.jpg",
+      "USA-AIR-004-b.jpg"
+    ],
+    "USA-AIR-005": [
+      "USA-AIR-005-a.avif",
+      "USA-AIR-005-b.avif"
+    ],
+    "USA-AIR-006": [
+      "USA-AIR-006-a.jpg",
+      "USA-AIR-006-b.webp"
+    ],
+    "USA-AIR-007": [
+      "USA-AIR-007-a.jpg",
+      "USA-AIR-007-b.jpg"
+    ],
+    "USA-AIR-008": [
+      "USA-AIR-008-a.jpg",
+      "USA-AIR-008-b.jpg",
+      "USA-AIR-008-c.jpg"
+    ],
+    "USA-AIR-009": [
+      "USA-AIR-009-a.jpg",
+      "USA-AIR-009-b.avif"
+    ],
+    "USA-AIR-010": [
+      "USA-AIR-010-a.jpg",
+      "USA-AIR-010-b.jpg"
+    ],
+    "USA-LAND-001": [
+      "USA-LAND-001-a.jpg",
+      "USA-LAND-001-b.jpg"
+    ],
+    "USA-LAND-002": [
+      "USA-LAND-002-a.jpg",
+      "USA-LAND-002-b.jpg"
+    ],
+    "USA-SEA-001": [
+      "USA-SEA-001-a.jpg",
+      "USA-SEA-001-b.jpg"
+    ],
+    "USA-SEA-002": [
+      "USA-SEA-002-a.jpg",
+      "USA-SEA-002-b.avif"
+    ],
+    "USA-SEA-003": [
+      "USA-SEA-003-a.avif",
+      "USA-SEA-003-b.avif"
+    ],
+    "USA-SUB-001": [
+      "USA-SUB-001-a.webp",
+      "USA-SUB-001-b.jpg"
+    ]
+  },
+  "unmatched": [
+    "NOR-SEA-001-a.webp",
+    "NOR-SEA-001-b.jpg"
+  ],
+  "systemsWithoutPhotos": [
+    "IND-LAND-001",
+    "IRN-AIR-001",
+    "IRN-LAND-001",
+    "ISR-AIR-001-A",
+    "ISR-AIR-007",
+    "ISR-AIR-008",
+    "ISR-LAND-005",
+    "ISR-LAND-006",
+    "NOR-AIR-002",
+    "RUS-SEA-004",
+    "TUR-LAND-002"
+  ]
+}

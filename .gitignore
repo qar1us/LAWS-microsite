@@ -14,3 +14,9 @@ node_modules/
 # Build / render artifacts
 _print_*.html
 social/output/
+
+# Internal planning docs — must NOT ship to a public repo
+Admin/
+
+# Working data drops (source of truth lives in the workbook, not the site)
+Data/
