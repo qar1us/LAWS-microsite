@@ -244,19 +244,23 @@ a { color: inherit; }
 .card:hover { border-color: var(--signal); transform: translateY(-2px); }
 .card:hover .card-img img { transform: scale(1.04); }
 
-.card-img { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--dark-3); }
+.card-img {
+  display: block; position: relative; aspect-ratio: 16 / 10;
+  overflow: hidden; background: var(--dark-3);
+}
 .card-img img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: url(#duo); opacity: 0.82;
+  filter: url(#duo); opacity: 0.94;
   transition: transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
 }
-/* gradient wash: ties every photo back to the palette and keeps the label legible */
+/* Gradient wash: ties every photo back to the palette and keeps the title legible.
+   The class tint is kept light and confined to the top-left corner — pushed further
+   it swamps the subject, and on these photos the subject is the point. */
 .card-img::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(11,16,48,0) 30%, rgba(11,16,48,0.88) 100%),
-    linear-gradient(115deg, var(--tint) 0%, rgba(11,16,48,0) 62%);
-  mix-blend-mode: normal;
+    linear-gradient(180deg, rgba(11,16,48,0) 42%, rgba(11,16,48,0.9) 100%),
+    linear-gradient(125deg, var(--tint) 0%, rgba(11,16,48,0) 48%);
 }
 .card-img.is-empty {
   display: flex; align-items: center; justify-content: center;
@@ -279,24 +283,27 @@ a { color: inherit; }
 .card-dom .ico { width: 1.15rem; height: 1.15rem; }
 .card-head { position: absolute; left: 0.85rem; right: 0.85rem; bottom: 0.7rem; z-index: 2; }
 .card-name {
+  display: block;
   font-size: 0.95rem; font-weight: 700; color: #fff; line-height: 1.25;
-  text-shadow: 0 1px 8px rgba(11,16,48,0.7);
+  text-shadow: 0 1px 8px rgba(11,16,48,0.85);
 }
 .card-id {
-  font-family: var(--mono); font-size: 0.66rem; color: rgba(255,255,255,0.72); margin-top: 0.15rem;
+  display: block; margin-top: 0.2rem;
+  font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.8);
+  text-shadow: 0 1px 6px rgba(11,16,48,0.85);
 }
-.card-body { padding: 0.85rem 0.9rem 0.95rem; }
+.card-body { display: block; padding: 0.85rem 0.9rem 0.95rem; }
 .card-meta {
   display: flex; flex-wrap: wrap; gap: 0.3rem 0.5rem;
-  font-size: 0.74rem; color: var(--dark-mute);
+  font-size: 0.79rem; color: #b3bdd8;
 }
 .card-meta .sep { opacity: 0.4; }
 .card-flags { display: flex; gap: 0.4rem; margin-top: 0.6rem; flex-wrap: wrap; }
 .flag {
-  display: inline-flex; align-items: center; gap: 0.25rem;
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.05em;
-  padding: 0.12rem 0.4rem; border-radius: 2px;
-  border: 1px solid var(--dark-rule); color: var(--dark-mute);
+  display: inline-flex; align-items: center; gap: 0.28rem;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.03em;
+  padding: 0.16rem 0.45rem; border-radius: 2px;
+  border: 1px solid var(--dark-rule); color: #aab4d0;
 }
 .flag.on { color: #ffd7de; border-color: rgba(214,35,77,0.6); background: rgba(214,35,77,0.15); }
 .flag .ico { width: 0.8rem; height: 0.8rem; }

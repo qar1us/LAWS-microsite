@@ -159,10 +159,6 @@
     var img = (s.images || [])[0];
     var tc = (TIERS[s.tier] || {}).color || 'var(--b1)';
     var style = '--tc:' + tc + ';--tint:' + tint(s.tier);
-    var media = img
-      ? '<div class="card-img"><img src="img/' + esc(img.file) + '" alt="" loading="lazy" decoding="async"></div>'
-      : '<div class="card-img is-empty">' + icon(DOMAIN_ICON[s.domain] || 'i-multi') + '</div>';
-
     var meta = [s.origin, s.manufacturer].filter(Boolean).map(esc).join(' <span class="sep">/</span> ');
 
     var flags = '';
@@ -170,12 +166,20 @@
     if (s.tier && s.tier !== 'B1') flags += '<span class="flag">' + icon('i-human') + 'no per-engagement approval</span>';
     if (s.confidence) flags += '<span class="flag">' + esc(s.confidence) + '</span>';
 
-    return '<button class="card" type="button" data-id="' + esc(s.id) + '" style="' + style + '">' +
-      media +
+    /* The tier chip, domain glyph and title overlay the photo, so they live
+       inside .card-img — it is their positioning context. */
+    var overlay =
       '<span class="card-tier">' + esc(s.tier || '—') + '</span>' +
       '<span class="card-dom">' + icon(DOMAIN_ICON[s.domain] || 'i-multi') + '</span>' +
       '<span class="card-head"><span class="card-name">' + esc(s.name) + '</span>' +
-      '<span class="card-id">' + esc(s.id) + '</span></span>' +
+      '<span class="card-id">' + esc(s.id) + '</span></span>';
+
+    var media = img
+      ? '<span class="card-img"><img src="img/' + esc(img.file) + '" alt="" loading="lazy" decoding="async">' + overlay + '</span>'
+      : '<span class="card-img is-empty">' + icon(DOMAIN_ICON[s.domain] || 'i-multi') + overlay + '</span>';
+
+    return '<button class="card" type="button" data-id="' + esc(s.id) + '" style="' + style + '">' +
+      media +
       '<span class="card-body"><span class="card-meta">' + meta + '</span>' +
       '<span class="card-flags">' + flags + '</span></span>' +
       '</button>';
