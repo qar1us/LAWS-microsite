@@ -19,7 +19,12 @@ def sheet(name):
         out.append(d)
     return out
 
-systems=sheet("Systems")
+# V.1 review (21 Aug 2026): pulled from the tracker pending further sourcing.
+EXCLUDE_SYSTEMS = {"IND-LAND-001", "IRN-LAND-001", "IRN-AIR-001"}
+# V.1 review: dropped from the autonomy-by-function matrix as non-differentiating.
+EXCLUDE_FUNCTIONS = {"Mission Planning"}
+
+systems=[r for r in sheet("Systems") if r.get("System ID") not in EXCLUDE_SYSTEMS]
 purposes=sheet("Purposes"); funcs=sheet("Autonomy_Functions")
 ops=sheet("Operators"); srcsys=sheet("Source_by_System"); srcph=sheet("Source_Photos")
 annex=sheet("Annex_Excluded")
@@ -29,7 +34,8 @@ for r in purposes:
     if r.get("System ID") and r.get("Operational Purpose"): by_purpose[r["System ID"]].append(r["Operational Purpose"])
 by_func=collections.defaultdict(dict)
 for r in funcs:
-    if r.get("System ID") and r.get("Autonomous Function"): by_func[r["System ID"]][r["Autonomous Function"]]=r.get("Autonomy Level")
+    if r.get("System ID") and r.get("Autonomous Function") and r["Autonomous Function"] not in EXCLUDE_FUNCTIONS:
+        by_func[r["System ID"]][r["Autonomous Function"]]=r.get("Autonomy Level")
 by_op=collections.defaultdict(list)
 for r in ops:
     if r.get("System ID"): by_op[r["System ID"]].append({k:v for k,v in r.items() if k!="System ID" and v})
@@ -47,7 +53,7 @@ def _combat(v):
     """True when the Confirmed Effects field records actual employment."""
     return bool(v) and not _NOCOMBAT.match(str(v))
 
-FUNC_ORDER=["Mission Planning","Navigation","Route Preplanning","Search","Sensor Management","Detection",
+FUNC_ORDER=["Navigation","Route Preplanning","Search","Sensor Management","Detection",
 "Tracking","Classification","Identification","Target Nomination","Target Prioritization","Target Selection",
 "Engagement Decision","Weapon Release","Terminal Guidance","Battle-Damage Assessment","Reattack",
 "Coordination with Other Systems","Swarm Coordination and Execution"]
@@ -75,7 +81,7 @@ for s in systems:
     })
 
 data={"generated":"from LAWS_Dataset_V1.xlsx","functionOrder":FUNC_ORDER,
-      "systems":out,"excluded":annex,
+      "systems":out,"excluded":annex,"removed":sorted(EXCLUDE_SYSTEMS),
       "counts":{"systems":len(out),
                 "operatorCountries":len({o.get("Operator Country") for v in by_op.values() for o in v if o.get("Operator Country")}),
                 "withCombatEvidence":sum(1 for s in out if _combat(s["effects"])),

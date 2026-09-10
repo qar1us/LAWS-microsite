@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Landscape — LAWS Tracker</title>
+<meta name="description" content="Deployed lethal autonomous weapon systems broken down by country of origin, operator, domain and autonomy class, with the manufacturers behind each producing state.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=202609101152">
+</head>
+<body>
+
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#origin">Skip to the breakdowns</a>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="org" href="https://ari.us" target="_blank" rel="noopener">
+      Americans for <em>Responsible</em> Innovation
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="index.html#classification">Classification</a>
+      <a href="index.html#explorer">Systems</a>
+      <a href="landscape.html" aria-current="page">Landscape</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <a class="back-link" href="index.html">
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg> Back to the tracker
+    </a>
+    <p class="kicker">03 — The landscape</p>
+    <h1>Who builds them,<br>and who fields them.</h1>
+    <p class="standfirst">
+      Origin and operator counts diverge sharply. A small group of states designs these
+      systems; a far larger group flies, drives and sails them.
+    </p>
+  </div>
+</section>
+
+<section id="origin" class="band">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <h3 class="h-sub">By country of origin</h3>
+        <p class="sub-note">Where each system was designed. One system, one country.</p>
+        <div class="bars" id="bars-origin"></div>
+      </div>
+      <div>
+        <h3 class="h-sub">By operator</h3>
+        <p class="sub-note">Countries that field at least one system. Counts exceed origin
+          counts because these systems export widely.</p>
+        <div class="bars" id="bars-operator"></div>
+      </div>
+    </div>
+    <div class="two-col two-col-b">
+      <div>
+        <h3 class="h-sub">By domain</h3>
+        <p class="sub-note">The environment a system operates in.</p>
+        <div class="bars" id="bars-domain"></div>
+      </div>
+      <div>
+        <h3 class="h-sub">By autonomy class</h3>
+        <p class="sub-note">Colour matches the classification on the tracker.</p>
+        <div class="bars" id="bars-tier"></div>
+      </div>
+    </div>
+    <p class="chart-note">
+      Top twelve shown for origin and operator. Counts are of systems, not units fielded —
+      one entry may represent a single prototype battery or several thousand rounds.
+    </p>
+  </div>
+</section>
+
+<section class="band band-alt">
+  <div class="container">
+    <p class="kicker">Producers</p>
+    <h2 class="h-display">The manufacturers behind each state.</h2>
+    <p class="lede measure">
+      Manufacturers and developers recorded for every producing country, ordered by how many
+      systems that country contributes. A number beside a firm counts the systems it appears on.
+    </p>
+    <div class="makers" id="makers"></div>
+    <p class="chart-note">
+      Firm names appear exactly as recorded in the dataset. Where the source lists a parent
+      and a subsidiary separately — or a programme rather than a company — both are shown
+      rather than merged, since consolidating them is an analytical judgement, not a display one.
+    </p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container foot-inner">
+    <p><strong>LAWS Tracker</strong> — Americans for Responsible Innovation.
+       Dataset V1, compiled 27 July 2026. Tranche 1: broad across categories, not exhaustive within them.</p>
+    <p class="foot-note">Imagery is credited per system. See <code>img/CREDITS.md</code> for full attribution.</p>
+  </div>
+</footer>
+
+<script src="script.js?v=202609101152"></script>
+</body>
+</html>

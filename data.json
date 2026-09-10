@@ -1,7 +1,6 @@
 {
  "generated": "from LAWS_Dataset_V1.xlsx",
  "functionOrder": [
-  "Mission Planning",
   "Navigation",
   "Route Preplanning",
   "Search",
@@ -111,7 +110,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -202,7 +200,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -319,7 +316,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -410,7 +406,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -587,7 +582,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -676,7 +670,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -761,7 +754,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -848,7 +840,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -941,7 +932,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -1023,7 +1013,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -1105,7 +1094,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -1192,7 +1180,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -1277,7 +1264,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Semi-Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -1400,7 +1386,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Semi-Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -1481,7 +1466,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -1576,7 +1560,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -1681,7 +1664,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -1762,7 +1744,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -1836,7 +1817,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -1948,7 +1928,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -2030,7 +2009,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -2121,7 +2099,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -2209,7 +2186,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -2283,7 +2259,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -2370,7 +2345,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -2455,7 +2429,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Autonomous",
     "Search": "Autonomous",
@@ -2555,7 +2528,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -2653,7 +2625,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -2735,7 +2706,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -2815,7 +2785,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -2898,7 +2867,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -2979,7 +2947,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -3062,7 +3029,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -3141,7 +3107,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "N/A",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3254,7 +3219,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "N/A",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3350,7 +3314,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3455,7 +3418,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3546,7 +3508,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "N/A",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3627,7 +3588,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "N/A",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3719,7 +3679,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3799,7 +3758,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3881,7 +3839,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -3962,7 +3919,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -4041,7 +3997,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "N/A",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -4129,7 +4084,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -4218,7 +4172,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -4298,7 +4251,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -4379,7 +4331,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -4452,7 +4403,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -4516,7 +4466,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -4598,7 +4547,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -4679,7 +4627,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human",
     "Search": "Autonomous",
@@ -4759,7 +4706,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -4842,7 +4788,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -4916,7 +4861,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -4993,7 +4937,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -5073,7 +5016,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -5146,7 +5088,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -5226,7 +5167,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -5307,7 +5247,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -5390,7 +5329,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -5469,7 +5407,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -5550,7 +5487,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -5639,7 +5575,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -5721,7 +5656,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -5807,7 +5741,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -5890,7 +5823,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -5976,7 +5908,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "N/A",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -6090,7 +6021,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -6177,7 +6107,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -6273,7 +6202,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -6385,7 +6313,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -6484,7 +6411,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -6571,7 +6497,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -6687,7 +6612,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -6790,7 +6714,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -6911,7 +6834,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -7014,7 +6936,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Autonomous",
@@ -7096,7 +7017,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -7191,7 +7111,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -7271,7 +7190,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Not present",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -7350,7 +7268,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Autonomous",
     "Route Preplanning": "Human-in-the-loop",
     "Search": "Human-on-the-loop",
@@ -7429,7 +7346,6 @@
     }
    ],
    "functions": {
-    "Mission Planning": "Human-in-the-loop",
     "Navigation": "Not present",
     "Route Preplanning": "Not present",
     "Search": "Autonomous",
@@ -7470,108 +7386,6 @@
      "sourceDomain": "alert5.com"
     }
    ]
-  },
-  {
-   "id": "IND-LAND-001",
-   "name": "Barak-8 / MR-SAM",
-   "family": "Barak-8",
-   "variant": "MR-SAM / LR-SAM",
-   "manufacturer": "IAI / DRDO / BDL",
-   "developer": "IAI with DRDO",
-   "origin": "Israel / India",
-   "domain": "Multi-domain",
-   "reuse": "Reusable",
-   "effect": "Kinetic",
-   "tier": "A2",
-   "tierFull": "A2 - Supervised autonomous select + engage (abort-capable)",
-   "tierCaveat": null,
-   "auth": "Conditional",
-   "supervision": "Abort-capable",
-   "envelope": "Battery/ship-relative; ~70-100 km",
-   "devStatus": "In production",
-   "fieldStatus": "Fielded",
-   "ocDate": "2017",
-   "theater": "India (Army, Navy, Air Force), Israel, Azerbaijan",
-   "targets": "Aircraft, cruise missiles, UAS",
-   "effects": "Reported engagements during 2025 India-Pakistan exchanges",
-   "confidence": "Confirmed",
-   "confidenceRaw": "Confirmed",
-   "notes": "Classified as a guided homing missile, not autonomous",
-   "purposes": [],
-   "operators": [],
-   "functions": {},
-   "sources": {
-    "General": "https://www.naval-technology.com/projects/naval-barak-8-surface-air-missiles/"
-   },
-   "images": []
-  },
-  {
-   "id": "IRN-LAND-001",
-   "name": "Bavar-373",
-   "family": "Bavar-373",
-   "variant": "Bavar-373 II",
-   "manufacturer": "Iranian Aviation Industries Organization",
-   "developer": "Iran (IRGC/MoD)",
-   "origin": "Iran",
-   "domain": "Land",
-   "reuse": "Reusable",
-   "effect": "Kinetic",
-   "tier": "A2",
-   "tierFull": "A2 - Supervised autonomous select + engage (abort-capable)",
-   "tierCaveat": null,
-   "auth": "Unknown",
-   "supervision": "Unclear",
-   "envelope": "Battery-relative; claimed ~300 km",
-   "devStatus": "In production",
-   "fieldStatus": "Fielded",
-   "ocDate": "2019",
-   "theater": "Iran",
-   "targets": "Aircraft, cruise missiles, ballistic missiles",
-   "effects": "Contested performance during 2025-26 exchanges",
-   "confidence": "Moderate Confidence",
-   "confidenceRaw": "Moderate Confidence",
-   "notes": "High automation guided homing missile, not autonomous",
-   "purposes": [],
-   "operators": [],
-   "functions": {},
-   "sources": {
-    "General": "https://www.armyrecognition.com/military-products/army/air-defense-systems/air-defense-vehicles/bavar-373-air-defense-system"
-   },
-   "images": []
-  },
-  {
-   "id": "IRN-AIR-001",
-   "name": "Meraj-521",
-   "family": "Meraj",
-   "variant": "Meraj-521",
-   "manufacturer": "Iranian domestic",
-   "developer": "Iran (IRGC)",
-   "origin": "Iran",
-   "domain": "Air",
-   "reuse": "Expendable",
-   "effect": "Kinetic",
-   "tier": "B1",
-   "tierFull": "B1 - Autonomous engagement completion only (terminal lock)",
-   "tierCaveat": null,
-   "auth": "Unknown",
-   "supervision": "Unclear",
-   "envelope": "Operator-designated; short range",
-   "devStatus": "In service",
-   "fieldStatus": "Fielded",
-   "ocDate": "2022",
-   "theater": "Iran; reported transfer to regional partners",
-   "targets": "Personnel, light vehicles",
-   "effects": "Limited confirmation",
-   "confidence": "Low Confidence",
-   "confidenceRaw": "Low Confidence",
-   "notes": "FPV drone, little to no AI-assistance",
-   "purposes": [],
-   "operators": [],
-   "functions": {},
-   "sources": {
-    "General": "https://www.janes.com/osint-insights/defence-news/air/irgc-unveils-manportable-loitering-munition"
-   },
-   "images": []
   }
  ],
  "excluded": [
@@ -7762,23 +7576,28 @@
    "Exclusion Rationale": "Fails criterion 5. Hybrid-electric demonstrator with unmanned turret and AI-assisted target identification, unveiled AUSA 2022. Not fielded; not a programme of record. Listed on the ADR weapons monitor."
   }
  ],
+ "removed": [
+  "IND-LAND-001",
+  "IRN-AIR-001",
+  "IRN-LAND-001"
+ ],
  "counts": {
-  "systems": 86,
+  "systems": 83,
   "operatorCountries": 54,
-  "withCombatEvidence": 68,
+  "withCombatEvidence": 65,
   "byDomain": {
    "Sea": 14,
-   "Land": 28,
-   "Air": 38,
-   "Multi-domain": 4,
+   "Land": 27,
+   "Air": 37,
+   "Multi-domain": 3,
    "Undersea": 2
   },
   "byTier": {
-   "A2": 32,
-   "B1": 31,
+   "A2": 30,
+   "B1": 30,
    "A3": 14,
    "A1": 9
   },
-  "originCountries": 17
+  "originCountries": 15
  }
 }

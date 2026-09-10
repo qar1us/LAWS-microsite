@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202609101141">
+<link rel="stylesheet" href="styles.css?v=202609101152">
 </head>
 <body>
 
@@ -73,6 +73,14 @@
       <circle cx="12" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
       <path d="M5 21v-1.5A6.5 6.5 0 0 1 11.5 13h1A6.5 6.5 0 0 1 19 19.5V21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
     </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 11v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="12" cy="7.6" r="1.15" fill="currentColor"/>
+    </symbol>
     <symbol id="i-warn" viewBox="0 0 24 24">
       <path d="M12 3 22 20H2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
       <path d="M12 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -90,9 +98,8 @@
     </a>
     <nav class="topnav" aria-label="Primary">
       <a href="#classification">Classification</a>
-      <a href="#explorer">Tracker</a>
-      <a href="#landscape">Landscape</a>
-      <a href="#methodology">Methodology</a>
+      <a href="#explorer">Systems</a>
+      <a href="landscape.html">Landscape</a>
     </nav>
   </div>
 </header>
@@ -102,11 +109,10 @@
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
     <p class="eyebrow">National Security &amp; Strategic Competition</p>
-    <h1>The machines already<br>choosing targets.</h1>
+    <h1>The Machines Are Already<br>Choosing Targets</h1>
     <p class="standfirst">
-      <strong id="stat-systems">—</strong> lethal autonomous weapon systems are fielded today across
-      <strong id="stat-origins">—</strong> countries of origin and <strong id="stat-ops">—</strong> operator states.
-      This is not a forecast. Every system below has been deployed.
+      Dozens of lethal autonomous weapon systems are fielded today, and they continue to
+      proliferate and be used in combat.
     </p>
 
     <div class="statbar" role="list">
@@ -136,26 +142,19 @@
     <p class="kicker">01 — The spectrum of human control</p>
     <h2 class="h-display">Autonomy is not a switch.<br>It is a question of when the human stops mattering.</h2>
     <p class="lede measure">
-      Every system in this dataset can select or complete an engagement without a human approving that
-      specific act. What separates them is <em>where</em> in the kill chain human judgement drops out —
+      Each system in this dataset can select a target or complete an engagement with some level of
+      autonomy. What separates them is <em>where</em> in the kill chain human judgement is absent —
       and whether anyone retains a real opportunity to intervene.
     </p>
     <div class="tiers" id="tier-cards"><!-- injected --></div>
-    <p class="note measure">
-      <svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>
-      The B1 class was not anticipated by the project's original criteria — a human selects the target,
-      but the system completes the engagement unaided, including after link loss. It is the largest and
-      fastest-growing class here. Excluding it entirely would remove roughly a third of the dataset and
-      most of the current combat evidence.
-    </p>
   </div>
 </section>
 
 <!-- ============ EXPLORER ============ -->
 <section id="explorer" class="explorer">
   <div class="container">
-    <p class="kicker">02 — The tracker</p>
-    <h2 class="h-display">Every fielded system.</h2>
+    <p class="kicker">02 — The systems</p>
+    <h2 class="h-display">The Systems.</h2>
 
     <div class="controls">
       <div class="search">
@@ -174,74 +173,19 @@
   </div>
 </section>
 
-<!-- ============ LANDSCAPE ============ -->
-<section id="landscape" class="band band-alt">
+<!-- ============ LANDSCAPE LINK ============ -->
+<section class="band band-alt landscape-cta">
   <div class="container">
     <p class="kicker">03 — The landscape</p>
-    <h2 class="h-display">Who builds them, and who flies them.</h2>
-    <div class="two-col">
-      <div>
-        <h3 class="h-sub">By country of origin</h3>
-        <div class="bars" id="bars-origin"></div>
-      </div>
-      <div>
-        <h3 class="h-sub">By operator</h3>
-        <p class="sub-note">Operator counts exceed origin counts: these systems export widely.</p>
-        <div class="bars" id="bars-operator"></div>
-      </div>
-    </div>
-    <div class="two-col two-col-b">
-      <div>
-        <h3 class="h-sub">By domain</h3>
-        <div class="bars" id="bars-domain"></div>
-      </div>
-      <div>
-        <h3 class="h-sub">By autonomy class</h3>
-        <div class="bars" id="bars-tier"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ METHODOLOGY ============ -->
-<section id="methodology" class="band">
-  <div class="container">
-    <p class="kicker">04 — Methodology &amp; limits</p>
-    <h2 class="h-display">What this dataset does and does not claim.</h2>
-    <div class="two-col">
-      <div class="measure">
-        <h3 class="h-sub">Inclusion</h3>
-        <p>A system qualifies only if it is capable of kinetic force, can select a target from the
-          environment after activation, can initiate or complete engagement without further human
-          approval, exists in an operationally relevant configuration, and is evidenced as fielded.</p>
-        <p>Directed energy, electronic warfare and cyber are excluded by scope decision. Retired
-          systems are excluded; systems retired by the originator but in service elsewhere are coded
-          to the current operator.</p>
-        <h3 class="h-sub">Capability, not doctrine</h3>
-        <p>What is coded is what a system <em>can</em> do. Doctrinal restriction is recorded separately,
-          so the dataset tracks technology rather than policy — a state's rules of engagement can change
-          without notice, and rarely appear in open sources.</p>
-      </div>
-      <div class="measure">
-        <h3 class="h-sub">Known limitations</h3>
-        <ul class="limits">
-          <li><strong>Manufacturer claims are inflated.</strong> Where a vendor claim and an independent
-            assessment conflict, the entry is coded <em>Contested</em> rather than averaged.</li>
-          <li><strong>Combat evidence is asymmetric.</strong> Systems used in Ukraine and the Middle East
-            are far better evidenced than Chinese, Iranian and North Korean equivalents. Absence of
-            confirmed effects for PLA systems reflects absence of employment, not absence of capability.</li>
-          <li><strong>Variant granularity is approximate.</strong> Loitering munition families iterate
-            faster than open sources track.</li>
-          <li><strong>Confidence lives at claim level.</strong> The overall rating shown on each system is
-            a summary judgement; fielding evidence and autonomy evidence frequently diverge.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="excluded">
-      <h3 class="h-sub">Excluded systems <span id="excl-count"></span></h3>
-      <p class="sub-note">Preserved so that omissions are visible rather than silent.</p>
-      <div class="excl-grid" id="excl-grid"></div>
-    </div>
+    <h2 class="h-display">Who builds them, and who fields them.</h2>
+    <p class="lede measure">
+      Origin and operator counts diverge sharply — these systems export widely. The landscape
+      view breaks the dataset down by country of origin, by operator, by domain and by
+      autonomy class, and lists the manufacturers behind each producing state.
+    </p>
+    <a class="cta" href="landscape.html">
+      Open the landscape <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+    </a>
   </div>
 </section>
 
@@ -264,6 +208,6 @@
   </article>
 </div>
 
-<script src="script.js?v=202609101141"></script>
+<script src="script.js?v=202609101152"></script>
 </body>
 </html>

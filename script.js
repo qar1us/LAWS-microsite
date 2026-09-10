@@ -12,7 +12,11 @@
     A3: { name: 'Bounded by a preset envelope', color: 'var(--a3)',
           desc: 'Independent selection and engagement, but only inside a tightly predefined geographic, temporal or target-profile envelope.' },
     B1: { name: 'Engagement completion only', color: 'var(--b1)',
-          desc: 'A human selects the target; the system then tracks and completes the engagement unaided, including after link loss.' }
+          desc: 'A human selects the target; the system then tracks and completes the engagement unaided, including after signal or communication loss.',
+          note: 'The B1 class was not anticipated by the project’s original criteria — a human selects the ' +
+                'target, but the system completes the engagement unaided, including after signal or communication ' +
+                'loss. It is the largest and fastest-growing class here. Excluding it entirely would remove roughly ' +
+                'a third of the dataset and most of the current combat evidence.' }
   };
   var TIER_ORDER = ['A1', 'A2', 'A3', 'B1'];
 
@@ -50,7 +54,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609101141')
+  fetch('data.json?v=202609101152')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -58,11 +62,14 @@
     .then(function (d) {
       DATA = d;
       SYSTEMS = d.systems;
+      /* index.html and landscape.html share this file; each render step no-ops
+         when its container is absent. */
       renderStats();
       renderTiers();
       renderFilters();
       renderGrid();
       renderBars();
+      renderMakers();
       renderExcluded();
       wire();
     })
@@ -88,16 +95,22 @@
 
   /* ---------- tier cards ---------- */
   function renderTiers() {
+    var el = $('#tier-cards');
+    if (!el) return;
     var counts = DATA.counts.byTier || {};
-    var max = Math.max.apply(null, TIER_ORDER.map(function (t) { return counts[t] || 0; }));
-    $('#tier-cards').innerHTML = TIER_ORDER.map(function (t) {
-      var n = counts[t] || 0;
-      return '<div class="tier" style="--tc:' + TIERS[t].color + '">' +
-        '<span class="tier-n">' + n + '</span>' +
-        '<span class="tier-code">' + t + '</span>' +
-        '<p class="tier-name">' + TIERS[t].name + '</p>' +
-        '<p class="tier-desc">' + TIERS[t].desc + '</p>' +
-        '<div class="tier-meter"><span style="width:' + (max ? (n / max * 100) : 0) + '%"></span></div>' +
+    el.innerHTML = TIER_ORDER.map(function (t) {
+      var T = TIERS[t];
+      /* The count bar that used to sit here was read as a progress meter rather than a
+         share-of-dataset comparison, so it is gone; the number carries it. */
+      var note = T.note
+        ? '<span class="tip"><button class="tip-btn" type="button" aria-label="About the ' + t + ' class">' +
+          icon('i-info') + '</button><span class="tip-pop" role="tooltip">' + T.note + '</span></span>'
+        : '';
+      return '<div class="tier" style="--tc:' + T.color + '">' +
+        '<span class="tier-n">' + (counts[t] || 0) + '</span>' +
+        '<span class="tier-code">' + t + note + '</span>' +
+        '<p class="tier-name">' + T.name + '</p>' +
+        '<p class="tier-desc">' + T.desc + '</p>' +
         '</div>';
     }).join('');
   }
@@ -110,6 +123,7 @@
   }
 
   function renderFilters() {
+    if (!$('#filters')) return;
     var dom = tally('domain'), org = tally('origin');
     var topOrigins = Object.keys(org).sort(function (a, b) { return org[b] - org[a]; }).slice(0, 8);
 
@@ -186,6 +200,7 @@
   }
 
   function renderGrid() {
+    if (!$('#grid')) return;
     var list = visible();
     $('#grid').innerHTML = list.map(cardHTML).join('');
     $('#empty').hidden = list.length > 0;
@@ -197,23 +212,32 @@
   }
 
   /* ---------- bars ---------- */
+  /* Ranked magnitude gets a single-hue ramp (light -> dark); identity gets the
+     fixed categorical order. Every bar carries a visible count, which is also the
+     relief the amber categorical step needs against a light surface. */
+  function ramp(prefix, i, n) {
+    var step = n <= 1 ? 5 : 5 - Math.round(i / (n - 1) * 4);
+    return 'var(--' + prefix + '-' + step + ')';
+  }
+
   function barBlock(el, entries, color) {
+    if (!el) return;
     var max = Math.max.apply(null, entries.map(function (e) { return e[1]; }));
-    el.innerHTML = entries.map(function (e) {
-      var c = typeof color === 'function' ? color(e[0]) : color;
+    el.innerHTML = entries.map(function (e, i) {
+      var c = typeof color === 'function' ? color(e[0], i, entries.length) : color;
       return '<div class="bar"><span class="bar-l">' + esc(e[0]) + '</span>' +
         '<span class="bar-track"><span class="bar-fill" style="width:' + (e[1] / max * 100) + '%;--bc:' + c + '"></span></span>' +
         '<span class="bar-n">' + e[1] + '</span></div>';
     }).join('');
   }
 
-  function renderBars() {
-    var org = tally('origin');
-    barBlock($('#bars-origin'),
-      Object.keys(org).map(function (k) { return [k, org[k]]; })
-        .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10),
-      'var(--ink)');
+  function sorted(map, limit) {
+    var a = Object.keys(map).map(function (k) { return [k, map[k]]; })
+      .sort(function (x, y) { return y[1] - x[1]; });
+    return limit ? a.slice(0, limit) : a;
+  }
 
+  function operatorTally() {
     var opc = {};
     SYSTEMS.forEach(function (s) {
       var seen = {};
@@ -222,24 +246,72 @@
         if (c && !seen[c]) { seen[c] = 1; opc[c] = (opc[c] || 0) + 1; }
       });
     });
-    barBlock($('#bars-operator'),
-      Object.keys(opc).map(function (k) { return [k, opc[k]]; })
-        .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10),
-      'var(--slate)');
+    return opc;
+  }
 
-    var dm = DATA.counts.byDomain;
-    barBlock($('#bars-domain'),
-      Object.keys(dm).map(function (k) { return [k, dm[k]]; }).sort(function (a, b) { return b[1] - a[1]; }),
-      'var(--ink)');
+  function renderBars() {
+    if (!$('#bars-origin')) return;
+
+    barBlock($('#bars-origin'), sorted(tally('origin'), 12),
+      function (k, i, n) { return ramp('seq', i, n); });
+
+    barBlock($('#bars-operator'), sorted(operatorTally(), 12),
+      function (k, i, n) { return ramp('tseq', i, n); });
+
+    barBlock($('#bars-domain'), sorted(DATA.counts.byDomain),
+      function (k, i) { return 'var(--cat-' + ((i % 5) + 1) + ')'; });
 
     var tb = DATA.counts.byTier;
     barBlock($('#bars-tier'),
-      TIER_ORDER.filter(function (t) { return tb[t]; }).map(function (t) { return [t + ' — ' + TIERS[t].name.replace(/&amp;/g, '&'), tb[t]]; }),
+      TIER_ORDER.filter(function (t) { return tb[t]; })
+        .map(function (t) { return [t + ' — ' + TIERS[t].name.replace(/&amp;/g, '&'), tb[t]]; }),
       function (label) { return TIERS[label.slice(0, 2)].color; });
   }
 
+  /* Manufacturers and developers, grouped by the country that produces them. */
+  function renderMakers() {
+    var el = $('#makers');
+    if (!el) return;
+    var byCountry = {};
+    SYSTEMS.forEach(function (s) {
+      if (!s.origin) return;
+      var c = byCountry[s.origin] || (byCountry[s.origin] = { n: 0, firms: {} });
+      c.n++;
+      /* Manufacturer and developer are free text and record several firms per cell
+         in mixed styles ("Rafael, IAI Elta", "RTX / Northrup Grumman"). Split on the
+         separators actually used, but never rewrite a firm name — variants like
+         "ZALA Aero" vs "ZALA Aero (Kalashnikov Concern)" are how the source records
+         them, and collapsing them would be an editorial decision, not a display one. */
+      [s.manufacturer, s.developer].forEach(function (f) {
+        if (!f) return;
+        String(f).split(/\s*[/;,]\s*/).forEach(function (part) {
+          part = part.trim();
+          if (part) c.firms[part] = (c.firms[part] || 0) + 1;
+        });
+      });
+    });
+
+    var rows = Object.keys(byCountry).sort(function (a, b) {
+      return byCountry[b].n - byCountry[a].n || a.localeCompare(b);
+    });
+
+    el.innerHTML = rows.map(function (country, i) {
+      var c = byCountry[country];
+      var firms = sorted(c.firms);
+      return '<div class="maker" style="--mc:' + ramp('seq', i, rows.length) + '">' +
+        '<div class="maker-head"><span class="maker-country">' + esc(country) + '</span>' +
+        '<span class="maker-n">' + c.n + ' system' + (c.n === 1 ? '' : 's') + '</span></div>' +
+        '<ul class="maker-list">' + firms.map(function (f) {
+          return '<li>' + esc(f[0]) + (f[1] > 1 ? '<span class="c">' + f[1] + '</span>' : '') + '</li>';
+        }).join('') + '</ul></div>';
+    }).join('');
+  }
+
   /* ---------- excluded annex ---------- */
+  /* Methodology & limits are pulled from V.1 pending Rachel's further thoughts.
+     This stays wired so the annex returns without rebuilding it. */
   function renderExcluded() {
+    if (!$('#excl-grid')) return;
     var ex = DATA.excluded || [];
     $('#excl-count').textContent = '(' + ex.length + ')';
     $('#excl-grid').innerHTML = ex.map(function (e) {
@@ -278,6 +350,20 @@
         return '<div class="frow"><span class="frow-l">' + esc(k) + '</span>' +
           '<span><span class="frow-v ' + (LEVEL_CLASS[v] || 'lv-unk') + '">' + esc(v) + '</span></span></div>';
       }).join('') + '</div>';
+  }
+
+  /* Deployment and conflict evidence, pulled up out of the record table so it reads
+     as a finding rather than another field. Shows every case the analyst recorded. */
+  function evidenceHTML(s) {
+    if (!hasCombat(s)) return '';
+    var bits = '';
+    if (s.theater) bits += '<dt>Theater</dt><dd>' + esc(s.theater) + '</dd>';
+    if (s.targets) bits += '<dt>Targets engaged</dt><dd>' + esc(s.targets) + '</dd>';
+    return '<div class="evidence">' +
+      '<p class="evidence-h">' + icon('i-combat') + 'Confirmed use in conflict</p>' +
+      '<p class="evidence-b">' + esc(s.effects) + '</p>' +
+      (bits ? '<dl class="dl evidence-dl">' + bits + '</dl>' : '') +
+      '</div>';
   }
 
   function galleryHTML(s) {
@@ -325,6 +411,7 @@
       '<div class="d-body" style="' + style + '">' +
       (t.name ? '<div class="d-tier"><b>' + s.tier + ' — ' + t.name + '.</b> ' + t.desc + '</div>' : '') +
       (s.tierCaveat ? '<div class="note"><b>Analyst caveat:</b> ' + esc(s.tierCaveat) + '</div>' : '') +
+      evidenceHTML(s) +
       ((s.purposes || []).length
         ? '<h3 class="h-sub">Operational purpose</h3><div class="pills">' +
           s.purposes.map(function (p) { return '<span class="pill">' + esc(p) + '</span>'; }).join('') + '</div>'
@@ -355,6 +442,7 @@
 
   /* ---------- events ---------- */
   function wire() {
+    if (!$('#filters')) return;   /* landscape.html has no tracker controls */
     $('#filters').addEventListener('click', function (e) {
       var b = e.target.closest('.chip');
       if (!b) return;
