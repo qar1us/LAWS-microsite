@@ -36,7 +36,13 @@ Run from the repository root after the workbook or photo set changes:
 python3 tools/build_data.py       # workbook  -> data.json
 python3 tools/build_credits.py    # workbook  -> img/credits.json
 bash    tools/build_images.sh     # originals -> img/
+bash    tools/bump_version.sh     # cache-bust css/js/json refs
 ```
+
+Run `bump_version.sh` before committing any change to `styles.css`, `script.js` or
+`data.json`. GitHub Pages serves assets with `cache-control: max-age=600`, so without a
+fresh version string a reviewer who opened the page minutes earlier can be shown stale
+CSS or JS — which is exactly the wrong moment for it during a review.
 
 `build_images.sh` reads from `~/LAWS-photos-originals/`, which is deliberately outside
 this repository. Originals are never modified.
@@ -51,7 +57,7 @@ python3 -m http.server 8747
 
 ## Deploy
 
-GitHub Pages from `main` at the repository root. Pages is currently disabled because the
-repository is private on a plan without private Pages; re-enable it when the repository
-goes public or the plan changes.
+GitHub Pages from `main` at the repository root — live at
+<https://qar1us.github.io/LAWS-microsite/>. Pushing to `main` redeploys; the build
+takes roughly a minute.
 
