@@ -11,6 +11,7 @@ for page in index.html landscape.html; do
   sed -i.bak -E "s|(href=\"styles\.css)(\?v=[0-9]+)?\"|\1?v=$V\"|" "$page"
   sed -i.bak -E "s|(src=\"script\.js)(\?v=[0-9]+)?\"|\1?v=$V\"|" "$page"
 done
+sed -i.bak -E "s|(src=\"hero\.js)(\?v=[0-9]+)?\"|\1?v=$V\"|" index.html
 sed -i.bak -E "s|fetch\('data\.json(\?v=[0-9]+)?'\)|fetch('data.json?v=$V')|" script.js
 rm -f index.html.bak landscape.html.bak script.js.bak
 echo "stamped version $V"

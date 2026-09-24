@@ -25,6 +25,9 @@ Single page, no build step for the site itself. Data is generated ahead of time.
 - `index.html` — page structure, inline SVG icon sprite and duotone filter definitions
 - `styles.css` — design tokens at the top, then sections
 - `script.js` — renders everything from `data.json`; no system facts are hardcoded
+- `hero.js` — alternative hero treatments for review; add `?hero=globe` or `?hero=units`
+  to the URL (any `?hero=` value shows a switcher). The default hero is unaffected.
+- `globe.json` — land dot grid and country centroids for the globe hero (Natural Earth 1:110m)
 - `data.json` — generated from `Data/LAWS_Tracker_Dataset.xlsx` (gitignored; pass another path as the first argument)
 - `img/` — photo set, manifest, and attribution
 - `tools/` — regeneration scripts
@@ -38,6 +41,7 @@ python3 tools/build_data.py       # workbook  -> data.json
 python3 tools/build_credits.py    # workbook  -> img/credits.json
 bash    tools/build_images.sh     # originals -> img/
 bash    tools/bump_version.sh     # cache-bust css/js/json refs
+node    tools/build_globe.mjs     # world-atlas -> globe.json (rarely; see script header)
 ```
 
 Run `bump_version.sh` before committing any change to `styles.css`, `script.js` or

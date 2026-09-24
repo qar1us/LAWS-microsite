@@ -64,7 +64,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609241625')
+  fetch('data.json?v=202609241655')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -75,6 +75,7 @@
       /* index.html and landscape.html share this file; each render step no-ops
          when its container is absent. */
       renderStats();
+      if (window.LAWS_HERO) window.LAWS_HERO(d, { openDrawer: openDrawer });
       renderTiers();
       renderFilters();
       renderGrid();
@@ -100,7 +101,6 @@
     /* The Aug 2026 criteria admit tested systems, so "fielded" is its own count. */
     countUp([
       ['s-systems', c.fielded != null ? c.fielded : c.systems],
-      ['s-combat', c.withCombatEvidence],
       ['s-nohuman', noApproval],
       ['s-ops', c.operatorCountries]
     ]);
@@ -176,21 +176,25 @@
     var dom = tally('domain'), org = tally('origin');
     var topOrigins = Object.keys(org).sort(function (a, b) { return org[b] - org[a]; }).slice(0, 8);
 
+    /* Each group opens with a "View all" chip, pressed while that group is unfiltered. */
+    var all = function (f) {
+      return '<button class="chip chip-all" type="button" data-f="' + f + '" data-v="" aria-pressed="true">View all</button>';
+    };
     var html = '';
-    html += '<div class="fgroup"><span class="flabel">Domain</span>' +
+    html += '<div class="fgroup"><span class="flabel">Domain</span>' + all('domain') +
       Object.keys(DOMAIN_ICON).filter(function (d) { return dom[d]; }).map(function (d) {
         return '<button class="chip" type="button" data-f="domain" data-v="' + esc(d) + '" aria-pressed="false">' +
           icon(DOMAIN_ICON[d]) + esc(d) + ' <span class="n">' + dom[d] + '</span></button>';
       }).join('') + '</div>';
 
-    html += '<div class="fgroup"><span class="flabel">Autonomy</span>' +
+    html += '<div class="fgroup"><span class="flabel">Autonomy</span>' + all('tier') +
       TIER_ORDER.map(function (t) {
         var n = (DATA.counts.byTier || {})[t] || 0;
         return '<button class="chip" type="button" data-f="tier" data-v="' + t + '" aria-pressed="false">' +
           t + ' <span class="n">' + n + '</span></button>';
       }).join('') + '</div>';
 
-    html += '<div class="fgroup"><span class="flabel">Origin</span>' +
+    html += '<div class="fgroup"><span class="flabel">Origin</span>' + all('origin') +
       topOrigins.map(function (o) {
         return '<button class="chip" type="button" data-f="origin" data-v="' + esc(o) + '" aria-pressed="false">' +
           esc(o) + ' <span class="n">' + org[o] + '</span></button>';
@@ -228,7 +232,6 @@
     if (hasCombat(s)) flags += '<span class="flag on">' + icon('i-combat') + 'combat</span>';
     else if (s.evidence === 'reported') flags += '<span class="flag reported">' + icon('i-combat') + 'combat reported</span>';
     if (s.tier && s.tier !== 'B1') flags += '<span class="flag">' + icon('i-human') + 'no per-engagement approval</span>';
-    if (s.confidence) flags += '<span class="flag">' + esc(s.confidence) + '</span>';
 
     /* The tier chip, domain glyph and title overlay the photo, so they live
        inside .card-img — it is their positioning context. */
@@ -318,6 +321,41 @@
       function (label) { return TIERS[label.slice(0, 2)].color; });
   }
 
+  /* Abbreviated firm and agency names, written out in full (V2 review). Only exact
+     cell fragments are mapped, so a name recorded some other way is left untouched. */
+  var FIRM_NAMES = {
+    'IAI': 'Israel Aerospace Industries (IAI)',
+    'RTX': 'RTX Corporation',
+    'CASIC': 'China Aerospace Science and Industry Corporation (CASIC)',
+    'CSIC': 'China Shipbuilding Industry Corporation (CSIC)',
+    'Norinco': 'China North Industries Group (NORINCO)',
+    'GIWS': 'Gesellschaft für Intelligente Wirksysteme (GIWS)',
+    'KBM': 'KBM Machine-Building Design Bureau',
+    'KBP': 'KBP Instrument Design Bureau',
+    'ATLA': 'Acquisition, Technology & Logistics Agency (ATLA)',
+    'STM': 'STM Savunma Teknolojileri Mühendislik',
+    'STM Savunma Teknolojileri': 'STM Savunma Teknolojileri Mühendislik',
+    'ASELSAN': 'ASELSAN (Askeri Elektronik Sanayii)',
+    'DARPA': 'Defense Advanced Research Projects Agency (DARPA)',
+    'US Army RCCTO': 'US Army Rapid Capabilities and Critical Technologies Office (RCCTO)',
+    'Israel MoD DDR&D': 'Israel MoD Directorate of Defense Research & Development (DDR&D)'
+  };
+
+  /* Split a free-text firm cell on the separators actually used ("/", ";", ","),
+     but never inside brackets: "GIWS (Diehl, Rheinmetall)" is one entry. */
+  function splitFirms(text) {
+    var out = [], buf = '', depth = 0;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      if (ch === '(') depth++;
+      else if (ch === ')') depth = Math.max(0, depth - 1);
+      if (depth === 0 && (ch === '/' || ch === ';' || ch === ',')) { out.push(buf); buf = ''; }
+      else buf += ch;
+    }
+    out.push(buf);
+    return out.map(function (p) { return p.trim(); }).filter(Boolean);
+  }
+
   /* Manufacturers and developers, grouped by the country that produces them. */
   function renderMakers() {
     var el = $('#makers');
@@ -328,15 +366,15 @@
       var c = byCountry[s.origin] || (byCountry[s.origin] = { n: 0, firms: {} });
       c.n++;
       /* Manufacturer and developer are free text and record several firms per cell
-         in mixed styles ("Rafael, IAI Elta", "RTX / Northrup Grumman"). Split on the
-         separators actually used, but never rewrite a firm name — variants like
-         "ZALA Aero" vs "ZALA Aero (Kalashnikov Concern)" are how the source records
-         them, and collapsing them would be an editorial decision, not a display one. */
+         in mixed styles ("Rafael, IAI Elta", "RTX / Northrup Grumman"). Abbreviations
+         are written out via FIRM_NAMES, but variants like "ZALA Aero" vs "ZALA Aero
+         (Kalashnikov Concern)" are left as recorded — collapsing them would be an
+         editorial decision, not a display one. */
       [s.manufacturer, s.developer].forEach(function (f) {
         if (!f) return;
-        String(f).split(/\s*[/;,]\s*/).forEach(function (part) {
-          part = part.trim();
-          if (part) c.firms[part] = (c.firms[part] || 0) + 1;
+        splitFirms(String(f)).forEach(function (part) {
+          part = FIRM_NAMES[part] || part;
+          c.firms[part] = (c.firms[part] || 0) + 1;
         });
       });
     });
@@ -383,8 +421,7 @@
       ['Development', s.devStatus], ['Fielding', s.fieldStatus],
       ['Operational since', s.ocDate], ['Theater', s.theater],
       ['Targets', s.targets],
-      ['Evidence of use', EVIDENCE_LABEL[s.evidence]],
-      ['Confidence', s.confidenceRaw || s.confidence]
+      ['Evidence of use', EVIDENCE_LABEL[s.evidence]]
     ].filter(function (r) { return r[1]; });
     return '<dl class="dl">' + rows.map(function (r) {
       return '<dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd>';
@@ -439,7 +476,7 @@
   function sourcesHTML(s) {
     var src = s.sources || {}, keys = Object.keys(src);
     if (!keys.length) return '';
-    return '<h3 class="h-sub">Sources by claim</h3><div class="srclist">' + keys.map(function (k) {
+    return '<h3 class="h-sub">Sources</h3><div class="srclist">' + keys.map(function (k) {
       var v = src[k];
       /* Sources arrive as {label, url}; older builds stored a bare URL string. */
       if (typeof v === 'string' && /^https?:\/\//.test(v)) v = { label: v, url: v };
@@ -465,7 +502,6 @@
       '<div class="d-id">' + esc(s.id) + '</div></div></div>' +
       '<div class="d-body" style="' + style + '">' +
       (s.description ? '<p class="d-desc">' + esc(s.description) + '</p>' : '') +
-      (t.name ? '<div class="d-tier"><b>' + s.tier + ' — ' + t.name + '.</b> ' + t.desc + '</div>' : '') +
       (s.tierCaveat ? '<div class="note"><b>Analyst caveat:</b> ' + esc(s.tierCaveat) + '</div>' : '') +
       evidenceHTML(s) +
       ((s.purposes || []).length
@@ -497,6 +533,16 @@
   }
 
   /* ---------- events ---------- */
+  function syncChips() {
+    Array.prototype.forEach.call($('#filters').querySelectorAll('.chip'), function (c) {
+      var f = c.dataset.f, v = c.dataset.v;
+      var on = f === 'combat' ? FILTERS.combat
+        : v === '' ? FILTERS[f] == null
+        : FILTERS[f] === v;
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
   function wire() {
     if (!$('#filters')) return;   /* landscape.html has no tracker controls */
     $('#filters').addEventListener('click', function (e) {
@@ -504,14 +550,9 @@
       if (!b) return;
       var f = b.dataset.f, v = b.dataset.v;
       if (f === 'combat') FILTERS.combat = !FILTERS.combat;
+      else if (v === '') FILTERS[f] = null;
       else FILTERS[f] = (FILTERS[f] === v) ? null : v;
-
-      Array.prototype.forEach.call($('#filters').querySelectorAll('.chip'), function (c) {
-        var on = c.dataset.f === 'combat'
-          ? FILTERS.combat
-          : FILTERS[c.dataset.f] === c.dataset.v;
-        c.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
+      syncChips();
       renderGrid();
     });
 
@@ -520,9 +561,7 @@
     $('#reset').addEventListener('click', function () {
       FILTERS = { domain: null, tier: null, origin: null, combat: false };
       Q = ''; $('#q').value = '';
-      Array.prototype.forEach.call($('#filters').querySelectorAll('.chip'), function (c) {
-        c.setAttribute('aria-pressed', 'false');
-      });
+      syncChips();
       renderGrid();
     });
 
