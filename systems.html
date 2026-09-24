@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LAWS Tracker — Lethal Autonomous Weapon Systems</title>
-<meta name="description" content="A survey of deployed and operational lethal autonomous weapon systems worldwide, classified by degree of human control. Americans for Responsible Innovation.">
+<title>All Systems — LAWS Tracker</title>
+<meta name="description" content="Every lethal autonomous weapon system in the dataset: search and filter by domain, autonomy class, origin, region fielded and evidence of use. Americans for Responsible Innovation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -97,60 +97,30 @@
       Americans for <em>Responsible</em> Innovation
     </a>
     <nav class="topnav" aria-label="Primary">
-      <a href="#classification">Classification</a>
-      <a href="systems.html">Systems</a>
+      <a href="index.html#classification">Classification</a>
+      <a href="systems.html" aria-current="page">Systems</a>
       <a href="landscape.html">Landscape</a>
     </nav>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="container hero-inner">
-    <p class="eyebrow">National Security &amp; Strategic Competition</p>
-    <h1>The Machines Are Already<br>Choosing Targets</h1>
-    <p class="standfirst">
-      Dozens of lethal autonomous weapon systems are fielded today, and they continue to
-      proliferate and be used in combat.
-    </p>
-
-    <div class="statbar" role="list">
-      <div class="stat" role="listitem">
-        <span class="stat-n" id="s-systems">—</span>
-        <span class="stat-l">Systems fielded</span>
-      </div>
-      <div class="stat" role="listitem">
-        <span class="stat-n" id="s-nohuman">—</span>
-        <span class="stat-l">Select &amp; engage without per-engagement approval</span>
-      </div>
-      <div class="stat" role="listitem">
-        <span class="stat-n" id="s-ops">—</span>
-        <span class="stat-l">Operator countries</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CLASSIFICATION ============ -->
-<section id="classification" class="band">
+<section class="page-head">
   <div class="container">
-    <p class="kicker">01 — The spectrum of human control</p>
-    <h2 class="h-display">Autonomy is not a switch.<br>It is a question of when the human stops mattering.</h2>
-    <p class="lede measure">
-      Each system in this dataset can select a target or complete an engagement with some level of
-      autonomy. What separates them is <em>where</em> in the kill chain human judgement is absent —
-      and whether anyone retains a real opportunity to intervene.
+    <a class="back-link" href="index.html">
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg> Back to the overview
+    </a>
+    <p class="kicker">02 — The systems</p>
+    <h1>All systems.</h1>
+    <p class="standfirst">
+      The full dataset. Search by name, manufacturer or theatre, or filter by domain, autonomy class,
+      country of origin, the region where a system is fielded, and evidence of use. Select any system
+      for its full record and sources.
     </p>
-    <div class="tiers" id="tier-cards"><!-- injected --></div>
   </div>
 </section>
 
-<!-- ============ EXPLORER ============ -->
 <section id="explorer" class="explorer">
   <div class="container">
-    <p class="kicker">02 — The systems</p>
-    <h2 class="h-display">The Systems.</h2>
 
     <div class="controls">
       <div class="search">
@@ -166,22 +136,6 @@
 
     <div class="grid" id="grid"><!-- injected --></div>
     <p class="empty" id="empty" hidden>No systems match those filters.</p>
-  </div>
-</section>
-
-<!-- ============ LANDSCAPE LINK ============ -->
-<section class="band band-alt landscape-cta">
-  <div class="container">
-    <p class="kicker">03 — The landscape</p>
-    <h2 class="h-display">Who builds them, and who fields them.</h2>
-    <p class="lede measure">
-      Origin and operator counts diverge sharply — these systems export widely. The landscape
-      view breaks the dataset down by country of origin, by operator, by domain and by
-      autonomy class, and lists the manufacturers behind each producing state.
-    </p>
-    <a class="cta" href="landscape.html">
-      Open the landscape <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
-    </a>
   </div>
 </section>
 
@@ -204,9 +158,6 @@
   </article>
 </div>
 
-<script src="hero.js?v=202609241818"></script>
-<script src="sections.js?v=202609241818"></script>
-<script src="review.js?v=202609241818"></script>
 <script src="script.js?v=202609241818"></script>
 </body>
 </html>

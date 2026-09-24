@@ -1,7 +1,7 @@
 /* LAWS Tracker — alternative hero treatments for review.
    The default hero is unchanged. Add ?hero=globe or ?hero=units to the URL to see
-   an alternative; any ?hero= value also shows a small switcher so reviewers can
-   flip between the three. script.js calls window.LAWS_HERO once data.json loads. */
+   an alternative (review.js draws the switcher). script.js calls window.LAWS_HERO
+   once data.json loads. */
 (function () {
   'use strict';
 
@@ -11,23 +11,9 @@
   window.LAWS_HERO = function (DATA, api) {
     var hero = document.querySelector('.hero');
     if (!hero) return;
-    if (MODE) switcher();
     if (MODE === 'globe') globe(hero, DATA);
     else if (MODE === 'units') units(hero, DATA, api);
   };
-
-  /* ---------- review switcher ---------- */
-  function switcher() {
-    var opts = [['', 'Current'], ['globe', 'Globe'], ['units', 'Units']];
-    var nav = document.createElement('nav');
-    nav.className = 'hero-switch';
-    nav.setAttribute('aria-label', 'Hero style (review)');
-    nav.innerHTML = '<span>Hero</span>' + opts.map(function (o) {
-      var here = (MODE === o[0]) || (!o[0] && ['globe', 'units'].indexOf(MODE) < 0);
-      return '<a href="?hero=' + (o[0] || 'current') + '"' + (here ? ' aria-current="true"' : '') + '>' + o[1] + '</a>';
-    }).join('');
-    document.body.appendChild(nav);
-  }
 
   /* Two-column hero: copy and stats on the left, the visual on the right. */
   function stage(hero, cls) {

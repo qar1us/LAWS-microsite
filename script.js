@@ -34,7 +34,44 @@
     'Unknown': 'lv-unk'
   };
 
-  var DATA = null, SYSTEMS = [], FILTERS = { domain: null, tier: null, origin: null, combat: false }, Q = '';
+  /* Operator countries grouped into regions, listed west to east. An editorial
+     grouping, not a geographic fact: Turkey sits in the Middle East, Egypt in Africa,
+     and Russia, Belarus and the Caucasus in Europe. */
+  var REGIONS = {
+    'North America': ['United States', 'Canada'],
+    'South America': ['Argentina', 'Chile', 'Peru'],
+    'Europe': ['Armenia', 'Azerbaijan', 'Belarus', 'Belgium', 'Bulgaria', 'Estonia', 'Finland',
+               'France', 'Germany', 'Greece', 'Hungary', 'Italy', 'Netherlands', 'Norway', 'Poland',
+               'Portugal', 'Romania', 'Russia', 'Serbia', 'Slovakia', 'Spain', 'Sweden',
+               'Switzerland', 'Ukraine', 'United Kingdom'],
+    'Africa': ['Algeria', 'Egypt', 'Ethiopia', 'Libya (GNA)', 'Morocco'],
+    'Middle East': ['Bahrain', 'Iran', 'Iraq', 'Israel', 'Kuwait', 'Qatar', 'Saudi Arabia',
+                    'Syria', 'Turkey', 'United Arab Emirates'],
+    'Asia': ['Bangladesh', 'China', 'India', 'Japan', 'Myanmar', 'Pakistan', 'South Korea',
+             'Taiwan', 'Vietnam'],
+    'Oceania': ['Australia', 'New Zealand']
+  };
+  var REGION_ORDER = Object.keys(REGIONS);
+  var REGION_OF = {};
+  REGION_ORDER.forEach(function (r) { REGIONS[r].forEach(function (c) { REGION_OF[c] = r; }); });
+  var fieldedIn = function (s, region) {
+    return (s.operators || []).some(function (o) { return REGION_OF[o['Operator Country']] === region; });
+  };
+
+  /* Which systems a compact view shows first: corroborated combat use, then
+     reported use, then systems with a photograph, then the most operators. */
+  var featured = function (list, n) {
+    var score = function (s) {
+      return (s.evidence === 'combat' ? 1000 : s.evidence === 'reported' ? 500 : 0) +
+        ((s.images || []).length ? 100 : 0) + (s.operators || []).length;
+    };
+    return list.slice().sort(function (a, b) {
+      return score(b) - score(a) || String(a.name).localeCompare(String(b.name));
+    }).slice(0, n);
+  };
+
+  var NO_FILTERS = function () { return { domain: null, tier: null, origin: null, region: null, combat: false }; };
+  var DATA = null, SYSTEMS = [], FILTERS = NO_FILTERS(), Q = '';
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (s) {
@@ -64,7 +101,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609241655')
+  fetch('data.json?v=202609241818')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -75,8 +112,12 @@
       /* index.html and landscape.html share this file; each render step no-ops
          when its container is absent. */
       renderStats();
-      if (window.LAWS_HERO) window.LAWS_HERO(d, { openDrawer: openDrawer });
+      var api = { openDrawer: openDrawer, featured: featured, fieldedIn: fieldedIn,
+                  REGIONS: REGIONS, REGION_ORDER: REGION_ORDER, REGION_OF: REGION_OF, TIERS: TIERS };
+      if (window.LAWS_HERO) window.LAWS_HERO(d, api);
+      if (window.LAWS_SECTION) window.LAWS_SECTION(d, api);
       renderTiers();
+      presetFilters();
       renderFilters();
       renderGrid();
       renderBars();
@@ -200,11 +241,27 @@
           esc(o) + ' <span class="n">' + org[o] + '</span></button>';
       }).join('') + '</div>';
 
+    html += '<div class="fgroup"><span class="flabel">Fielded in</span>' + all('region') +
+      REGION_ORDER.map(function (r) {
+        var n = SYSTEMS.filter(function (s) { return fieldedIn(s, r); }).length;
+        return n ? '<button class="chip" type="button" data-f="region" data-v="' + esc(r) + '" aria-pressed="false">' +
+          esc(r) + ' <span class="n">' + n + '</span></button>' : '';
+      }).join('') + '</div>';
+
     html += '<div class="fgroup"><span class="flabel">Evidence</span>' +
       '<button class="chip" type="button" data-f="combat" data-v="1" aria-pressed="false">' +
       icon('i-combat') + 'Confirmed combat use <span class="n">' + DATA.counts.withCombatEvidence + '</span></button></div>';
 
     $('#filters').innerHTML = html;
+    syncChips();
+  }
+
+  /* Links from the homepage open the tracker pre-filtered, e.g. systems.html?region=Europe. */
+  function presetFilters() {
+    if (!$('#filters')) return;
+    var q = new URLSearchParams(location.search);
+    ['domain', 'tier', 'origin', 'region'].forEach(function (f) { if (q.get(f)) FILTERS[f] = q.get(f); });
+    if (q.get('combat')) FILTERS.combat = true;
   }
 
   /* ---------- grid ---------- */
@@ -214,6 +271,7 @@
       if (FILTERS.domain && s.domain !== FILTERS.domain) return false;
       if (FILTERS.tier && s.tier !== FILTERS.tier) return false;
       if (FILTERS.origin && s.origin !== FILTERS.origin) return false;
+      if (FILTERS.region && !fieldedIn(s, FILTERS.region)) return false;
       if (FILTERS.combat && !hasCombat(s)) return false;
       if (!q) return true;
       return [s.id, s.name, s.family, s.manufacturer, s.developer, s.origin,
@@ -260,7 +318,7 @@
     $('#count').textContent = list.length === SYSTEMS.length
       ? SYSTEMS.length + ' systems'
       : list.length + ' of ' + SYSTEMS.length + ' systems';
-    var any = FILTERS.domain || FILTERS.tier || FILTERS.origin || FILTERS.combat || Q;
+    var any = FILTERS.domain || FILTERS.tier || FILTERS.origin || FILTERS.region || FILTERS.combat || Q;
     $('#reset').hidden = !any;
   }
 
@@ -544,7 +602,17 @@
   }
 
   function wire() {
-    if (!$('#filters')) return;   /* landscape.html has no tracker controls */
+    /* The drawer is used by every page that has one (tracker, homepage previews),
+       so its events are wired before the tracker-only controls. */
+    if ($('#drawer')) {
+      $('#drawer').addEventListener('click', function (e) {
+        if (e.target.closest('[data-close]')) closeDrawer();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !$('#drawer').hidden) closeDrawer();
+      });
+    }
+    if (!$('#filters')) return;   /* landscape.html and the compact homepage have no tracker controls */
     $('#filters').addEventListener('click', function (e) {
       var b = e.target.closest('.chip');
       if (!b) return;
@@ -559,7 +627,7 @@
     $('#q').addEventListener('input', function (e) { Q = e.target.value; renderGrid(); });
 
     $('#reset').addEventListener('click', function () {
-      FILTERS = { domain: null, tier: null, origin: null, combat: false };
+      FILTERS = NO_FILTERS();
       Q = ''; $('#q').value = '';
       syncChips();
       renderGrid();
@@ -568,14 +636,6 @@
     $('#grid').addEventListener('click', function (e) {
       var c = e.target.closest('.card');
       if (c) openDrawer(c.dataset.id);
-    });
-
-    $('#drawer').addEventListener('click', function (e) {
-      if (e.target.closest('[data-close]')) closeDrawer();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !$('#drawer').hidden) closeDrawer();
     });
   }
 })();
