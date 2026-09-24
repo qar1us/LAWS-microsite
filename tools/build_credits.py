@@ -1,8 +1,8 @@
-import openpyxl, os, json, collections
+import openpyxl, os, json, collections, sys
 from urllib.parse import urlparse
-P=os.path.expanduser
-XL=P("~/LAWS-microsite/Data/LAWS_Dataset_V1.xlsx")
-IMG=P("~/LAWS-microsite/img")
+ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+XL=sys.argv[1] if len(sys.argv)>1 else os.path.join(ROOT,"Data","LAWS_Tracker_Dataset.xlsx")
+IMG=os.path.join(ROOT,"img")
 
 MANUF={"rtx.com","anduril.com","zala-aero.com","stm.com.tr","gdots.com","kongsberg.com","avinc.com",
  "rafael.co.il","rafael-usa.com","rheinmetall.com","wbgroup.pl","mbda-systems.com","hanwha-aerospace.eu",
@@ -30,7 +30,7 @@ srow=list(wb["Systems"].iter_rows(values_only=True)); shdr=srow[0]
 sysname={r[0]:dict(zip(shdr,r))["System Name"] for r in srow[1:] if r[0]}
 ids=sorted(sysname,key=len,reverse=True)
 
-files=[f for f in sorted(os.listdir(IMG)) if not f.startswith((".","_")) and f not in ("manifest.json","credits.json")]
+files=[f for f in sorted(os.listdir(IMG)) if not f.startswith((".","_")) and f.lower().endswith((".jpg",".jpeg",".png",".webp",".avif",".gif"))]
 credits={}; tally=collections.Counter()
 for f in files:
     stem=f.rsplit(".",1)[0]

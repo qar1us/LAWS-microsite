@@ -248,6 +248,9 @@ a { color: inherit; }
   background: var(--dark-2); border: 1px solid var(--dark-rule); border-radius: 4px;
   overflow: hidden; padding: 0; color: inherit; font: inherit;
   transition: border-color 0.15s ease, transform 0.15s ease;
+  /* A <button> centres its content vertically, so in a row of mixed-height cards the
+     shorter ones pushed their photo down. Pin content to the top. */
+  display: flex; flex-direction: column; justify-content: flex-start;
 }
 .card:hover { border-color: var(--signal); transform: translateY(-2px); }
 .card:hover .card-img img { transform: scale(1.04); }
@@ -600,3 +603,19 @@ a { color: inherit; }
 .evidence-h .ico { width: 1rem; height: 1rem; }
 .evidence-b { font-size: 0.93rem; color: var(--ink); line-height: 1.55; }
 .evidence-dl { margin-top: 0.8rem; padding-top: 0.7rem; border-top: 1px solid var(--rule); }
+
+/* ---------- evidence of use (Aug 2026 dataset) ---------- */
+/* Only corroborated combat carries the signal colour. Uncorroborated reports keep
+   the combat glyph in a muted register; deployed and tested read as record notes. */
+.flag.reported { color: #d9c3c9; border-color: rgba(214,35,77,0.3); border-style: dashed; }
+.evidence.is-reported { border-left-style: dashed; border-left-color: rgba(214,35,77,0.55); }
+.evidence.is-reported .evidence-h { color: var(--ink-2); }
+.evidence.is-deployed,
+.evidence.is-tested,
+.evidence.is-other { border-left-color: var(--slate); }
+.evidence.is-deployed .evidence-h,
+.evidence.is-tested .evidence-h,
+.evidence.is-other .evidence-h { color: var(--ink-3); }
+.evidence-src a { color: var(--slate); }
+.evidence-src .sep { color: var(--ink-3); }
+.d-desc { font-size: 1rem; line-height: 1.6; color: var(--ink); margin-bottom: 1.4rem; }

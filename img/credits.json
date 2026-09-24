@@ -13,21 +13,21 @@
   },
   "images": {
     "CHN-AIR-001-a.jpg": {
-      "systemId": "CHN-AIR-001",
-      "system": "CASC CH-901 / FH-901",
-      "slot": "a",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:CASC_FH-901",
-      "sourceDomain": "commons.wikimedia.org",
-      "category": "wikimedia",
-      "status": "include"
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
     },
     "CHN-AIR-001-b.jpg": {
-      "systemId": "CHN-AIR-001",
-      "system": "CASC CH-901 / FH-901",
-      "slot": "b",
-      "sourceUrl": "https://www.janes.com/defence-intelligence-insights/defence-news/air/china-demonstrates-new-uav-capabilities",
-      "sourceDomain": "janes.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "CHN-AIR-002-a.webp": {
@@ -583,19 +583,19 @@
       "systemId": "NOR-AIR-001",
       "system": "Kongsberg Joint Strike Missile (JSM)",
       "slot": "a",
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
+      "sourceUrl": "https://breakingdefense.com/2020/03/flexibility-on-the-fly-joint-strike-missile-has-abilities-that-give-pilots-the-upper-hand/",
+      "sourceDomain": "breakingdefense.com",
+      "category": "third-party-editorial",
       "status": "hold"
     },
     "NOR-AIR-001-b.jpg": {
       "systemId": "NOR-AIR-001",
       "system": "Kongsberg Joint Strike Missile (JSM)",
       "slot": "b",
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
+      "sourceUrl": "https://www.kongsberg.com/what-we-do/defence-and-security/missile-systems/joint-strike-missile-jsm/",
+      "sourceDomain": "kongsberg.com",
+      "category": "manufacturer",
+      "status": "include"
     },
     "NOR-SEA-001-a.webp": {
       "systemId": "NOR-SEA-001",
@@ -814,12 +814,12 @@
       "status": "hold"
     },
     "RUS-LAND-006-a.webp": {
-      "systemId": "RUS-LAND-006",
-      "system": "Marker UGV",
-      "slot": "a",
-      "sourceUrl": "https://automatedresearch.org/weapon/androidnaya-tekhnika-marker-ugv/",
-      "sourceDomain": "automatedresearch.org",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "RUS-SEA-001-a.jpg": {
@@ -976,21 +976,21 @@
       "status": "hold"
     },
     "UKR-AIR-001-a.webp": {
-      "systemId": "UKR-AIR-001",
-      "system": "Wild Hornets Sting",
-      "slot": "a",
-      "sourceUrl": "https://www.businessinsider.com/cheap-drone-shahed-sting-wild-hornets-bullet-train-speed-2025-8",
-      "sourceDomain": "businessinsider.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-AIR-001-b.jpg": {
-      "systemId": "UKR-AIR-001",
-      "system": "Wild Hornets Sting",
-      "slot": "b",
-      "sourceUrl": "https://united24media.com/war-in-ukraine/ukrainian-sting-interceptor-drone-sets-new-altitude-record-destroying-russian-uav-at-75-km-21806",
-      "sourceDomain": "united24media.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-AIR-002-a.jpg": {
@@ -1048,57 +1048,57 @@
       "status": "hold"
     },
     "UKR-SEA-001-a.webp": {
-      "systemId": "UKR-SEA-001",
-      "system": "SBU Sea Baby",
-      "slot": "a",
-      "sourceUrl": "https://www.euronews.com/2025/10/23/ukraine-unveils-upgraded-sea-baby-drone-it-says-can-strike-anywhere-in-the-black-sea",
-      "sourceDomain": "euronews.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-SEA-001-b.webp": {
-      "systemId": "UKR-SEA-001",
-      "system": "SBU Sea Baby",
-      "slot": "b",
-      "sourceUrl": "https://www.euronews.com/2025/10/23/ukraine-unveils-upgraded-sea-baby-drone-it-says-can-strike-anywhere-in-the-black-sea",
-      "sourceDomain": "euronews.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-SEA-002-a.jpg": {
-      "systemId": "UKR-SEA-002",
-      "system": "MAGURA V5",
-      "slot": "a",
-      "sourceUrl": "https://euro-sd.com/2024/06/major-news/38905/magura-v5-at-eurosatory-2024-2/",
-      "sourceDomain": "euro-sd.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-SEA-002-b.jpg": {
-      "systemId": "UKR-SEA-002",
-      "system": "MAGURA V5",
-      "slot": "b",
-      "sourceUrl": "https://newsukraine.rbc.ua/news/russian-navy-s-nightmare-ukrainian-kamikaze-1713444419.html",
-      "sourceDomain": "newsukraine.rbc.ua",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-SEA-003-a.png": {
-      "systemId": "UKR-SEA-003",
-      "system": "MAGURA V7",
-      "slot": "a",
-      "sourceUrl": "https://united24media.com/latest-news/first-look-at-ukraines-magura-sea-drones-that-destroyed-15-russian-targets-8394",
-      "sourceDomain": "united24media.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-SEA-003-b.jpg": {
-      "systemId": "UKR-SEA-003",
-      "system": "MAGURA V7",
-      "slot": "b",
-      "sourceUrl": "https://united24media.com/latest-news/ukraine-tests-modernized-magura-v72-naval-drone-during-nato-trials-in-portugal-11877",
-      "sourceDomain": "united24media.com",
-      "category": "third-party-editorial",
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "USA-AIR-001-a.webp": {

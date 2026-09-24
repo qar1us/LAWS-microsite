@@ -4,8 +4,9 @@ An interactive survey of deployed and operational **lethal autonomous weapon sys
 classified by where human judgement drops out of the kill chain.
 A National Security & Strategic Competition project for *Americans for Responsible Innovation*.
 
-Built on Dataset V1 (compiled 27 July 2026): 86 fielded systems, 17 countries of origin,
-54 operator states. Tranche 1 — broad across categories, not exhaustive within them.
+Built on the dataset compiled 27 July 2026, with inclusion criteria revised August 2026:
+84 systems (76 fielded; the rest tested), 15 countries of origin, 57 operator states.
+Tranche 1 — broad across categories, not exhaustive within them.
 
 Plain HTML, CSS and vanilla JavaScript. Fonts load from Google Fonts.
 
@@ -24,7 +25,7 @@ Single page, no build step for the site itself. Data is generated ahead of time.
 - `index.html` — page structure, inline SVG icon sprite and duotone filter definitions
 - `styles.css` — design tokens at the top, then sections
 - `script.js` — renders everything from `data.json`; no system facts are hardcoded
-- `data.json` — generated from `Data/LAWS_Dataset_V1.xlsx`
+- `data.json` — generated from `Data/LAWS_Tracker_Dataset.xlsx` (gitignored; pass another path as the first argument)
 - `img/` — photo set, manifest, and attribution
 - `tools/` — regeneration scripts
 

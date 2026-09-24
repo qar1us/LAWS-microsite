@@ -1,5 +1,5 @@
 /* LAWS Tracker — rendering and filtering.
-   All content is driven from data.json, generated from LAWS_Dataset_V1.xlsx
+   All content is driven from data.json, generated from the dataset workbook
    by tools/build_data.py. Nothing here hardcodes system facts. */
 (function () {
   'use strict';
@@ -13,10 +13,11 @@
           desc: 'Independent selection and engagement, but only inside a tightly predefined geographic, temporal or target-profile envelope.' },
     B1: { name: 'Engagement completion only', color: 'var(--b1)',
           desc: 'A human selects the target; the system then tracks and completes the engagement unaided, including after signal or communication loss.',
+          /* The closing sentence is completed from the data in renderTiers(), so the
+             shares stay true when the dataset changes. */
           note: 'The B1 class was not anticipated by the project’s original criteria — a human selects the ' +
                 'target, but the system completes the engagement unaided, including after signal or communication ' +
-                'loss. It is the largest and fastest-growing class here. Excluding it entirely would remove roughly ' +
-                'a third of the dataset and most of the current combat evidence.' }
+                'loss. It is the largest and fastest-growing class here.' }
   };
   var TIER_ORDER = ['A1', 'A2', 'A3', 'B1'];
 
@@ -46,15 +47,24 @@
               A3: 'rgba(224,166,60,0.32)', B1: 'rgba(111,139,150,0.34)' };
     return t[tier] || 'rgba(111,139,150,0.3)';
   };
-  var hasCombat = function (s) {
-    return !!s.effects && !/^\s*(none|no\s+(confirmed|public|known|recorded)|not\s+(yet\s+)?(used|employed|confirmed)|unknown|n\/?a)\b/i.test(s.effects);
+  /* evidence is set at the data build from the label on Confirmed Effects:
+     combat (corroborated), reported (uncorroborated), deployed, tested. */
+  var hasCombat = function (s) { return s.evidence === 'combat'; };
+  var EVIDENCE_LABEL = {
+    combat: 'Combat use, corroborated', reported: 'Combat use reported, not corroborated',
+    deployed: 'Deployed, no recorded engagement', tested: 'Tested or demonstrated'
+  };
+  var link = function (src) {
+    return src && src.url
+      ? '<a href="' + esc(src.url) + '" target="_blank" rel="noopener">' + esc(src.label || src.url) + '</a>'
+      : esc(src && src.label != null ? src.label : src);
   };
   var icon = function (id, cls) {
     return '<svg class="ico ' + (cls || '') + '" aria-hidden="true"><use href="#' + id + '"/></svg>';
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609101152')
+  fetch('data.json?v=202609241541')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -87,7 +97,8 @@
     set('stat-systems', c.systems);
     set('stat-origins', c.originCountries);
     set('stat-ops', c.operatorCountries);
-    set('s-systems', c.systems);
+    /* The Aug 2026 criteria admit tested systems, so "fielded" is its own count. */
+    set('s-systems', c.fielded != null ? c.fielded : c.systems);
     set('s-combat', c.withCombatEvidence);
     set('s-nohuman', noApproval);
     set('s-ops', c.operatorCountries);
@@ -98,13 +109,17 @@
     var el = $('#tier-cards');
     if (!el) return;
     var counts = DATA.counts.byTier || {};
+    var b1 = SYSTEMS.filter(function (s) { return s.tier === 'B1'; });
+    var b1Combat = b1.filter(hasCombat).length, allCombat = SYSTEMS.filter(hasCombat).length;
+    var b1Tail = ' Excluding it entirely would remove ' + b1.length + ' of the ' + SYSTEMS.length +
+      ' systems here, and ' + b1Combat + ' of the ' + allCombat + ' with corroborated combat use.';
     el.innerHTML = TIER_ORDER.map(function (t) {
       var T = TIERS[t];
       /* The count bar that used to sit here was read as a progress meter rather than a
          share-of-dataset comparison, so it is gone; the number carries it. */
       var note = T.note
         ? '<span class="tip"><button class="tip-btn" type="button" aria-label="About the ' + t + ' class">' +
-          icon('i-info') + '</button><span class="tip-pop" role="tooltip">' + T.note + '</span></span>'
+          icon('i-info') + '</button><span class="tip-pop" role="tooltip">' + T.note + (t === 'B1' ? b1Tail : '') + '</span></span>'
         : '';
       return '<div class="tier" style="--tc:' + T.color + '">' +
         '<span class="tier-n">' + (counts[t] || 0) + '</span>' +
@@ -164,7 +179,7 @@
       if (FILTERS.combat && !hasCombat(s)) return false;
       if (!q) return true;
       return [s.id, s.name, s.family, s.manufacturer, s.developer, s.origin,
-              s.domain, s.theater, s.targets, (s.purposes || []).join(' ')]
+              s.domain, s.theater, s.targets, s.description, (s.purposes || []).join(' ')]
         .join(' ').toLowerCase().indexOf(q) !== -1;
     });
   }
@@ -177,6 +192,7 @@
 
     var flags = '';
     if (hasCombat(s)) flags += '<span class="flag on">' + icon('i-combat') + 'combat</span>';
+    else if (s.evidence === 'reported') flags += '<span class="flag reported">' + icon('i-combat') + 'combat reported</span>';
     if (s.tier && s.tier !== 'B1') flags += '<span class="flag">' + icon('i-human') + 'no per-engagement approval</span>';
     if (s.confidence) flags += '<span class="flag">' + esc(s.confidence) + '</span>';
 
@@ -315,9 +331,9 @@
     var ex = DATA.excluded || [];
     $('#excl-count').textContent = '(' + ex.length + ')';
     $('#excl-grid').innerHTML = ex.map(function (e) {
-      return '<div class="excl"><b>' + esc(e['System / Programme']) + '</b>' +
-        '<div class="cat">' + esc(e['Country'] || '') + (e['Category'] ? ' · ' + esc(e['Category']) : '') + '</div>' +
-        '<p>' + esc(e['Exclusion Rationale'] || '') + '</p></div>';
+      return '<div class="excl"><b>' + esc(e.name) + '</b>' +
+        '<div class="cat">' + esc(e.country || '') + (e.category ? ' · ' + esc(e.category) : '') + '</div>' +
+        '<p>' + esc(e.rationale || '') + '</p></div>';
     }).join('');
   }
 
@@ -332,7 +348,8 @@
       ['Engagement envelope', s.envelope],
       ['Development', s.devStatus], ['Fielding', s.fieldStatus],
       ['Operational since', s.ocDate], ['Theater', s.theater],
-      ['Targets', s.targets], ['Confirmed effects', s.effects],
+      ['Targets', s.targets],
+      ['Evidence of use', EVIDENCE_LABEL[s.evidence]],
       ['Confidence', s.confidenceRaw || s.confidence]
     ].filter(function (r) { return r[1]; });
     return '<dl class="dl">' + rows.map(function (r) {
@@ -352,15 +369,20 @@
       }).join('') + '</div>';
   }
 
-  /* Deployment and conflict evidence, pulled up out of the record table so it reads
-     as a finding rather than another field. Shows every case the analyst recorded. */
+  /* Evidence of use, pulled up out of the record table so it reads as a finding
+     rather than another field. Corroborated combat gets the signal treatment;
+     uncorroborated reports, deployments and tests are shown in a quieter register
+     so they are never mistaken for confirmed use. */
   function evidenceHTML(s) {
-    if (!hasCombat(s)) return '';
+    if (!s.effects) return '';
+    var combat = s.evidence === 'combat' || s.evidence === 'reported';
     var bits = '';
-    if (s.theater) bits += '<dt>Theater</dt><dd>' + esc(s.theater) + '</dd>';
-    if (s.targets) bits += '<dt>Targets engaged</dt><dd>' + esc(s.targets) + '</dd>';
-    return '<div class="evidence">' +
-      '<p class="evidence-h">' + icon('i-combat') + 'Confirmed use in conflict</p>' +
+    if (combat && s.theater) bits += '<dt>Theater</dt><dd>' + esc(s.theater) + '</dd>';
+    if (combat && s.targets) bits += '<dt>Targets engaged</dt><dd>' + esc(s.targets) + '</dd>';
+    var src = s.effectsSources || [];
+    if (src.length) bits += '<dt>Sources</dt><dd class="evidence-src">' + src.map(link).join('<span class="sep"> · </span>') + '</dd>';
+    return '<div class="evidence is-' + esc(s.evidence || 'other') + '">' +
+      '<p class="evidence-h">' + icon('i-combat') + esc(EVIDENCE_LABEL[s.evidence] || 'Evidence of use') + '</p>' +
       '<p class="evidence-b">' + esc(s.effects) + '</p>' +
       (bits ? '<dl class="dl evidence-dl">' + bits + '</dl>' : '') +
       '</div>';
@@ -384,11 +406,10 @@
     var src = s.sources || {}, keys = Object.keys(src);
     if (!keys.length) return '';
     return '<h3 class="h-sub">Sources by claim</h3><div class="srclist">' + keys.map(function (k) {
-      var v = String(src[k]);
-      var body = /^https?:\/\//.test(v)
-        ? '<a href="' + esc(v) + '" target="_blank" rel="noopener">' + esc(v) + '</a>'
-        : esc(v);
-      return '<div><dt>' + esc(k) + '</dt>' + body + '</div>';
+      var v = src[k];
+      /* Sources arrive as {label, url}; older builds stored a bare URL string. */
+      if (typeof v === 'string' && /^https?:\/\//.test(v)) v = { label: v, url: v };
+      return '<div><dt>' + esc(k) + '</dt>' + link(v) + '</div>';
     }).join('') + '</div>';
   }
 
@@ -409,6 +430,7 @@
       '<div class="d-head"><h2 id="d-name">' + esc(s.name) + '</h2>' +
       '<div class="d-id">' + esc(s.id) + '</div></div></div>' +
       '<div class="d-body" style="' + style + '">' +
+      (s.description ? '<p class="d-desc">' + esc(s.description) + '</p>' : '') +
       (t.name ? '<div class="d-tier"><b>' + s.tier + ' — ' + t.name + '.</b> ' + t.desc + '</div>' : '') +
       (s.tierCaveat ? '<div class="note"><b>Analyst caveat:</b> ' + esc(s.tierCaveat) + '</div>' : '') +
       evidenceHTML(s) +
