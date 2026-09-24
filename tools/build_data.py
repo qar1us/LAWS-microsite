@@ -58,9 +58,15 @@ by_func=collections.defaultdict(dict)
 for r in funcs:
     if r.get("System ID") and r.get("Autonomous Function") and r["Autonomous Function"] not in EXCLUDE_FUNCTIONS:
         by_func[r["System ID"]][r["Autonomous Function"]]=r.get("Autonomy Level")
+# Spelling variants in the workbook that name the same state; without this they
+# count twice in the operator total. Fix at source too, then this becomes a no-op.
+COUNTRY_ALIASES={"S. Korea":"South Korea"}
 by_op=collections.defaultdict(list)
 for r in ops:
-    if r.get("System ID"): by_op[r["System ID"]].append({k:_text(v) for k,v in r.items() if k!="System ID" and v})
+    if r.get("System ID"):
+        o={k:_text(v) for k,v in r.items() if k!="System ID" and v}
+        if o.get("Operator Country") in COUNTRY_ALIASES: o["Operator Country"]=COUNTRY_ALIASES[o["Operator Country"]]
+        by_op[r["System ID"]].append(o)
 by_src={r["System ID"]:{k:v for k,v in r.items() if k not in("System ID","System Name") and v} for r in srcsys if r.get("System ID")}
 
 credits=json.load(open(os.path.join(ROOT,"img","credits.json")))["images"]

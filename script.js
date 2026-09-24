@@ -64,7 +64,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609241541')
+  fetch('data.json?v=202609241625')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -98,10 +98,44 @@
     set('stat-origins', c.originCountries);
     set('stat-ops', c.operatorCountries);
     /* The Aug 2026 criteria admit tested systems, so "fielded" is its own count. */
-    set('s-systems', c.fielded != null ? c.fielded : c.systems);
-    set('s-combat', c.withCombatEvidence);
-    set('s-nohuman', noApproval);
-    set('s-ops', c.operatorCountries);
+    countUp([
+      ['s-systems', c.fielded != null ? c.fielded : c.systems],
+      ['s-combat', c.withCombatEvidence],
+      ['s-nohuman', noApproval],
+      ['s-ops', c.operatorCountries]
+    ]);
+  }
+
+  /* Hero figures count up from zero, staggered left to right. Screen readers get the
+     final value from a hidden twin rather than the ticking digits, and reduced-motion
+     users see the final value at once. */
+  function countUp(items) {
+    var els = items.map(function (it) { return [document.getElementById(it[0]), it[1]]; })
+      .filter(function (it) { return it[0]; });
+    if (!els.length) return;
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    els.forEach(function (it) {
+      it[0].setAttribute('aria-hidden', 'true');
+      var twin = document.createElement('span');
+      twin.className = 'sr-only';
+      twin.textContent = it[1];
+      it[0].parentNode.insertBefore(twin, it[0]);
+      it[0].textContent = still ? it[1] : 0;
+    });
+    if (still) return;
+    var DUR = 1600, STAGGER = 140, t0 = null;
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+    function frame(now) {
+      if (t0 === null) t0 = now;
+      var done = true;
+      els.forEach(function (it, i) {
+        var t = Math.min(1, Math.max(0, (now - t0 - i * STAGGER) / DUR));
+        it[0].textContent = Math.round(ease(t) * it[1]);
+        if (t < 1) done = false;
+      });
+      if (!done) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   }
 
   /* ---------- tier cards ---------- */

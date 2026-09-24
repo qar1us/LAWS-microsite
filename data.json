@@ -106,7 +106,7 @@
      "Operator Status": "Active"
     },
     {
-     "Operator Country": "S. Korea",
+     "Operator Country": "South Korea",
      "Military Service or Organization": "ROK Navy",
      "Operator Status": "Active"
     },
@@ -2012,7 +2012,7 @@
      "Notes": "Land-based variant for coastal defense"
     },
     {
-     "Operator Country": "S. Korea",
+     "Operator Country": "South Korea",
      "Military Service or Organization": "ROK Navy, Air Force",
      "Operator Status": "Active",
      "Notes": "Submarine- and air-launched variants"
@@ -10133,7 +10133,7 @@
  "removed": [],
  "counts": {
   "systems": 84,
-  "operatorCountries": 57,
+  "operatorCountries": 56,
   "fielded": 76,
   "withCombatEvidence": 26,
   "withReportedCombat": 20,
