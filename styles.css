@@ -791,3 +791,6 @@ a { color: inherit; }
 }
 .more summary:hover { color: var(--signal-2); }
 @media (max-width: 40rem) { .fmatrix { grid-template-columns: 1fr; } }
+
+/* systems.html: the page head already supplies the top spacing */
+.page-head + .explorer { padding-top: 0.5rem; }

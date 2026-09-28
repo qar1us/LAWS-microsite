@@ -7,7 +7,11 @@ SRC=~/LAWS-photos-originals
 OUT=~/LAWS-microsite/img
 MAXDIM=1600
 MAXBYTES=400000
-rm -rf "$OUT"; mkdir -p "$OUT"
+# Clear only the image files: credits.json, manifest.json and CREDITS.md live here too
+# and are rebuilt by build_credits.py, not by this script.
+mkdir -p "$OUT"
+find "$OUT" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \
+  -o -iname '*.avif' -o -iname '*.gif' -o -iname '*.bmp' \) -delete
 MAP=/private/tmp/claude-501/-Users-q/fe3dc1ec-d3c3-4ead-8a17-5fa92daccdad/scratchpad/map.csv
 echo "original,web,action,bytes_before,bytes_after" > "$MAP"
 

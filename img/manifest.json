@@ -1,10 +1,6 @@
 {
   "note": "systemId -> image files in img/. Generated; do not hand-edit.",
   "systems": {
-    "CHN-AIR-001": [
-      "CHN-AIR-001-a.jpg",
-      "CHN-AIR-001-b.jpg"
-    ],
     "CHN-AIR-002": [
       "CHN-AIR-002-a.webp",
       "CHN-AIR-002-b.jpg"
@@ -18,6 +14,12 @@
     "CHN-LAND-002": [
       "CHN-LAND-002-a.webp",
       "CHN-LAND-002-b.jpg"
+    ],
+    "CHN-LAND-003": [
+      "CHN-LAND-003-a.png"
+    ],
+    "CHN-LAND-004": [
+      "CHN-LAND-004-a.jpg"
     ],
     "CHN-SEA-001": [
       "CHN-SEA-001-a.jpg"
@@ -105,6 +107,10 @@
       "ISR-LAND-004-a.jpg",
       "ISR-LAND-004-b.jpg"
     ],
+    "ISR-LAND-005": [
+      "ISR-LAND-005-a.avif",
+      "ISR-LAND-005-b.jpg"
+    ],
     "ISR-SEA-001": [
       "ISR-SEA-001-a.avif",
       "ISR-SEA-001-b.jpg"
@@ -135,6 +141,10 @@
     "NOR-AIR-001": [
       "NOR-AIR-001-a.jpg",
       "NOR-AIR-001-b.jpg"
+    ],
+    "NOR-SEA-001": [
+      "NOR-SEA-001-a.webp",
+      "NOR-SEA-001-b.jpg"
     ],
     "POL-AIR-001": [
       "POL-AIR-001-a.jpg",
@@ -180,9 +190,6 @@
       "RUS-LAND-005-a.jpg",
       "RUS-LAND-005-b.jpg"
     ],
-    "RUS-LAND-006": [
-      "RUS-LAND-006-a.webp"
-    ],
     "RUS-SEA-001": [
       "RUS-SEA-001-a.jpg",
       "RUS-SEA-001-b.jpg"
@@ -218,10 +225,6 @@
       "TUR-LAND-003-a.avif",
       "TUR-LAND-003-b.webp"
     ],
-    "UKR-AIR-001": [
-      "UKR-AIR-001-a.webp",
-      "UKR-AIR-001-b.jpg"
-    ],
     "UKR-AIR-002": [
       "UKR-AIR-002-a.jpg",
       "UKR-AIR-002-b.jpg"
@@ -233,18 +236,6 @@
     "UKR-AIR-004": [
       "UKR-AIR-004-a.jpg",
       "UKR-AIR-004-b.jpg"
-    ],
-    "UKR-SEA-001": [
-      "UKR-SEA-001-a.webp",
-      "UKR-SEA-001-b.webp"
-    ],
-    "UKR-SEA-002": [
-      "UKR-SEA-002-a.jpg",
-      "UKR-SEA-002-b.jpg"
-    ],
-    "UKR-SEA-003": [
-      "UKR-SEA-003-a.png",
-      "UKR-SEA-003-b.jpg"
     ],
     "USA-AIR-001": [
       "USA-AIR-001-a.webp",
@@ -296,6 +287,9 @@
       "USA-LAND-002-a.jpg",
       "USA-LAND-002-b.jpg"
     ],
+    "USA-LAND-003": [
+      "USA-LAND-003-a.jpg"
+    ],
     "USA-SEA-001": [
       "USA-SEA-001-a.jpg",
       "USA-SEA-001-b.jpg"
@@ -308,26 +302,12 @@
       "USA-SEA-003-a.avif",
       "USA-SEA-003-b.avif"
     ],
+    "USA-SEA-004": [
+      "USA-SEA-004-a.jpg"
+    ],
     "USA-SUB-001": [
       "USA-SUB-001-a.webp",
       "USA-SUB-001-b.jpg"
     ]
-  },
-  "unmatched": [
-    "NOR-SEA-001-a.webp",
-    "NOR-SEA-001-b.jpg"
-  ],
-  "systemsWithoutPhotos": [
-    "IND-LAND-001",
-    "IRN-AIR-001",
-    "IRN-LAND-001",
-    "ISR-AIR-001-A",
-    "ISR-AIR-007",
-    "ISR-AIR-008",
-    "ISR-LAND-005",
-    "ISR-LAND-006",
-    "NOR-AIR-002",
-    "RUS-SEA-004",
-    "TUR-LAND-002"
-  ]
+  }
 }

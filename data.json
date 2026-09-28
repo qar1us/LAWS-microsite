@@ -558,7 +558,16 @@
      "url": "https://www.twz.com/sea/uss-preble-used-helios-laser-to-zap-four-drones-in-expanding-testing"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "USA-SEA-004-a.jpg",
+     "slot": "a",
+     "status": "include",
+     "category": "manufacturer",
+     "sourceUrl": "https://news.lockheedmartin.com/2021-01-11-Lockheed-Martin-Delivers-HELIOS-Laser-Weapon-System-to-US-Navy-for-Ship-Testing-and-Integration",
+     "sourceDomain": "news.lockheedmartin.com"
+    }
+   ]
   },
   {
    "id": "USA-LAND-001",
@@ -972,7 +981,16 @@
      "url": "https://www.military.com/daily-news/2024/04/24/army-has-officially-deployed-laser-weapons-overseas-combat-enemy-drones.html"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "USA-LAND-003-a.jpg",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://thedefensepost.com/2024/04/10/us-phel-anti-drone-support/",
+     "sourceDomain": "thedefensepost.com"
+    }
+   ]
   },
   {
    "id": "USA-AIR-001",
@@ -3745,7 +3763,24 @@
      "url": "https://www.armyrecognition.com/news/army-news/2025/rafael-delivers-israels-first-operational-iron-beam-laser-shield-to-revolutionize-air-defense-era"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "ISR-LAND-005-a.avif",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://www.defensenews.com/global/mideast-africa/2025/12/29/israel-fields-new-sigma-artillery-cannon-iron-beam-laser-system/",
+     "sourceDomain": "defensenews.com"
+    },
+    {
+     "file": "ISR-LAND-005-b.jpg",
+     "slot": "b",
+     "status": "include",
+     "category": "manufacturer",
+     "sourceUrl": "https://www.rafael.co.il/system/iron-beam/",
+     "sourceDomain": "rafael.co.il"
+    }
+   ]
   },
   {
    "id": "ISR-SEA-001",
@@ -7024,7 +7059,16 @@
      "url": "https://thedefensepost.com/2025/09/17/chinese-laser-falters-desert/"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "CHN-LAND-003-a.png",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://www.unmannedairspace.info/counter-uas-systems-and-policies/chinese-silent-hunter-directed-energy-laser-weapon-features-counter-drone-capability/",
+     "sourceDomain": "unmannedairspace.info"
+    }
+   ]
   },
   {
    "id": "CHN-LAND-004",
@@ -7110,7 +7154,16 @@
      "url": "https://www.armyrecognition.com/news/army-news/2025/china-tests-first-ow5-a50-laser-air-defense-system-to-defend-key-areas-from-enemy-drone-swarms"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "CHN-LAND-004-a.jpg",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://militarywatchmagazine.com/article/china-new-mobile-anti-drone-laser",
+     "sourceDomain": "militarywatchmagazine.com"
+    }
+   ]
   },
   {
    "id": "UKR-AIR-002",

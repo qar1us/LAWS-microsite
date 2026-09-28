@@ -12,24 +12,6 @@
     ]
   },
   "images": {
-    "CHN-AIR-001-a.jpg": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "CHN-AIR-001-b.jpg": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
     "CHN-AIR-002-a.webp": {
       "systemId": "CHN-AIR-002",
       "system": "ASN-301",
@@ -81,6 +63,24 @@
       "slot": "b",
       "sourceUrl": "https://defencesecurityasia.com/en/pakistan-china-ld2000-ciws-air-defense-system-drone-cruise-missile-threat-india/",
       "sourceDomain": "defencesecurityasia.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-LAND-003-a.png": {
+      "systemId": "CHN-LAND-003",
+      "system": "Silent Hunter",
+      "slot": "a",
+      "sourceUrl": "https://www.unmannedairspace.info/counter-uas-systems-and-policies/chinese-silent-hunter-directed-energy-laser-weapon-features-counter-drone-capability/",
+      "sourceDomain": "unmannedairspace.info",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-LAND-004-a.jpg": {
+      "systemId": "CHN-LAND-004",
+      "system": "OW5-A50 / OW5-A10",
+      "slot": "a",
+      "sourceUrl": "https://militarywatchmagazine.com/article/china-new-mobile-anti-drone-laser",
+      "sourceDomain": "militarywatchmagazine.com",
       "category": "third-party-editorial",
       "status": "hold"
     },
@@ -462,6 +462,24 @@
       "category": "third-party-editorial",
       "status": "hold"
     },
+    "ISR-LAND-005-a.avif": {
+      "systemId": "ISR-LAND-005",
+      "system": "Iron Beam",
+      "slot": "a",
+      "sourceUrl": "https://www.defensenews.com/global/mideast-africa/2025/12/29/israel-fields-new-sigma-artillery-cannon-iron-beam-laser-system/",
+      "sourceDomain": "defensenews.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "ISR-LAND-005-b.jpg": {
+      "systemId": "ISR-LAND-005",
+      "system": "Iron Beam",
+      "slot": "b",
+      "sourceUrl": "https://www.rafael.co.il/system/iron-beam/",
+      "sourceDomain": "rafael.co.il",
+      "category": "manufacturer",
+      "status": "include"
+    },
     "ISR-SEA-001-a.avif": {
       "systemId": "ISR-SEA-001",
       "system": "Elbit Seagull USV",
@@ -813,15 +831,6 @@
       "category": "third-party-editorial",
       "status": "hold"
     },
-    "RUS-LAND-006-a.webp": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
     "RUS-SEA-001-a.jpg": {
       "systemId": "RUS-SEA-001",
       "system": "Kashtan / Kortik CIWS",
@@ -975,24 +984,6 @@
       "category": "third-party-editorial",
       "status": "hold"
     },
-    "UKR-AIR-001-a.webp": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "UKR-AIR-001-b.jpg": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
     "UKR-AIR-002-a.jpg": {
       "systemId": "UKR-AIR-002",
       "system": "F-Drones LITAVR",
@@ -1045,60 +1036,6 @@
       "sourceUrl": "https://militarnyi.com/en/news/ukrainian-saker-uav-manufactured-in-denmark/",
       "sourceDomain": "militarnyi.com",
       "category": "third-party-editorial",
-      "status": "hold"
-    },
-    "UKR-SEA-001-a.webp": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "UKR-SEA-001-b.webp": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "UKR-SEA-002-a.jpg": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "UKR-SEA-002-b.jpg": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "UKR-SEA-003-a.png": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
-      "status": "hold"
-    },
-    "UKR-SEA-003-b.jpg": {
-      "systemId": null,
-      "system": null,
-      "slot": null,
-      "sourceUrl": null,
-      "sourceDomain": null,
-      "category": "unsourced",
       "status": "hold"
     },
     "USA-AIR-001-a.webp": {
@@ -1335,6 +1272,15 @@
       "category": "manufacturer",
       "status": "include"
     },
+    "USA-LAND-003-a.jpg": {
+      "systemId": "USA-LAND-003",
+      "system": "P-HEL (LOCUST Laser Weapon System)",
+      "slot": "a",
+      "sourceUrl": "https://thedefensepost.com/2024/04/10/us-phel-anti-drone-support/",
+      "sourceDomain": "thedefensepost.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
     "USA-SEA-001-a.jpg": {
       "systemId": "USA-SEA-001",
       "system": "Phalanx CIWS Block 1B",
@@ -1388,6 +1334,15 @@
       "sourceDomain": "military.com",
       "category": "third-party-editorial",
       "status": "hold"
+    },
+    "USA-SEA-004-a.jpg": {
+      "systemId": "USA-SEA-004",
+      "system": "HELIOS",
+      "slot": "a",
+      "sourceUrl": "https://news.lockheedmartin.com/2021-01-11-Lockheed-Martin-Delivers-HELIOS-Laser-Weapon-System-to-US-Navy-for-Ship-Testing-and-Integration",
+      "sourceDomain": "news.lockheedmartin.com",
+      "category": "manufacturer",
+      "status": "include"
     },
     "USA-SUB-001-a.webp": {
       "systemId": "USA-SUB-001",
