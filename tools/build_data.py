@@ -37,8 +37,10 @@ def _text(v):
 # V.1 review (21 Aug 2026) pulled IND-LAND-001, IRN-LAND-001 and IRN-AIR-001; the
 # Aug 2026 workbook drops them at source. Kept as a hook for future review pulls.
 EXCLUDE_SYSTEMS = set()
-# V.1 review: dropped from the autonomy-by-function matrix as non-differentiating.
-EXCLUDE_FUNCTIONS = {"Mission Planning"}
+# Dropped from the autonomy-by-function matrix: Mission Planning in the V.1 review;
+# Route Preplanning, Sensor Management and Battle-Damage Assessment in V3 (28 Sep).
+EXCLUDE_FUNCTIONS = {"Mission Planning", "Route Preplanning", "Sensor Management",
+                     "Battle-Damage Assessment"}
 
 systems=[{k:(v if k.startswith("Effects Source") else _text(v)) for k,v in r.items()}
          for r in sheet("Systems") if r.get("System ID") not in EXCLUDE_SYSTEMS]
@@ -98,10 +100,10 @@ def _fielded(v):
     v=(v or "").strip().lower()
     return v.startswith("fielded") and "unconfirmed" not in v
 
-FUNC_ORDER=["Navigation","Route Preplanning","Search","Sensor Management","Detection",
+FUNC_ORDER=[f for f in ["Navigation","Route Preplanning","Search","Sensor Management","Detection",
 "Tracking","Classification","Identification","Target Nomination","Target Prioritization","Target Selection",
 "Engagement Decision","Weapon Release","Terminal Guidance","Battle-Damage Assessment","Reattack",
-"Coordination with Other Systems","Swarm Coordination and Execution"]
+"Coordination with Other Systems","Swarm Coordination and Execution"] if f not in EXCLUDE_FUNCTIONS]
 
 out=[]
 for s in systems:
@@ -138,7 +140,8 @@ data={"generated":"from "+os.path.basename(WORKBOOK),"functionOrder":FUNC_ORDER,
                 "byEvidence":dict(collections.Counter(s["evidence"] for s in out)),
                 "byDomain":dict(collections.Counter(s["domain"] for s in out)),
                 "byTier":dict(collections.Counter(s["tier"] for s in out)),
-                "originCountries":len({s["origin"] for s in out if s["origin"]})}}
+                # A joint origin ("France / Sweden") counts toward each country (V3).
+                "originCountries":len({c.strip() for s in out if s["origin"] for c in s["origin"].split("/")})}}
 open(os.path.join(ROOT,"data.json"),"w").write(json.dumps(data,indent=1,ensure_ascii=False)+"\n")
 print("data.json:", os.path.getsize(os.path.join(ROOT,"data.json"))//1024, "KB")
 print("systems:",len(out))

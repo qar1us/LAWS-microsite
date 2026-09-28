@@ -1,5 +1,5 @@
 /* LAWS Tracker — compact options for section 02 on the homepage (review).
-   The full tracker lives on systems.html. Add ?systems=map or ?systems=classes to
+   The full tracker lives on systems.html. Add ?systems=map or ?systems=grid to
    the homepage URL to replace the long grid with a short preview; without the
    parameter the homepage is unchanged. script.js calls window.LAWS_SECTION once
    data.json loads, before the tracker renders. */
@@ -18,7 +18,7 @@
   var icon = function (id) { return '<svg class="ico" aria-hidden="true"><use href="#' + id + '"/></svg>'; };
 
   window.LAWS_SECTION = function (DATA, api) {
-    if (MODE !== 'map' && MODE !== 'classes') return;
+    if (MODE !== 'map' && MODE !== 'grid') return;
     var sec = document.getElementById('explorer');
     if (!sec) return;
     sec.classList.add('explorer--compact');
@@ -28,10 +28,10 @@
       '<p class="kicker">02 — The systems</p>' +
       '<h2 class="h-display">The Systems.</h2>' +
       '<div class="s2"></div>' +
-      '<a class="cta cta-dark" href="systems.html">Explore all ' + total + ' systems ' + icon('i-arrow') + '</a>';
+      (MODE === 'map' ? '<a class="cta cta-dark" href="systems.html">Explore all ' + total + ' systems ' + icon('i-arrow') + '</a>' : '');
     var s2 = box.querySelector('.s2');
     if (MODE === 'map') mapView(s2, DATA, api);
-    else classView(s2, DATA, api);
+    else gridView(s2, DATA, api);
     s2.addEventListener('click', function (e) {
       var b = e.target.closest('[data-open]');
       if (b) api.openDrawer(b.dataset.open);
@@ -241,22 +241,22 @@
   }
 
   /* =====================================================================
-     B — By autonomy class. Four columns, the site's central argument: what
-     separates these systems is where human judgement drops out.
+     B — Grid preview. The tracker's own cards, three rows of them, the last
+     fading out under an "expand" button that opens the full page.
      ===================================================================== */
-  function classView(el, DATA, api) {
-    var ORDER = ['A1', 'A2', 'A3', 'B1'], S = DATA.systems;
+  function gridView(el, DATA, api) {
+    var S = DATA.systems, N = 12;
     el.innerHTML =
-      '<p class="lede measure s2-lede">Grouped by where human judgement drops out of the kill chain — from systems no one supervises to those that only finish what a human started.</p>' +
-      '<div class="cls">' + ORDER.map(function (t) {
-        var T = api.TIERS[t], list = S.filter(function (s) { return s.tier === t; });
-        return '<article class="cl" style="--tc:var(--' + t.toLowerCase() + ')">' +
-          '<header class="cl-head"><span class="cl-code">' + t + '</span><span class="cl-n">' + list.length + '</span></header>' +
-          '<h3 class="cl-name">' + T.name + '</h3>' +
-          '<p class="cl-desc">' + T.desc + '</p>' +
-          '<div class="minis">' + api.featured(list, 3).map(function (s) { return mini(s, api); }).join('') + '</div>' +
-          '<a class="rg-all" href="systems.html?tier=' + t + '">See all ' + list.length + ' ' + t + ' systems ' + icon('i-arrow') + '</a>' +
-        '</article>';
-      }).join('') + '</div>';
+      '<p class="lede measure s2-lede">' + N + ' of ' + S.length + ' systems, led by those with corroborated ' +
+        'combat use. Select any for its full record.</p>' +
+      '<div class="pv">' +
+        '<div class="grid pv-grid">' + api.featured(S, N).map(api.cardHTML).join('') + '</div>' +
+        '<div class="pv-fade"><a class="cta cta-dark" href="systems.html">Expand to all ' + S.length +
+          ' systems ' + icon('i-arrow') + '</a></div>' +
+      '</div>';
+    el.querySelector('.pv-grid').addEventListener('click', function (e) {
+      var c = e.target.closest('.card');
+      if (c) api.openDrawer(c.dataset.id);
+    });
   }
 })();

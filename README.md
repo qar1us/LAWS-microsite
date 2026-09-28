@@ -27,12 +27,13 @@ Single page, no build step for the site itself. Data is generated ahead of time.
 - `script.js` — renders everything from `data.json`; no system facts are hardcoded
 - `systems.html` — the full tracker (search, filters, every system). Accepts presets such
   as `?region=Europe`, `?tier=A2`, `?domain=Sea`, `?origin=Israel`, `?combat=1`.
-- `hero.js` — alternative hero treatments for review: `?hero=globe` or `?hero=units`.
+- `hero.js` — the globe hero: export routes as static lines, motion carried by
+  drifting dots and a twinkle across operator states.
 - `sections.js` — compact homepage options for section 02, linking through to
   `systems.html`: `?systems=map` (region map with autoplaying timeline) or
-  `?systems=classes` (by autonomy class).
-- `review.js` — the switcher shown whenever `?hero=` or `?systems=` is in the URL.
-  Without those parameters the homepage is unchanged.
+  `?systems=grid` (a fading preview of the tracker's cards).
+- `review.js` — the switcher shown whenever `?systems=` is in the URL.
+  Without it the homepage shows the full tracker as before.
 - `globe.json` — land dot grid and country centroids for the globe hero (Natural Earth 1:110m)
 - `data.json` — generated from `Data/LAWS_Tracker_Dataset.xlsx` (gitignored; pass another path as the first argument)
 - `img/` — photo set, manifest, and attribution

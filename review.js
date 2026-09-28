@@ -1,15 +1,14 @@
 /* LAWS Tracker — review switcher.
-   Shown only when the URL carries a review parameter (?hero= or ?systems=), so the
-   public page is unaffected. Each row swaps one choice and keeps the others, so
-   reviewers can compare any combination of hero and section 02. */
+   Shown only when the URL carries a review parameter (?systems=), so the public
+   page is unaffected. Each row swaps one choice and keeps any others. */
 (function () {
   'use strict';
   var q = new URLSearchParams(location.search);
-  if (!q.has('hero') && !q.has('systems')) return;
+  if (!q.has('systems')) return;
 
+  /* The hero was settled in V3 (globe); only section 02 is still being compared. */
   var ROWS = [
-    ['hero', 'Hero', [['current', 'Current'], ['globe', 'Globe'], ['units', 'Units']]],
-    ['systems', 'Systems', [['current', 'Current'], ['map', 'Map'], ['classes', 'Classes']]]
+    ['systems', 'Systems', [['current', 'Current'], ['map', 'Map'], ['grid', 'Grid']]]
   ];
 
   function href(key, value) {

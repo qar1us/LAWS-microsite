@@ -12,12 +12,7 @@
     A3: { name: 'Bounded by a preset envelope', color: 'var(--a3)',
           desc: 'Independent selection and engagement, but only inside a tightly predefined geographic, temporal or target-profile envelope.' },
     B1: { name: 'Engagement completion only', color: 'var(--b1)',
-          desc: 'A human selects the target; the system then tracks and completes the engagement unaided, including after signal or communication loss.',
-          /* The closing sentence is completed from the data in renderTiers(), so the
-             shares stay true when the dataset changes. */
-          note: 'The B1 class was not anticipated by the project’s original criteria — a human selects the ' +
-                'target, but the system completes the engagement unaided, including after signal or communication ' +
-                'loss. It is the largest and fastest-growing class here.' }
+          desc: 'A human selects the target; the system then tracks and completes the engagement unaided, including after signal or communication loss.' }
   };
   var TIER_ORDER = ['A1', 'A2', 'A3', 'B1'];
 
@@ -70,6 +65,11 @@
     }).slice(0, n);
   };
 
+  /* A joint origin ("France / Sweden") counts toward each country (V3). */
+  var originsOf = function (s) {
+    return String(s.origin || '').split('/').map(function (c) { return c.trim(); }).filter(Boolean);
+  };
+
   var NO_FILTERS = function () { return { domain: null, tier: null, origin: null, region: null, combat: false }; };
   var DATA = null, SYSTEMS = [], FILTERS = NO_FILTERS(), Q = '';
 
@@ -101,7 +101,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609241818')
+  fetch('data.json?v=202609282016')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -112,7 +112,7 @@
       /* index.html and landscape.html share this file; each render step no-ops
          when its container is absent. */
       renderStats();
-      var api = { openDrawer: openDrawer, featured: featured, fieldedIn: fieldedIn,
+      var api = { openDrawer: openDrawer, featured: featured, fieldedIn: fieldedIn, cardHTML: cardHTML,
                   REGIONS: REGIONS, REGION_ORDER: REGION_ORDER, REGION_OF: REGION_OF, TIERS: TIERS };
       if (window.LAWS_HERO) window.LAWS_HERO(d, api);
       if (window.LAWS_SECTION) window.LAWS_SECTION(d, api);
@@ -184,21 +184,13 @@
     var el = $('#tier-cards');
     if (!el) return;
     var counts = DATA.counts.byTier || {};
-    var b1 = SYSTEMS.filter(function (s) { return s.tier === 'B1'; });
-    var b1Combat = b1.filter(hasCombat).length, allCombat = SYSTEMS.filter(hasCombat).length;
-    var b1Tail = ' Excluding it entirely would remove ' + b1.length + ' of the ' + SYSTEMS.length +
-      ' systems here, and ' + b1Combat + ' of the ' + allCombat + ' with corroborated combat use.';
     el.innerHTML = TIER_ORDER.map(function (t) {
       var T = TIERS[t];
       /* The count bar that used to sit here was read as a progress meter rather than a
          share-of-dataset comparison, so it is gone; the number carries it. */
-      var note = T.note
-        ? '<span class="tip"><button class="tip-btn" type="button" aria-label="About the ' + t + ' class">' +
-          icon('i-info') + '</button><span class="tip-pop" role="tooltip">' + T.note + (t === 'B1' ? b1Tail : '') + '</span></span>'
-        : '';
       return '<div class="tier" style="--tc:' + T.color + '">' +
         '<span class="tier-n">' + (counts[t] || 0) + '</span>' +
-        '<span class="tier-code">' + t + note + '</span>' +
+        '<span class="tier-code">' + t + '</span>' +
         '<p class="tier-name">' + T.name + '</p>' +
         '<p class="tier-desc">' + T.desc + '</p>' +
         '</div>';
@@ -208,7 +200,10 @@
   /* ---------- filters ---------- */
   function tally(key) {
     var m = {};
-    SYSTEMS.forEach(function (s) { if (s[key]) m[s[key]] = (m[s[key]] || 0) + 1; });
+    SYSTEMS.forEach(function (s) {
+      (key === 'origin' ? originsOf(s) : s[key] ? [s[key]] : [])
+        .forEach(function (v) { m[v] = (m[v] || 0) + 1; });
+    });
     return m;
   }
 
@@ -270,7 +265,7 @@
     return SYSTEMS.filter(function (s) {
       if (FILTERS.domain && s.domain !== FILTERS.domain) return false;
       if (FILTERS.tier && s.tier !== FILTERS.tier) return false;
-      if (FILTERS.origin && s.origin !== FILTERS.origin) return false;
+      if (FILTERS.origin && originsOf(s).indexOf(FILTERS.origin) < 0) return false;
       if (FILTERS.region && !fieldedIn(s, FILTERS.region)) return false;
       if (FILTERS.combat && !hasCombat(s)) return false;
       if (!q) return true;
@@ -363,7 +358,7 @@
   function renderBars() {
     if (!$('#bars-origin')) return;
 
-    barBlock($('#bars-origin'), sorted(tally('origin'), 12),
+    barBlock($('#bars-origin'), sorted(tally('origin')),
       function (k, i, n) { return ramp('seq', i, n); });
 
     barBlock($('#bars-operator'), sorted(operatorTally(), 12),
@@ -379,25 +374,91 @@
       function (label) { return TIERS[label.slice(0, 2)].color; });
   }
 
-  /* Abbreviated firm and agency names, written out in full (V2 review). Only exact
-     cell fragments are mapped, so a name recorded some other way is left untouched. */
+  /* One company name per firm (V2 and V3 review). Cells are free text, so each
+     fragment is first stripped of bracketed detail and trailing commentary, then
+     looked up here: a string renames, a list splits a joint entry, null drops a
+     fragment that names no company ("Russian domestic", analyst commentary).
+     Anything not listed passes through as recorded. */
   var FIRM_NAMES = {
-    'IAI': 'Israel Aerospace Industries (IAI)',
-    'RTX': 'RTX Corporation',
-    'CASIC': 'China Aerospace Science and Industry Corporation (CASIC)',
+    /* China */
+    '713th Research Institute': 'China Shipbuilding Industry Corporation (CSIC)',
+    'CSIC 713th Research Institute': 'China Shipbuilding Industry Corporation (CSIC)',
     'CSIC': 'China Shipbuilding Industry Corporation (CSIC)',
+    'CASIC': 'China Aerospace Science and Industry Corporation (CASIC)',
+    'China Aerospace Science and Industry Corporation': 'China Aerospace Science and Industry Corporation (CASIC)',
+    'ASN Technology': 'ASN Technology Group',
     'Norinco': 'China North Industries Group (NORINCO)',
+    'NORINCO only for land-based derivatives': 'China North Industries Group (NORINCO)',
+    'NORINCO only for the land-based derivative': 'China North Industries Group (NORINCO)',
+    /* France / Sweden */
+    'Bofors AB and Nexter Systems': ['BAE Systems Bofors', 'KNDS'],
+    'Saab Dynamics': 'Saab',
+    /* Germany */
     'GIWS': 'Gesellschaft für Intelligente Wirksysteme (GIWS)',
-    'KBM': 'KBM Machine-Building Design Bureau',
-    'KBP': 'KBP Instrument Design Bureau',
+    'Helsing SE': 'Helsing',
+    'Rheinmetall Air Defence': 'Rheinmetall',
+    'Ukrainian partners': null,
+    /* Israel */
+    'IAI': 'Israel Aerospace Industries (IAI)',
+    'IAI Elta': 'Israel Aerospace Industries (IAI)',
+    'Israel Aerospace Industries': 'Israel Aerospace Industries (IAI)',
+    'Rafael': 'Rafael Advanced Defense Systems',
+    'UVision': 'UVision Air',
+    'Israel MoD DDR&D': 'Israel MoD Directorate of Defense Research & Development (DDR&D)',
+    /* Japan */
     'ATLA': 'Acquisition, Technology & Logistics Agency (ATLA)',
+    /* Norway */
+    'Kongsberg': 'Kongsberg Defence & Aerospace',
+    /* Russia */
+    'KBM': 'KBM Machine-Building Design Bureau',
+    'KBM Kolomna': 'KBM Machine-Building Design Bureau',
+    'KBP': 'KBP Instrument Design Bureau',
+    'Russian Navy ordnance industry': 'Russian Navy',
+    'Russia': null, 'Russian domestic': null, 'Russian domestic producers': null, 'Soviet': null,
+    /* South Korea */
+    'ADD': 'Agency for Defense Development (ADD)',
+    'DoDAAM': 'DoDAAM Systems',
+    'Hanwha': 'Hanwha Aerospace',
+    'Hanwha Defense': 'Hanwha Aerospace',
+    /* Turkey */
     'STM': 'STM Savunma Teknolojileri Mühendislik',
     'STM Savunma Teknolojileri': 'STM Savunma Teknolojileri Mühendislik',
     'ASELSAN': 'ASELSAN (Askeri Elektronik Sanayii)',
+    'TÜBİTAK SAGE': 'TÜBİTAK SAGE (Defence Industries Research and Development Institute)',
+    'Zaslon-L lineage reported by Western press but denied by Turkish sources': null,
+    /* Ukraine */
+    'Ukrainian domestic': null,
+    /* United Kingdom */
+    'MBDA UK': 'MBDA',
+    'Leonardo UK and QinetiQ': ['Leonardo UK', 'QinetiQ'],
+    'Dstl': 'Defence Science and Technology Laboratory (Dstl)',
+    /* United States */
+    'RTX': 'RTX (Raytheon)',
+    'Raytheon': 'RTX (Raytheon)',
+    'Raytheon Systems Company': 'RTX (Raytheon)',
+    'Anduril': 'Anduril Industries',
+    'Lockheed Martin prime': 'Lockheed Martin',
     'DARPA': 'Defense Advanced Research Projects Agency (DARPA)',
-    'US Army RCCTO': 'US Army Rapid Capabilities and Critical Technologies Office (RCCTO)',
-    'Israel MoD DDR&D': 'Israel MoD Directorate of Defense Research & Development (DDR&D)'
+    'US Army RCCTO': 'US Army Rapid Capabilities and Critical Technologies Office (RCCTO)'
   };
+
+  /* Company names in one free-text manufacturer/developer cell. */
+  function companies(text) {
+    var out = [];
+    splitFirms(String(text)).forEach(function (part) {
+      part = part.replace(/\s*\([^)]*\)?/g, ' ')          /* bracketed detail */
+                 .split(/\s+—\s+|\.\s/)[0]                /* trailing commentary */
+                 .replace(/\s+/g, ' ').trim();
+      part.split(/\s+with\s+/).forEach(function (name) {   /* "X with Y" names two firms */
+        name = name.trim();
+        if (!name) return;
+        var m = Object.prototype.hasOwnProperty.call(FIRM_NAMES, name) ? FIRM_NAMES[name] : name;
+        if (m === null) return;
+        [].concat(m).forEach(function (n) { if (out.indexOf(n) < 0) out.push(n); });
+      });
+    });
+    return out;
+  }
 
   /* Split a free-text firm cell on the separators actually used ("/", ";", ","),
      but never inside brackets: "GIWS (Diehl, Rheinmetall)" is one entry. */
@@ -420,20 +481,11 @@
     if (!el) return;
     var byCountry = {};
     SYSTEMS.forEach(function (s) {
-      if (!s.origin) return;
-      var c = byCountry[s.origin] || (byCountry[s.origin] = { n: 0, firms: {} });
-      c.n++;
-      /* Manufacturer and developer are free text and record several firms per cell
-         in mixed styles ("Rafael, IAI Elta", "RTX / Northrup Grumman"). Abbreviations
-         are written out via FIRM_NAMES, but variants like "ZALA Aero" vs "ZALA Aero
-         (Kalashnikov Concern)" are left as recorded — collapsing them would be an
-         editorial decision, not a display one. */
-      [s.manufacturer, s.developer].forEach(function (f) {
-        if (!f) return;
-        splitFirms(String(f)).forEach(function (part) {
-          part = FIRM_NAMES[part] || part;
-          c.firms[part] = (c.firms[part] || 0) + 1;
-        });
+      var firms = companies([s.manufacturer, s.developer].filter(Boolean).join('; '));
+      originsOf(s).forEach(function (origin) {
+        var c = byCountry[origin] || (byCountry[origin] = { n: 0, firms: {} });
+        c.n++;
+        firms.forEach(function (f) { c.firms[f] = (c.firms[f] || 0) + 1; });
       });
     });
 
@@ -441,15 +493,17 @@
       return byCountry[b].n - byCountry[a].n || a.localeCompare(b);
     });
 
+    /* Each country opens on click; the summary carries the counts. */
     el.innerHTML = rows.map(function (country, i) {
       var c = byCountry[country];
       var firms = sorted(c.firms);
-      return '<div class="maker" style="--mc:' + ramp('seq', i, rows.length) + '">' +
-        '<div class="maker-head"><span class="maker-country">' + esc(country) + '</span>' +
-        '<span class="maker-n">' + c.n + ' system' + (c.n === 1 ? '' : 's') + '</span></div>' +
+      return '<details class="maker" style="--mc:' + ramp('seq', i, rows.length) + '">' +
+        '<summary class="maker-head"><span class="maker-country">' + esc(country) + '</span>' +
+        '<span class="maker-n">' + c.n + ' system' + (c.n === 1 ? '' : 's') + ' · ' +
+        firms.length + ' compan' + (firms.length === 1 ? 'y' : 'ies') + '</span></summary>' +
         '<ul class="maker-list">' + firms.map(function (f) {
           return '<li>' + esc(f[0]) + (f[1] > 1 ? '<span class="c">' + f[1] + '</span>' : '') + '</li>';
-        }).join('') + '</ul></div>';
+        }).join('') + '</ul></details>';
     }).join('');
   }
 
@@ -468,22 +522,30 @@
   }
 
   /* ---------- detail drawer ---------- */
-  function fieldRows(s) {
-    var rows = [
-      ['Family', s.family], ['Variant', s.variant],
-      ['Manufacturer', s.manufacturer], ['Developer', s.developer],
-      ['Origin', s.origin], ['Domain', s.domain],
-      ['Reuse', s.reuse], ['Effect', s.effect],
+  /* The record is truncated (V3): the headline fields show, and everything else,
+     analyst notes included, sits behind a "Full record" toggle. */
+  function recordHTML(s) {
+    var dl = function (rows) {
+      rows = rows.filter(function (r) { return r[1]; });
+      return rows.length ? '<dl class="dl">' + rows.map(function (r) {
+        return '<dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd>';
+      }).join('') + '</dl>' : '';
+    };
+    var main = dl([
+      ['Manufacturer', s.manufacturer], ['Origin', s.origin],
+      ['Fielding', s.fieldStatus], ['Operational since', s.ocDate]
+    ]);
+    var rest = dl([
+      ['Family', s.family], ['Variant', s.variant], ['Developer', s.developer],
+      ['Domain', s.domain], ['Reuse', s.reuse], ['Effect', s.effect],
       ['Authorization', s.auth], ['Supervision', s.supervision],
-      ['Engagement envelope', s.envelope],
-      ['Development', s.devStatus], ['Fielding', s.fieldStatus],
-      ['Operational since', s.ocDate], ['Theater', s.theater],
-      ['Targets', s.targets],
-      ['Evidence of use', EVIDENCE_LABEL[s.evidence]]
-    ].filter(function (r) { return r[1]; });
-    return '<dl class="dl">' + rows.map(function (r) {
-      return '<dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd>';
-    }).join('') + '</dl>';
+      ['Engagement envelope', s.envelope], ['Development', s.devStatus],
+      ['Theater', s.theater], ['Targets', s.targets],
+      ['Evidence of use', EVIDENCE_LABEL[s.evidence]],
+      ['Analyst caveat', s.tierCaveat], ['Analyst notes', s.notes]
+    ]);
+    return '<h3 class="h-sub">Record</h3>' + main +
+      (rest ? '<details class="more"><summary>Full record</summary>' + rest + '</details>' : '');
   }
 
   function matrixHTML(s) {
@@ -559,16 +621,16 @@
       '<div class="d-head"><h2 id="d-name">' + esc(s.name) + '</h2>' +
       '<div class="d-id">' + esc(s.id) + '</div></div></div>' +
       '<div class="d-body" style="' + style + '">' +
-      (s.description ? '<p class="d-desc">' + esc(s.description) + '</p>' : '') +
-      (s.tierCaveat ? '<div class="note"><b>Analyst caveat:</b> ' + esc(s.tierCaveat) + '</div>' : '') +
-      evidenceHTML(s) +
+      /* Order set in the V3 review: purpose, description, autonomy by function,
+         combat use, a truncated record; then operators, imagery and sources. */
       ((s.purposes || []).length
-        ? '<h3 class="h-sub">Operational purpose</h3><div class="pills">' +
+        ? '<h3 class="h-sub h-first">Operational purpose</h3><div class="pills">' +
           s.purposes.map(function (p) { return '<span class="pill">' + esc(p) + '</span>'; }).join('') + '</div>'
         : '') +
-      '<h3 class="h-sub">Record</h3>' + fieldRows(s) +
-      (s.notes ? '<h3 class="h-sub">Analyst notes</h3><p>' + esc(s.notes) + '</p>' : '') +
+      (s.description ? '<h3 class="h-sub">Description</h3><p class="d-desc">' + esc(s.description) + '</p>' : '') +
       matrixHTML(s) +
+      (s.effects ? '<h3 class="h-sub">Combat use</h3>' + evidenceHTML(s) : '') +
+      recordHTML(s) +
       ((s.operators || []).length
         ? '<h3 class="h-sub">Operators (' + s.operators.length + ')</h3><div class="pills">' +
           s.operators.map(function (o) {
