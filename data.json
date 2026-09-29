@@ -6571,20 +6571,20 @@
    },
    "images": [
     {
-     "file": "CHN-SEA-001-a.jpg",
-     "slot": "a",
-     "status": "hold",
-     "category": "third-party-editorial",
-     "sourceUrl": "https://www.deagel.com/Components/Type%20730/a001831",
-     "sourceDomain": "deagel.com"
-    },
-    {
      "file": "CHN-SEA-001-b.jpg",
      "slot": "b",
      "status": "hold",
      "category": "unsourced",
      "sourceUrl": null,
      "sourceDomain": null
+    },
+    {
+     "file": "CHN-SEA-001-a.jpg",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://www.deagel.com/Components/Type%20730/a001831",
+     "sourceDomain": "deagel.com"
     }
    ]
   },
@@ -7095,20 +7095,20 @@
    },
    "images": [
     {
-     "file": "CHN-LAND-003-a.png",
-     "slot": "a",
-     "status": "hold",
-     "category": "third-party-editorial",
-     "sourceUrl": "https://www.unmannedairspace.info/counter-uas-systems-and-policies/chinese-silent-hunter-directed-energy-laser-weapon-features-counter-drone-capability/",
-     "sourceDomain": "unmannedairspace.info"
-    },
-    {
      "file": "CHN-LAND-003-b.jpg",
      "slot": "b",
      "status": "hold",
      "category": "unsourced",
      "sourceUrl": null,
      "sourceDomain": null
+    },
+    {
+     "file": "CHN-LAND-003-a.png",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://www.unmannedairspace.info/counter-uas-systems-and-policies/chinese-silent-hunter-directed-energy-laser-weapon-features-counter-drone-capability/",
+     "sourceDomain": "unmannedairspace.info"
     }
    ]
   },

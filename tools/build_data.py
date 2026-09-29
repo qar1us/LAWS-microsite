@@ -77,6 +77,18 @@ for f,m in sorted(credits.items()):
     if m["systemId"]: imgs[m["systemId"]].append({"file":f,"slot":m["slot"],"status":m["status"],
         "category":m["category"],"sourceUrl":m["sourceUrl"],"sourceDomain":m["sourceDomain"]})
 
+# The card shows a system's first photo, which is slot "a" by default. Where a later
+# slot is the much better image, lead with it here rather than renaming files: credits
+# are keyed by file name, so a rename would carry slot a's source onto the wrong photo.
+PRIMARY_PHOTO = {
+    "CHN-SEA-001": "CHN-SEA-001-b.jpg",    # Type 730: 1600px vs 360px
+    "CHN-LAND-003": "CHN-LAND-003-b.jpg",  # Silent Hunter: 500px vs 271px
+}
+for sid,f in PRIMARY_PHOTO.items():
+    lead=[i for i in imgs.get(sid,[]) if i["file"]==f]
+    if lead: imgs[sid]=lead+[i for i in imgs[sid] if i["file"]!=f]
+    else: print("WARNING: PRIMARY_PHOTO file not found:", f)
+
 
 # From the Aug 2026 workbook, Confirmed Effects opens with an evidence label:
 #   "Combat:"                           corroborated combat use
