@@ -59,6 +59,23 @@ CSS or JS — which is exactly the wrong moment for it during a review.
 `build_images.sh` reads from `~/LAWS-photos-originals/`, which is deliberately outside
 this repository. Originals are never modified.
 
+### Photos are protected
+
+- `build_images.sh` is additive. It never deletes anything in `img/` and skips any photo
+  that is already there, so photos added straight to `img/` survive a rebuild. It lists
+  those at the end so you can copy them into the originals folder.
+  - `DRY_RUN=1 bash tools/build_images.sh` previews without changing anything.
+  - `REPLACE=1 bash tools/build_images.sh` re-encodes existing photos from their originals.
+- A pre-commit hook blocks any commit that deletes a photo from `img/` or leaves
+  `data.json` listing fewer photos than before. Turn it on once per clone:
+
+  ```bash
+  git config core.hooksPath tools/hooks
+  ```
+
+  To remove photos on purpose: `ALLOW_IMAGE_DELETE=1 git commit ...`
+- If something is ever wiped, `git checkout -- img data.json` restores the last commit.
+
 ## Local preview
 
 `data.json` is fetched over HTTP, so the page will not work from the file system.

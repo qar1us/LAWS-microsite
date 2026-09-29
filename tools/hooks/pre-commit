@@ -1,0 +1,29 @@
+#!/bin/bash
+# Refuse commits that delete photos, or that leave data.json listing fewer photos
+# than the last commit. Both usually mean a rebuild wiped something by accident.
+# To delete on purpose:  ALLOW_IMAGE_DELETE=1 git commit ...
+[ "${ALLOW_IMAGE_DELETE:-0}" = "1" ] && exit 0
+fail=0
+
+gone=$(git diff --cached --name-only --diff-filter=D -- 'img/*' | grep -iE '\.(jpg|jpeg|png|webp|avif|gif)$')
+if [ -n "$gone" ]; then
+  echo "Blocked: this commit deletes photos from img/:"
+  echo "$gone" | sed 's/^/  /'
+  fail=1
+fi
+
+if git diff --cached --name-only | grep -qx 'data.json' && git cat-file -e HEAD:data.json 2>/dev/null; then
+  before=$(git show HEAD:data.json | grep -c '"file":')
+  after=$(git show :data.json | grep -c '"file":')
+  if [ "$after" -lt "$before" ]; then
+    echo "Blocked: data.json lists $after photos, down from $before in the last commit."
+    fail=1
+  fi
+fi
+
+if [ $fail -eq 1 ]; then
+  echo
+  echo "If a rebuild removed these, restore them with:  git checkout -- img data.json"
+  echo "If you meant to remove them:  ALLOW_IMAGE_DELETE=1 git commit ..."
+  exit 1
+fi
