@@ -119,10 +119,10 @@
     var draw = function () {};
 
     /* Autoplay runs by default, reduced motion included: changing regions is a content
-       change, not movement, and the map fade is skipped under reduced motion. Only the
-       pause button stops it, and keyboard focus inside the section holds it so a
-       panel never changes under someone tabbing through it. */
-    var idx = 0, playing = true, holding = false, visible = false, t0 = 0, raf = 0;
+       change, not movement, and the map fade is skipped under reduced motion. The pause
+       button stops it; hovering the section with a mouse holds it, and so does keyboard
+       focus inside the panel, so a region never changes under someone reading it. */
+    var idx = 0, playing = true, holding = false, hovering = false, visible = false, t0 = 0, raf = 0;
 
     function show(i, user) {
       idx = (i + stats.length) % stats.length;
@@ -154,7 +154,7 @@
     /* The progress bar under the active stop doubles as the autoplay clock. */
     function tick(now) {
       raf = 0;
-      var running = playing && !holding && visible && !document.hidden;
+      var running = playing && !holding && !hovering && visible && !document.hidden;
       var bar = stops[idx].querySelector('.tl-bar span');
       if (running) {
         var p = Math.min(1, (now - t0) / DWELL);
@@ -184,6 +184,10 @@
       holding = !!(e.target.matches && e.target.matches(':focus-visible'));
     });
     panel.addEventListener('focusout', function () { holding = false; });
+    /* Mouse only: on touch screens a tap fires "enter" with no matching "leave", which
+       would freeze autoplay after the first tap. */
+    el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hovering = true; });
+    el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hovering = false; });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }, { threshold: 0.35 }).observe(el);
     } else visible = true;
