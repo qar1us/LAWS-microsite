@@ -6043,7 +6043,16 @@
      "url": "https://www.dailysabah.com/business/defense/modernization-of-turkish-armys-m60t-battle-tanks-complete-with-active-protection-system-included"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "TUR-LAND-002-a.webp",
+     "slot": "a",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
+    }
+   ]
   },
   {
    "id": "TUR-LAND-003",
@@ -6249,7 +6258,24 @@
     },
     "Notes": "Breaking Defense (10 Mar 2025 test report; Akyol on export readiness): https://breakingdefense.com/2025/03/turkeys-aselsan-tests-laser-counter-drone-system-part-of-steel-dome-project/; MILMAG (5 kW, BMC 6x6, İHTAR 100/S automatic target detection, 1,200/1,500 m kills): https://milmag.pl/en/turkey-test-of-the-aselsan-gokberk-air-defense-laser-weapon-system/; Defense Express (5 kW, Ku-band radar, 1,200-1,500 m): https://en.defence-ua.com/weapon_and_tech/turkish_aselsan_gokberk_proves_that_taking_down_drones_doesnt_require_a_high_power_laser-13810.html; ASELSAN SAHA 2026 release (GÖKBERK 10 kW unveiled 6 May 2026): https://www.aselsan.com/en/news/aselsan-introduces-new-electronic-warfare-and-counter-uav-solutions-at-saha-2026; Army Recognition (Mar 2025 profile, min. 5 kW, radar + EO, AI-supported guidance): https://www.armyrecognition.com/news/army-news/2025/aselsan-develops-advanced-laser-defense-with-mobile-goekberk-system-to-counter-growing-drone-threat; Gazete Birlik (Akyol: GÖKBERK to be fielded in 2026): https://www.gazetebirlik.com/teknoloji/savunma-sanayinde-yeni-rekorlar-aselsan-2026ya-guclu-giriyor/932613; Breaking Defense (EUR 780m/USD 900m Steel Dome contract 17 Jun 2026, deliveries 2028-32, GÖKBERK not confirmed as included): https://breakingdefense.com/2026/06/aselsan-lands-900m-deal-to-help-turkey-build-steel-dome-air-defense-systems/. Former ASELSAN product page with 'operator can decide whether to use soft-kill or hard-kill' wording now returns 404 (https://www.aselsan.com/en/blog/detail/1587/gokberk-mobile-laser-weapon-system) - quoted from search-engine cache only, unverified."
    },
-   "images": []
+   "images": [
+    {
+     "file": "TUR-LAND-004-a.jpg",
+     "slot": "a",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
+    },
+    {
+     "file": "TUR-LAND-004-b.jpg",
+     "slot": "b",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
+    }
+   ]
   },
   {
    "id": "CHN-AIR-002",
@@ -6551,6 +6577,14 @@
      "category": "third-party-editorial",
      "sourceUrl": "https://www.deagel.com/Components/Type%20730/a001831",
      "sourceDomain": "deagel.com"
+    },
+    {
+     "file": "CHN-SEA-001-b.jpg",
+     "slot": "b",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
     }
    ]
   },
@@ -7067,6 +7101,14 @@
      "category": "third-party-editorial",
      "sourceUrl": "https://www.unmannedairspace.info/counter-uas-systems-and-policies/chinese-silent-hunter-directed-energy-laser-weapon-features-counter-drone-capability/",
      "sourceDomain": "unmannedairspace.info"
+    },
+    {
+     "file": "CHN-LAND-003-b.jpg",
+     "slot": "b",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
     }
    ]
   },
@@ -8668,7 +8710,24 @@
     },
     "Notes": "GOV.UK Jan 2024 (first UK high-power laser firing against aerial targets, MOD Hebrides Range): https://www.gov.uk/government/news/advanced-future-military-laser-achieves-uk-first; DE&S Nov 2025 (650 km/h drones, above-the-horizon, GBP10 per shot): https://des.mod.uk/boost-for-armed-forces-as-new-laser-weapon-takes-down-high-speed-drones; Naval News Mar 2024 (Q4 2023 Hebrides end-to-end trials, Banshee target engaged; MBDA C2/image processing role): https://www.navalnews.com/naval-news/2024/03/uk-dragonfire-team-outlines-follow-on-laser-weapon-plans/; JED Jan 2026 (MDC two systems, 20 ft container, CMS integration, four-ship objective): https://www.jedonline.com/2026/01/23/uk-contracts-mbda-for-dragonfire-mdc-high-energy-laser-weapon/; QinetiQ Jan 2026 (GBP67M laser-source subcontract, Nov 2025 Hebrides trials): https://www.qinetiq.com/en/news/qinetiq-delivering-laser-weapons-to-royal-navy-platforms; Army Recognition Apr 2026 (Mar 2026 ministerial confirmation, at least two Type 45s, Wolfhound/GCAP exploration): https://www.armyrecognition.com/news/navy-news/2026/uk-confirms-dragonfire-laser-weapon-deployment-on-type-45-air-defense-destroyers-by-2027; Popular Science Nov 2022 (Porton Down trials, automated tracking, MBDA image processing): https://www.popsci.com/technology/uk-mod-dragonfire-laser/; UK Defense Journal guide (turret with EO camera and tracking laser, one operator console): https://ukdefencejournal.org.uk/dragonfire-a-guide-to-britains-new-laser-weapon/; Think Defence program history (Sept 2016 GBP30M demonstrator contract, May 2019 GBP130M DEW package): https://www.thinkdefence.co.uk/docs/dragonfire-laser-weapon/"
    },
-   "images": []
+   "images": [
+    {
+     "file": "GBR-SEA-001-a.jpg",
+     "slot": "a",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
+    },
+    {
+     "file": "GBR-SEA-001-b.jpg",
+     "slot": "b",
+     "status": "hold",
+     "category": "unsourced",
+     "sourceUrl": null,
+     "sourceDomain": null
+    }
+   ]
   },
   {
    "id": "FRA-LAND-001",

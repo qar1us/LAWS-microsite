@@ -16,13 +16,15 @@
       "CHN-LAND-002-b.jpg"
     ],
     "CHN-LAND-003": [
-      "CHN-LAND-003-a.png"
+      "CHN-LAND-003-a.png",
+      "CHN-LAND-003-b.jpg"
     ],
     "CHN-LAND-004": [
       "CHN-LAND-004-a.jpg"
     ],
     "CHN-SEA-001": [
-      "CHN-SEA-001-a.jpg"
+      "CHN-SEA-001-a.jpg",
+      "CHN-SEA-001-b.jpg"
     ],
     "CHN-SEA-002": [
       "CHN-SEA-002-a.webp"
@@ -62,6 +64,10 @@
       "GBR-AIR-001-a.webp",
       "GBR-AIR-001-b.jpg",
       "GBR-AIR-001-c.jpg"
+    ],
+    "GBR-SEA-001": [
+      "GBR-SEA-001-a.jpg",
+      "GBR-SEA-001-b.jpg"
     ],
     "ISR-AIR-001": [
       "ISR-AIR-001-a.webp",
@@ -221,9 +227,16 @@
     "TUR-LAND-001": [
       "TUR-LAND-001-a.jpg"
     ],
+    "TUR-LAND-002": [
+      "TUR-LAND-002-a.webp"
+    ],
     "TUR-LAND-003": [
       "TUR-LAND-003-a.avif",
       "TUR-LAND-003-b.webp"
+    ],
+    "TUR-LAND-004": [
+      "TUR-LAND-004-a.jpg",
+      "TUR-LAND-004-b.jpg"
     ],
     "UKR-AIR-002": [
       "UKR-AIR-002-a.jpg",

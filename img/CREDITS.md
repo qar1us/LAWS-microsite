@@ -11,7 +11,7 @@ All imagery in `img/` is credited below, keyed by system ID. Source URLs come fr
 - `hold` — third-party editorial (news, trade press, reference sites, social) or no recorded source.
   The file is stored in the repository but **must not be rendered on the site** until rights are cleared.
 
-Totals: **54 include**, **96 hold**, 150 files.
+Totals: **54 include**, **103 hold**, 157 files.
 
 ---
 
@@ -46,6 +46,7 @@ Totals: **54 include**, **96 hold**, 150 files.
 | File | Status | Category | Source |
 |---|---|---|---|
 | `CHN-LAND-003-a.png` | hold | third-party-editorial | [unmannedairspace.info](https://www.unmannedairspace.info/counter-uas-systems-and-policies/chinese-silent-hunter-directed-energy-laser-weapon-features-counter-drone-capability/) |
+| `CHN-LAND-003-b.jpg` | hold | unsourced | no source recorded |
 
 ### CHN-LAND-004 — OW5-A50 / OW5-A10
 
@@ -58,6 +59,7 @@ Totals: **54 include**, **96 hold**, 150 files.
 | File | Status | Category | Source |
 |---|---|---|---|
 | `CHN-SEA-001-a.jpg` | hold | third-party-editorial | [deagel.com](https://www.deagel.com/Components/Type%20730/a001831) |
+| `CHN-SEA-001-b.jpg` | hold | unsourced | no source recorded |
 
 ### CHN-SEA-002 — Type 1130 CIWS (H/PJ-11)
 
@@ -127,6 +129,13 @@ Totals: **54 include**, **96 hold**, 150 files.
 | `GBR-AIR-001-a.webp` | include | manufacturer | [mbda-systems.com](https://www.mbda-systems.com/products/tactical-strike/brimstone) |
 | `GBR-AIR-001-b.jpg` | hold | third-party-editorial | [thedefensepost.com](https://thedefensepost.com/2026/07/22/raf-protector-brimstone-paveway/) |
 | `GBR-AIR-001-c.jpg` | include | manufacturer | [mbda-systems.com](https://www.mbda-systems.com/first-brimstone-3-missile-firing-tremendous-success) |
+
+### GBR-SEA-001 — DragonFire
+
+| File | Status | Category | Source |
+|---|---|---|---|
+| `GBR-SEA-001-a.jpg` | hold | unsourced | no source recorded |
+| `GBR-SEA-001-b.jpg` | hold | unsourced | no source recorded |
 
 ### ISR-AIR-001 — IAI Harpy
 
@@ -406,12 +415,25 @@ Totals: **54 include**, **96 hold**, 150 files.
 |---|---|---|---|
 | `TUR-LAND-001-a.jpg` | hold | third-party-editorial | [armyrecognition.com](https://www.armyrecognition.com/archives/archives-land-defense/defense-news-army-2025/tuerkiye-adopts-akkor-10-system-to-provide-360-degree-active-protection-for-altay-and-leopard-2a4-tanks) |
 
+### TUR-LAND-002 — ASELSAN PULAT APS
+
+| File | Status | Category | Source |
+|---|---|---|---|
+| `TUR-LAND-002-a.webp` | hold | unsourced | no source recorded |
+
 ### TUR-LAND-003 — ASELSAN Korkut SPAAG
 
 | File | Status | Category | Source |
 |---|---|---|---|
 | `TUR-LAND-003-a.avif` | hold | third-party-editorial | [army-technology.com](https://www.army-technology.com/projects/korkut-self-propelled-air-defence-gun-system/) |
 | `TUR-LAND-003-b.webp` | hold | third-party-editorial | [turkiyetoday.com](https://www.turkiyetoday.com/nation/aselsan-tests-korkut-14035-spaag-mounted-on-otokar-arma-ii-8x8-vehicle-3212610?s=1) |
+
+### TUR-LAND-004 — GÖKBERK
+
+| File | Status | Category | Source |
+|---|---|---|---|
+| `TUR-LAND-004-a.jpg` | hold | unsourced | no source recorded |
+| `TUR-LAND-004-b.jpg` | hold | unsourced | no source recorded |
 
 ### UKR-AIR-002 — F-Drones LITAVR
 

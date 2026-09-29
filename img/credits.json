@@ -75,6 +75,15 @@
       "category": "third-party-editorial",
       "status": "hold"
     },
+    "CHN-LAND-003-b.jpg": {
+      "systemId": "CHN-LAND-003",
+      "system": "Silent Hunter",
+      "slot": "b",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
     "CHN-LAND-004-a.jpg": {
       "systemId": "CHN-LAND-004",
       "system": "OW5-A50 / OW5-A10",
@@ -91,6 +100,15 @@
       "sourceUrl": "https://www.deagel.com/Components/Type%20730/a001831",
       "sourceDomain": "deagel.com",
       "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "CHN-SEA-001-b.jpg": {
+      "systemId": "CHN-SEA-001",
+      "system": "Type 730 CIWS",
+      "slot": "b",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "CHN-SEA-002-a.webp": {
@@ -263,6 +281,24 @@
       "sourceDomain": "mbda-systems.com",
       "category": "manufacturer",
       "status": "include"
+    },
+    "GBR-SEA-001-a.jpg": {
+      "systemId": "GBR-SEA-001",
+      "system": "DragonFire",
+      "slot": "a",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
+    "GBR-SEA-001-b.jpg": {
+      "systemId": "GBR-SEA-001",
+      "system": "DragonFire",
+      "slot": "b",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
     },
     "ISR-AIR-001-a.webp": {
       "systemId": "ISR-AIR-001",
@@ -966,6 +1002,15 @@
       "category": "third-party-editorial",
       "status": "hold"
     },
+    "TUR-LAND-002-a.webp": {
+      "systemId": "TUR-LAND-002",
+      "system": "ASELSAN PULAT APS",
+      "slot": "a",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
     "TUR-LAND-003-a.avif": {
       "systemId": "TUR-LAND-003",
       "system": "ASELSAN Korkut SPAAG",
@@ -982,6 +1027,24 @@
       "sourceUrl": "https://www.turkiyetoday.com/nation/aselsan-tests-korkut-14035-spaag-mounted-on-otokar-arma-ii-8x8-vehicle-3212610?s=1",
       "sourceDomain": "turkiyetoday.com",
       "category": "third-party-editorial",
+      "status": "hold"
+    },
+    "TUR-LAND-004-a.jpg": {
+      "systemId": "TUR-LAND-004",
+      "system": "G\u00d6KBERK",
+      "slot": "a",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
+    },
+    "TUR-LAND-004-b.jpg": {
+      "systemId": "TUR-LAND-004",
+      "system": "G\u00d6KBERK",
+      "slot": "b",
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
       "status": "hold"
     },
     "UKR-AIR-002-a.jpg": {
