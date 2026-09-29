@@ -96,12 +96,19 @@
       ? '<a href="' + esc(src.url) + '" target="_blank" rel="noopener">' + esc(src.label || src.url) + '</a>'
       : esc(src && src.label != null ? src.label : src);
   };
+  /* A photo shown whole and centred, over a blurred copy of itself that fills the
+     frame — so no system is cropped out and no frame shows empty bars. */
+  var photo = function (file, alt, lazy) {
+    var src = 'img/' + esc(file), l = lazy ? ' loading="lazy" decoding="async"' : '';
+    return '<img class="ph-bg" src="' + src + '" alt="" aria-hidden="true"' + l + '>' +
+      '<img class="ph" src="' + src + '" alt="' + esc(alt || '') + '"' + l + '>';
+  };
   var icon = function (id, cls) {
     return '<svg class="ico ' + (cls || '') + '" aria-hidden="true"><use href="#' + id + '"/></svg>';
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609291715')
+  fetch('data.json?v=202609291721')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -295,7 +302,7 @@
       '<span class="card-id">' + esc(s.id) + '</span></span>';
 
     var media = img
-      ? '<span class="card-img"><img src="img/' + esc(img.file) + '" alt="" loading="lazy" decoding="async">' + overlay + '</span>'
+      ? '<span class="card-img">' + photo(img.file, '', true) + overlay + '</span>'
       : '<span class="card-img is-empty">' + icon(DOMAIN_ICON[s.domain] || 'i-multi') + overlay + '</span>';
 
     return '<button class="card" type="button" data-id="' + esc(s.id) + '" style="' + style + '">' +
@@ -600,7 +607,7 @@
         : 'no source recorded';
       return '<div class="gitem">' +
         (im.status === 'hold' ? '<span class="ghold">rights: hold</span>' : '') +
-        '<img src="img/' + esc(im.file) + '" alt="' + esc(s.name) + '" loading="lazy" decoding="async">' +
+        '<span class="gframe">' + photo(im.file, s.name, true) + '</span>' +
         '<span class="gcred">' + cred + '</span></div>';
     }).join('') + '</div>';
   }
@@ -624,7 +631,7 @@
     var style = '--tc:' + (t.color || 'var(--b1)') + ';--tint:' + tint(s.tier);
 
     var hero = img
-      ? '<div class="d-hero" style="' + style + '"><img src="img/' + esc(img.file) + '" alt="">'
+      ? '<div class="d-hero" style="' + style + '">' + photo(img.file, '')
       : '<div class="d-hero is-empty" style="' + style + '">';
 
     var html = hero +

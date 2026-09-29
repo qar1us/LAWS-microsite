@@ -24,9 +24,7 @@
     hero.classList.add('hero--alt', 'hero--globe');
     var viz = document.createElement('div');
     viz.className = 'hero-viz';
-    viz.innerHTML =
-      '<canvas class="globe" aria-hidden="true"></canvas>' +
-      '<p class="globe-key"><span class="k-origin">Build them</span><span class="k-op">Field them</span></p>';
+    viz.innerHTML = '<canvas class="globe" aria-hidden="true"></canvas>';
     hero.querySelector('.hero-inner').appendChild(viz);
     var canvas = viz.querySelector('canvas');
     var ctx = canvas.getContext('2d');

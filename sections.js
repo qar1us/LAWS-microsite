@@ -43,7 +43,8 @@
     var img = (s.images || [])[0];
     var tc = 'var(--' + String(s.tier || 'b1').toLowerCase() + ')';
     return '<button type="button" class="mini" data-open="' + esc(s.id) + '" style="--tc:' + tc + ';--i:' + (i || 0) + '">' +
-      '<span class="mini-img">' + (img ? '<img src="img/' + esc(img.file) + '" alt="" loading="lazy">' : '') + '</span>' +
+      '<span class="mini-img">' + (img ? '<img class="ph-bg" src="img/' + esc(img.file) + '" alt="" aria-hidden="true" loading="lazy">' +
+        '<img class="ph" src="img/' + esc(img.file) + '" alt="" loading="lazy">' : '') + '</span>' +
       '<span class="mini-t"><span class="mini-name">' + esc(s.name) + '</span>' +
       '<span class="mini-meta"><b>' + esc(s.tier || '—') + '</b> ' + esc(s.origin || '') + '</span></span></button>';
   }

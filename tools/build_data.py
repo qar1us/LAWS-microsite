@@ -44,6 +44,10 @@ EXCLUDE_FUNCTIONS = {"Mission Planning", "Route Preplanning", "Sensor Management
 
 systems=[{k:(v if k.startswith("Effects Source") else _text(v)) for k,v in r.items()}
          for r in sheet("Systems") if r.get("System ID") not in EXCLUDE_SYSTEMS]
+# Display-name corrections requested in review; fix in the workbook too, then remove.
+NAME_FIXES = {"LD-2000 land CIWS": "LD-2000 Land CIWS"}
+for r in systems:
+    if r.get("System Name") in NAME_FIXES: r["System Name"] = NAME_FIXES[r["System Name"]]
 desc={r["System ID"]:_text(r.get("Description")) for r in sheet("Descriptions") if r.get("System ID")}
 purposes=sheet("Purposes"); funcs=sheet("Autonomy_Functions")
 ops=sheet("Operators"); srcsys=sheet("Source_by_System"); srcph=sheet("Source_Photos")
