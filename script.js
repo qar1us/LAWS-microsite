@@ -101,7 +101,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609282027')
+  fetch('data.json?v=202609291117')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -282,9 +282,9 @@
     var meta = [s.origin, s.manufacturer].filter(Boolean).map(esc).join(' <span class="sep">/</span> ');
 
     var flags = '';
-    if (hasCombat(s)) flags += '<span class="flag on">' + icon('i-combat') + 'combat</span>';
-    else if (s.evidence === 'reported') flags += '<span class="flag reported">' + icon('i-combat') + 'combat reported</span>';
-    if (s.tier && s.tier !== 'B1') flags += '<span class="flag">' + icon('i-human') + 'no per-engagement approval</span>';
+    if (hasCombat(s)) flags += '<span class="flag on">' + icon('i-combat') + 'Combat Confirmed</span>';
+    else if (s.evidence === 'reported') flags += '<span class="flag reported">' + icon('i-combat') + 'Combat Reported</span>';
+    if (s.tier && s.tier !== 'B1') flags += '<span class="flag">' + icon('i-human') + 'No Pre-Engagement Approval</span>';
 
     /* The tier chip, domain glyph and title overlay the photo, so they live
        inside .card-img — it is their positioning context. */
@@ -326,15 +326,27 @@
     return 'var(--' + prefix + '-' + step + ')';
   }
 
+  /* Bars grow from zero, top to bottom, the first time each chart scrolls into view.
+     The final width is set inline, so without JS or with reduced motion the chart
+     simply shows at full size. */
   function barBlock(el, entries, color) {
     if (!el) return;
     var max = Math.max.apply(null, entries.map(function (e) { return e[1]; }));
     el.innerHTML = entries.map(function (e, i) {
       var c = typeof color === 'function' ? color(e[0], i, entries.length) : color;
-      return '<div class="bar"><span class="bar-l">' + esc(e[0]) + '</span>' +
+      return '<div class="bar" style="--i:' + i + '"><span class="bar-l">' + esc(e[0]) + '</span>' +
         '<span class="bar-track"><span class="bar-fill" style="width:' + (e[1] / max * 100) + '%;--bc:' + c + '"></span></span>' +
         '<span class="bar-n">' + e[1] + '</span></div>';
     }).join('');
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still || !('IntersectionObserver' in window)) return;
+    el.classList.add('bars--anim');
+    var io = new IntersectionObserver(function (ents) {
+      if (!ents[0].isIntersecting) return;
+      el.classList.add('is-in');
+      io.disconnect();
+    }, { threshold: 0.25 });
+    io.observe(el);
   }
 
   function sorted(map, limit) {

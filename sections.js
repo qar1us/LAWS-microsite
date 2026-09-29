@@ -1,12 +1,12 @@
-/* LAWS Tracker — compact options for section 02 on the homepage (review).
-   The full tracker lives on systems.html. Add ?systems=map or ?systems=grid to
-   the homepage URL to replace the long grid with a short preview; without the
-   parameter the homepage is unchanged. script.js calls window.LAWS_SECTION once
-   data.json loads, before the tracker renders. */
+/* LAWS Tracker — section 02 on the homepage.
+   The map was chosen in review (29 Sep 2026), so it is now the default. The full
+   tracker lives on systems.html. ?systems=grid still shows the card preview and
+   ?systems=current the old full grid, for comparison only. script.js calls
+   window.LAWS_SECTION once data.json loads, before the tracker renders. */
 (function () {
   'use strict';
 
-  var MODE = (new URLSearchParams(location.search).get('systems') || '').toLowerCase();
+  var MODE = (new URLSearchParams(location.search).get('systems') || 'map').toLowerCase();
   var STILL = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DWELL = 6000;   /* ms each region stays on screen */
 
@@ -39,10 +39,10 @@
   };
 
   /* A small system tile: photo, name, origin, class. Opens the record. */
-  function mini(s, api) {
+  function mini(s, api, i) {
     var img = (s.images || [])[0];
     var tc = 'var(--' + String(s.tier || 'b1').toLowerCase() + ')';
-    return '<button type="button" class="mini" data-open="' + esc(s.id) + '" style="--tc:' + tc + '">' +
+    return '<button type="button" class="mini" data-open="' + esc(s.id) + '" style="--tc:' + tc + ';--i:' + (i || 0) + '">' +
       '<span class="mini-img">' + (img ? '<img src="img/' + esc(img.file) + '" alt="" loading="lazy">' : '') + '</span>' +
       '<span class="mini-t"><span class="mini-name">' + esc(s.name) + '</span>' +
       '<span class="mini-meta"><b>' + esc(s.tier || '—') + '</b> ' + esc(s.origin || '') + '</span></span></button>';
@@ -117,26 +117,33 @@
     var canvas = el.querySelector('canvas');
     var draw = function () {};
 
-    var idx = 0, playing = !STILL, hovering = false, visible = false, t0 = 0, raf = 0;
+    /* Autoplay runs by default, reduced motion included: changing regions is a content
+       change, not movement, and the map fade is skipped under reduced motion. Only the
+       pause button stops it, and keyboard focus inside the section holds it so a
+       panel never changes under someone tabbing through it. */
+    var idx = 0, playing = true, holding = false, visible = false, t0 = 0, raf = 0;
 
     function show(i, user) {
       idx = (i + stats.length) % stats.length;
       var st = stats[idx];
-      var more = st.countries.length > 8 ? ' and ' + (st.countries.length - 8) + ' more' : '';
+      var SHOW = 6, more = st.countries.length > SHOW ? ' and ' + (st.countries.length - SHOW) + ' more' : '';
+      panel.classList.remove('is-in');
       panel.innerHTML =
         '<p class="rg-kicker">Fielded in</p>' +
         '<h3 class="rg-name">' + esc(st.region) + '</h3>' +
         '<p class="rg-stat"><b>' + st.list.length + '</b> system' + (st.list.length === 1 ? '' : 's') +
           '<span class="sep">·</span><b>' + st.countries.length + '</b> operator ' +
           (st.countries.length === 1 ? 'country' : 'countries') + '</p>' +
-        '<p class="rg-countries">' + esc(st.countries.slice(0, 8).join(', ')) + esc(more) + '</p>' +
-        '<div class="minis">' + st.featured.map(function (s) { return mini(s, api); }).join('') + '</div>' +
+        '<p class="rg-countries">' + esc(st.countries.slice(0, SHOW).join(', ')) + esc(more) + '</p>' +
+        '<div class="minis">' + st.featured.map(function (s, k) { return mini(s, api, k); }).join('') + '</div>' +
         '<a class="rg-all" href="systems.html?region=' + encodeURIComponent(st.region) + '">See all ' +
           st.list.length + ' fielded in ' + esc(st.region) + ' ' + icon('i-arrow') + '</a>';
       Array.prototype.forEach.call(stops, function (b, k) {
         b.setAttribute('aria-current', k === idx ? 'true' : 'false');
         b.querySelector('.tl-bar span').style.width = k < idx ? '100%' : '0%';
       });
+      void panel.offsetWidth;          /* restart the entrance animation */
+      panel.classList.add('is-in');
       draw(st.region);
       t0 = performance.now();
       if (user) panel.setAttribute('aria-live', 'polite');   /* announce only what the user asked for */
@@ -146,7 +153,7 @@
     /* The progress bar under the active stop doubles as the autoplay clock. */
     function tick(now) {
       raf = 0;
-      var running = playing && !hovering && visible && !document.hidden;
+      var running = playing && !holding && visible && !document.hidden;
       var bar = stops[idx].querySelector('.tl-bar span');
       if (running) {
         var p = Math.min(1, (now - t0) / DWELL);
@@ -168,16 +175,14 @@
       var b = e.target.closest('button');
       if (!b) return;
       if (b === playBtn) { setPlaying(!playing); return; }
-      /* Any manual step stops autoplay: the reader has taken over. */
-      setPlaying(false);
+      /* A manual step jumps there and the clock restarts from that region. */
       if (b.dataset.step) show(idx + Number(b.dataset.step), true);
       else if (b.dataset.i) show(Number(b.dataset.i), true);
     });
-    var wrap = el;
-    wrap.addEventListener('mouseenter', function () { hovering = true; });
-    wrap.addEventListener('mouseleave', function () { hovering = false; });
-    wrap.addEventListener('focusin', function () { hovering = true; });
-    wrap.addEventListener('focusout', function () { hovering = false; });
+    panel.addEventListener('focusin', function (e) {
+      holding = !!(e.target.matches && e.target.matches(':focus-visible'));
+    });
+    panel.addEventListener('focusout', function () { holding = false; });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }, { threshold: 0.35 }).observe(el);
     } else visible = true;

@@ -18,3 +18,12 @@ rm -f script.js.bak
 echo "stamped version $V"
 grep -oH -E '(styles\.css|[a-z]+\.js)\?v=[0-9]+' $PAGES
 grep -o "data.json?v=[0-9]*" script.js
+
+# Footer "Last updated" date, e.g. September 29, 2026 (portable across BSD and GNU date).
+ISO=$(date +%Y-%m-%d)
+HUMAN="$(date +%B) $(date +%e | tr -d ' '), $(date +%Y)"
+for page in $PAGES; do
+  sed -i.bak -E "s|<time class=\"updated\" datetime=\"[0-9-]+\">[^<]*</time>|<time class=\"updated\" datetime=\"$ISO\">$HUMAN</time>|" "$page"
+  rm -f "$page.bak"
+done
+echo "footer date $HUMAN"
