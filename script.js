@@ -70,7 +70,7 @@
     return String(s.origin || '').split('/').map(function (c) { return c.trim(); }).filter(Boolean);
   };
 
-  var NO_FILTERS = function () { return { domain: null, tier: null, origin: null, region: null, combat: false }; };
+  var NO_FILTERS = function () { return { domain: null, tier: null, origin: null, region: null, evidence: null }; };
   var DATA = null, SYSTEMS = [], FILTERS = NO_FILTERS(), Q = '';
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609301542')
+  fetch('data.json?v=202609301839')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -219,42 +219,31 @@
     var dom = tally('domain'), org = tally('origin');
     var topOrigins = Object.keys(org).sort(function (a, b) { return org[b] - org[a]; }).slice(0, 8);
 
-    /* Each group opens with a "View all" chip, pressed while that group is unfiltered. */
-    var all = function (f) {
-      return '<button class="chip chip-all" type="button" data-f="' + f + '" data-v="" aria-pressed="true">View all</button>';
+    /* Each group is a title and a row of chips, opening with "View all" (pressed while
+       the group is unfiltered). Chips carry no counts: the result line under the
+       filters already says how many systems match. */
+    var chip = function (f, v, label) {
+      return '<button class="chip" type="button" data-f="' + f + '" data-v="' + esc(v) + '" aria-pressed="false">' + label + '</button>';
     };
-    var html = '';
-    html += '<div class="fgroup"><span class="flabel">Domain</span>' + all('domain') +
-      Object.keys(DOMAIN_ICON).filter(function (d) { return dom[d]; }).map(function (d) {
-        return '<button class="chip" type="button" data-f="domain" data-v="' + esc(d) + '" aria-pressed="false">' +
-          icon(DOMAIN_ICON[d]) + esc(d) + ' <span class="n">' + dom[d] + '</span></button>';
-      }).join('') + '</div>';
+    var group = function (title, f, chips) {
+      return '<div class="fgroup" role="group" aria-label="' + esc(title) + '"><span class="flabel">' + esc(title) + '</span>' +
+        '<span class="fchips"><button class="chip chip-all" type="button" data-f="' + f + '" data-v="" aria-pressed="true">View all</button>' +
+        chips.join('') + '</span></div>';
+    };
 
-    html += '<div class="fgroup"><span class="flabel">Autonomy</span>' + all('tier') +
-      TIER_ORDER.map(function (t) {
-        var n = (DATA.counts.byTier || {})[t] || 0;
-        return '<button class="chip" type="button" data-f="tier" data-v="' + t + '" aria-pressed="false">' +
-          t + ' <span class="n">' + n + '</span></button>';
-      }).join('') + '</div>';
-
-    html += '<div class="fgroup"><span class="flabel">Origin</span>' + all('origin') +
-      topOrigins.map(function (o) {
-        return '<button class="chip" type="button" data-f="origin" data-v="' + esc(o) + '" aria-pressed="false">' +
-          esc(o) + ' <span class="n">' + org[o] + '</span></button>';
-      }).join('') + '</div>';
-
-    html += '<div class="fgroup"><span class="flabel">Fielded in</span>' + all('region') +
-      REGION_ORDER.map(function (r) {
-        var n = SYSTEMS.filter(function (s) { return fieldedIn(s, r); }).length;
-        return n ? '<button class="chip" type="button" data-f="region" data-v="' + esc(r) + '" aria-pressed="false">' +
-          esc(r) + ' <span class="n">' + n + '</span></button>' : '';
-      }).join('') + '</div>';
-
-    html += '<div class="fgroup"><span class="flabel">Evidence</span>' +
-      '<button class="chip" type="button" data-f="combat" data-v="1" aria-pressed="false">' +
-      icon('i-combat') + 'Confirmed combat use <span class="n">' + DATA.counts.withCombatEvidence + '</span></button></div>';
-
-    $('#filters').innerHTML = html;
+    $('#filters').innerHTML =
+      group('Domain', 'domain', Object.keys(DOMAIN_ICON).filter(function (d) { return dom[d]; }).map(function (d) {
+        return chip('domain', d, icon(DOMAIN_ICON[d]) + esc(d));
+      })) +
+      group('Autonomy', 'tier', TIER_ORDER.map(function (t) { return chip('tier', t, t); })) +
+      group('Origin', 'origin', topOrigins.map(function (o) { return chip('origin', o, esc(o)); })) +
+      group('Fielded in', 'region', REGION_ORDER.filter(function (r) {
+        return SYSTEMS.some(function (s) { return fieldedIn(s, r); });
+      }).map(function (r) { return chip('region', r, esc(r)); })) +
+      group('Evidence', 'evidence', [
+        chip('evidence', 'combat', icon('i-combat') + 'Confirmed Combat Use'),
+        chip('evidence', 'reported', icon('i-combat') + 'Reported Combat Use')
+      ]);
     syncChips();
   }
 
@@ -262,8 +251,8 @@
   function presetFilters() {
     if (!$('#filters')) return;
     var q = new URLSearchParams(location.search);
-    ['domain', 'tier', 'origin', 'region'].forEach(function (f) { if (q.get(f)) FILTERS[f] = q.get(f); });
-    if (q.get('combat')) FILTERS.combat = true;
+    ['domain', 'tier', 'origin', 'region', 'evidence'].forEach(function (f) { if (q.get(f)) FILTERS[f] = q.get(f); });
+    if (q.get('combat')) FILTERS.evidence = 'combat';   /* older links */
   }
 
   /* ---------- grid ---------- */
@@ -274,7 +263,7 @@
       if (FILTERS.tier && s.tier !== FILTERS.tier) return false;
       if (FILTERS.origin && originsOf(s).indexOf(FILTERS.origin) < 0) return false;
       if (FILTERS.region && !fieldedIn(s, FILTERS.region)) return false;
-      if (FILTERS.combat && !hasCombat(s)) return false;
+      if (FILTERS.evidence && s.evidence !== FILTERS.evidence) return false;
       if (!q) return true;
       return [s.id, s.name, s.family, s.manufacturer, s.developer, s.origin,
               s.domain, s.theater, s.targets, s.description, (s.purposes || []).join(' ')]
@@ -294,6 +283,12 @@
     var more = seen.length - n;
     return 'Used by ' + seen.slice(0, n).join(', ') + (more > 0 ? ' +' + more : '');
   }
+  /* The card version keeps to one line: names trim with an ellipsis on narrow cards,
+     but the "+N" count stays visible. */
+  function usedByHTML(s, n) {
+    var t = usedBy(s, n), m = t.match(/^(.*?)( \+\d+)?$/);
+    return t ? '<span class="uses">' + esc(m[1]) + '</span>' + (m[2] ? '<span class="uses-n">' + esc(m[2]) + '</span>' : '') : '';
+  }
 
   function cardHTML(s) {
     var img = (s.images || [])[0];
@@ -304,7 +299,6 @@
     var flags = '';
     if (hasCombat(s)) flags += '<span class="flag on">' + icon('i-combat') + 'Combat Confirmed</span>';
     else if (s.evidence === 'reported') flags += '<span class="flag reported">' + icon('i-combat') + 'Combat Reported</span>';
-    if (s.tier && s.tier !== 'B1') flags += '<span class="flag">' + icon('i-human') + 'No Pre-Engagement Approval</span>';
 
     /* The tier chip, domain glyph and title overlay the photo, so they live
        inside .card-img — it is their positioning context. */
@@ -312,7 +306,7 @@
       '<span class="card-tier">' + esc(s.tier || '—') + '</span>' +
       '<span class="card-dom">' + icon(DOMAIN_ICON[s.domain] || 'i-multi') + '</span>' +
       '<span class="card-head"><span class="card-name">' + esc(s.name) + '</span>' +
-      '<span class="card-id">' + esc(usedBy(s, 2)) + '</span></span>';
+      '<span class="card-id" title="' + esc(usedBy(s, 99)) + '">' + usedByHTML(s, 2) + '</span></span>';
 
     var media = img
       ? '<span class="card-img">' + photo(img.file, '', true) + overlay + '</span>'
@@ -333,7 +327,7 @@
     $('#count').textContent = list.length === SYSTEMS.length
       ? SYSTEMS.length + ' systems'
       : list.length + ' of ' + SYSTEMS.length + ' systems';
-    var any = FILTERS.domain || FILTERS.tier || FILTERS.origin || FILTERS.region || FILTERS.combat || Q;
+    var any = FILTERS.domain || FILTERS.tier || FILTERS.origin || FILTERS.region || FILTERS.evidence || Q;
     $('#reset').hidden = !any;
   }
 
@@ -762,9 +756,7 @@
   function syncChips() {
     Array.prototype.forEach.call($('#filters').querySelectorAll('.chip'), function (c) {
       var f = c.dataset.f, v = c.dataset.v;
-      var on = f === 'combat' ? FILTERS.combat
-        : v === '' ? FILTERS[f] == null
-        : FILTERS[f] === v;
+      var on = v === '' ? FILTERS[f] == null : FILTERS[f] === v;
       c.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
@@ -787,8 +779,7 @@
       var b = e.target.closest('.chip');
       if (!b) return;
       var f = b.dataset.f, v = b.dataset.v;
-      if (f === 'combat') FILTERS.combat = !FILTERS.combat;
-      else if (v === '') FILTERS[f] = null;
+      if (v === '') FILTERS[f] = null;
       else FILTERS[f] = (FILTERS[f] === v) ? null : v;
       syncChips();
       renderGrid();
