@@ -1,0 +1,142 @@
+<!doctype html>
+<!-- Social share card, 1200 × 630. Rendered to img/social-card.png by
+     tools/build_social.js — not part of the site. Numbers and the globe come
+     from data.json and globe.json, so regenerate after a data rebuild. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=block" rel="stylesheet">
+<style>
+  :root { --dark: #0b1030; --signal: #d6234d; --mute: #9aa6c4; --text: #eef2f6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--dark); }
+  .card {
+    position: relative; width: 1200px; height: 630px; overflow: hidden; color: var(--text);
+    font-family: Archivo, system-ui, sans-serif;
+    background:
+      repeating-linear-gradient(0deg, rgba(214,35,77,0.07) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(90deg, rgba(214,35,77,0.07) 0 1px, transparent 1px 34px),
+      radial-gradient(70% 110% at 88% 10%, rgba(214,35,77,0.30), transparent 60%),
+      var(--dark);
+  }
+  canvas { position: absolute; right: -150px; top: 20px; width: 640px; height: 640px; }
+  .copy { position: absolute; left: 72px; top: 64px; width: 640px; }
+  .eyebrow {
+    font-size: 17px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--signal);
+  }
+  h1 {
+    font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 70px;
+    line-height: 1.02; letter-spacing: -0.02em; margin-top: 22px;
+  }
+  .sub { font-size: 25px; font-weight: 600; color: #cdd6e8; margin-top: 22px; }
+  .stats { position: absolute; left: 72px; bottom: 104px; display: flex; gap: 44px; }
+  .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 54px; line-height: 1; }
+  .stat span {
+    display: block; margin-top: 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mute); max-width: 190px; line-height: 1.3;
+  }
+  .foot {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 64px; padding: 0 72px;
+    display: flex; align-items: center; gap: 16px; border-top: 1px solid rgba(255,255,255,0.13);
+    background: rgba(11,16,48,0.85);
+  }
+  .foot img { width: 44px; height: auto; }
+  .foot .org { font-size: 17px; font-weight: 600; }
+  .foot .url { margin-left: auto; font-family: "IBM Plex Mono", monospace; font-size: 15px; color: var(--mute); }
+</style>
+</head>
+<body>
+<div class="card">
+  <canvas id="globe" width="1280" height="1280"></canvas>
+  <div class="copy">
+    <p class="eyebrow">Lethal Autonomous Weapon Systems Tracker</p>
+    <h1>The Machines Are Already Choosing Targets</h1>
+    <p class="sub">Which systems select and engage on their own, who builds them, and who uses them.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="n-fielded">—</b><span>Systems fielded</span></div>
+    <div class="stat"><b id="n-noapproval">—</b><span>No per-engagement approval</span></div>
+    <div class="stat"><b id="n-ops">—</b><span>Operator countries</span></div>
+  </div>
+  <div class="foot">
+    <img src="../img/ari-mark.svg" alt="">
+    <span class="org">Americans for Responsible Innovation</span>
+    <span class="url" id="url"></span>
+  </div>
+</div>
+<script>
+(async function () {
+  var q = new URLSearchParams(location.search);
+  document.getElementById('url').textContent = q.get('url') || 'qar1us.github.io/LAWS-microsite';
+
+  var [D, G] = await Promise.all([
+    fetch('../data.json').then(r => r.json()),
+    fetch('../globe.json').then(r => r.json())
+  ]);
+
+  /* The same three figures as the hero stat bar. */
+  var c = D.counts;
+  document.getElementById('n-fielded').textContent = c.fielded != null ? c.fielded : c.systems;
+  document.getElementById('n-noapproval').textContent = D.systems.filter(s => s.tier !== 'B1').length;
+  document.getElementById('n-ops').textContent = c.operatorCountries;
+
+  /* A still frame of the hero globe: producing states in crimson, operator states
+     tinted, export routes as faint static lines. Same projection as hero.js. */
+  var ATLAS = { 'United States': 'United States of America', 'Libya (GNA)': 'Libya' };
+  var at = n => ATLAS[n] || n;
+  var origins = {}, operators = {}, pairs = {};
+  D.systems.forEach(function (s) {
+    var from = String(s.origin || '').split(/\s*\/\s*/).filter(Boolean).map(at);
+    from.forEach(o => { origins[o] = 1; });
+    (s.operators || []).forEach(function (op) {
+      var to = at(op['Operator Country']); if (!to) return;
+      operators[to] = 1;
+      from.forEach(o => { if (o !== to) pairs[o + '>' + to] = [o, to]; });
+    });
+  });
+  var RAD = Math.PI / 180;
+  var vec = ll => { var lo = ll[0] * RAD, la = ll[1] * RAD; return [Math.cos(la) * Math.sin(lo), Math.sin(la), Math.cos(la) * Math.cos(lo)]; };
+  var cv = document.getElementById('globe'), ctx = cv.getContext('2d');
+  var W = cv.width, R = W * 0.46, cx = W / 2, cy = W / 2;
+  var rot = -25 * RAD, TILT = 24 * RAD;
+  function project(v) {
+    var cs = Math.cos(rot), sn = Math.sin(rot);
+    var x = v[0] * cs + v[2] * sn, z = -v[0] * sn + v[2] * cs, y = v[1];
+    var ct = Math.cos(TILT), st = Math.sin(TILT);
+    var p = [x, y * ct - z * st, y * st + z * ct];
+    return { x: cx + p[0] * R, y: cy - p[1] * R, z: p[2] };
+  }
+  var g = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
+  g.addColorStop(0, '#1a2358'); g.addColorStop(1, '#0b1030');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = 'rgba(214,35,77,0.35)'; ctx.lineWidth = 2; ctx.stroke();
+  var COL = ['154,166,196', '233,138,160', '214,35,77'];
+  G.dots.forEach(function (d) {
+    var n = G.names[d[2]], k = origins[n] ? 2 : operators[n] ? 1 : 0, p = project(vec(d));
+    if (p.z <= 0) return;
+    var sz = (k === 2 ? 4.6 : 3.3) * (0.55 + 0.45 * p.z);
+    ctx.fillStyle = 'rgba(' + COL[k] + ',' + ((k ? 0.6 : 0.3) + 0.4 * p.z).toFixed(3) + ')';
+    ctx.fillRect(p.x - sz / 2, p.y - sz / 2, sz, sz);
+  });
+  ctx.lineWidth = 1.4; ctx.strokeStyle = 'rgba(255,196,208,0.16)'; ctx.beginPath();
+  Object.values(pairs).forEach(function (pr) {
+    if (!G.centroids[pr[0]] || !G.centroids[pr[1]]) return;
+    var a = vec(G.centroids[pr[0]]), b = vec(G.centroids[pr[1]]);
+    var ang = Math.acos(Math.max(-1, Math.min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2]))), prev = null;
+    for (var s = 0; s <= 28; s++) {
+      var t = s / 28, sa = Math.sin((1 - t) * ang) / Math.sin(ang), sb = Math.sin(t * ang) / Math.sin(ang);
+      var h = 1 + (0.01 + ang * 0.02) * Math.sin(Math.PI * t);
+      var p = project([(a[0] * sa + b[0] * sb) * h, (a[1] * sa + b[1] * sb) * h, (a[2] * sa + b[2] * sb) * h]);
+      if (prev && p.z > 0.04 && prev.z > 0.04) { ctx.moveTo(prev.x, prev.y); ctx.lineTo(p.x, p.y); }
+      prev = p;
+    }
+  });
+  ctx.stroke();
+
+  await document.fonts.ready;
+  document.body.dataset.ready = '1';
+})();
+</script>
+</body>
+</html>
