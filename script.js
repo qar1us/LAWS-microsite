@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609291822')
+  fetch('data.json?v=202609301437')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -282,6 +282,19 @@
     });
   }
 
+  /* Who uses a system, shown where the internal ID used to be: IDs are for the team,
+     operators are what a reader wants to know (V5 review). */
+  function usedBy(s, n) {
+    var seen = [];
+    (s.operators || []).forEach(function (o) {
+      var c = o['Operator Country'];
+      if (c && seen.indexOf(c) < 0) seen.push(c);
+    });
+    if (!seen.length) return '';
+    var more = seen.length - n;
+    return 'Used by ' + seen.slice(0, n).join(', ') + (more > 0 ? ' +' + more : '');
+  }
+
   function cardHTML(s) {
     var img = (s.images || [])[0];
     var tc = (TIERS[s.tier] || {}).color || 'var(--b1)';
@@ -299,7 +312,7 @@
       '<span class="card-tier">' + esc(s.tier || '—') + '</span>' +
       '<span class="card-dom">' + icon(DOMAIN_ICON[s.domain] || 'i-multi') + '</span>' +
       '<span class="card-head"><span class="card-name">' + esc(s.name) + '</span>' +
-      '<span class="card-id">' + esc(s.id) + '</span></span>';
+      '<span class="card-id">' + esc(usedBy(s, 2)) + '</span></span>';
 
     var media = img
       ? '<span class="card-img">' + photo(img.file, '', true) + overlay + '</span>'
@@ -601,13 +614,14 @@
   function galleryHTML(s) {
     var imgs = s.images || [];
     if (!imgs.length) return '';
-    return '<h3 class="h-sub">Imagery</h3><div class="gallery">' + imgs.map(function (im) {
+    /* Each photo opens full size in the lightbox (V5 review: no rights badge). */
+    return '<h3 class="h-sub">Imagery</h3><div class="gallery">' + imgs.map(function (im, i) {
       var cred = im.sourceDomain
         ? '<a href="' + esc(im.sourceUrl) + '" target="_blank" rel="noopener">' + esc(im.sourceDomain) + '</a>'
         : 'no source recorded';
       return '<div class="gitem">' +
-        (im.status === 'hold' ? '<span class="ghold">rights: hold</span>' : '') +
-        '<span class="gframe">' + photo(im.file, s.name, true) + '</span>' +
+        '<button type="button" class="gframe" data-zoom="' + i + '" aria-label="Expand photo ' + (i + 1) +
+          ' of ' + imgs.length + '">' + photo(im.file, s.name, true) + '</button>' +
         '<span class="gcred">' + cred + '</span></div>';
     }).join('') + '</div>';
   }
@@ -615,17 +629,31 @@
   function sourcesHTML(s) {
     var src = s.sources || {}, keys = Object.keys(src);
     if (!keys.length) return '';
-    return '<h3 class="h-sub">Sources</h3><div class="srclist">' + keys.map(function (k) {
+    /* One run of links, without the claim labels (V5 review). The same page is often
+       cited for several claims, so each URL appears once. */
+    var seen = {}, names = {}, out = [];
+    keys.forEach(function (k) {
       var v = src[k];
       /* Sources arrive as {label, url}; older builds stored a bare URL string. */
       if (typeof v === 'string' && /^https?:\/\//.test(v)) v = { label: v, url: v };
-      return '<div><dt>' + esc(k) + '</dt>' + link(v) + '</div>';
-    }).join('') + '</div>';
+      var key = (v && v.url) || String(v && v.label != null ? v.label : v);
+      if (seen[key]) return;
+      seen[key] = 1;
+      /* Two different pages from one publisher read as a duplicate, so number repeats. */
+      var label = v && v.label != null ? String(v.label) : String(v);
+      names[label] = (names[label] || 0) + 1;
+      if (names[label] > 1 && v && v.url) v = { label: label + ' ' + names[label], url: v.url };
+      out.push(link(v));
+    });
+    return '<h3 class="h-sub">Sources</h3><p class="srcrun">' + out.join('<span class="sep"> · </span>') + '</p>';
   }
+
+  var CURRENT = null;   /* the system open in the drawer, for the lightbox */
 
   function openDrawer(id) {
     var s = SYSTEMS.filter(function (x) { return x.id === id; })[0];
     if (!s) return;
+    CURRENT = s;
     var t = TIERS[s.tier] || {};
     var img = (s.images || [])[0];
     var style = '--tc:' + (t.color || 'var(--b1)') + ';--tint:' + tint(s.tier);
@@ -638,7 +666,7 @@
       '<div class="d-badges"><span class="d-badge">' + esc(s.tier || '—') + '</span>' +
       (s.domain ? '<span class="d-badge alt">' + esc(s.domain) + '</span>' : '') + '</div>' +
       '<div class="d-head"><h2 id="d-name">' + esc(s.name) + '</h2>' +
-      '<div class="d-id">' + esc(s.id) + '</div></div></div>' +
+      '<div class="d-id">' + esc(usedBy(s, 4)) + '</div></div></div>' +
       '<div class="d-body" style="' + style + '">' +
       /* Order set in the V3 review: purpose, description, autonomy by function,
          combat use, a truncated record; then operators, imagery and sources. */
@@ -671,6 +699,65 @@
     document.body.style.overflow = '';
   }
 
+  /* ---------- lightbox: a gallery photo at full size, in colour ---------- */
+  var LB = null, lbIdx = 0, lbReturn = null;
+
+  function lightbox() {
+    if (LB) return LB;
+    LB = document.createElement('div');
+    LB.className = 'lb';
+    LB.hidden = true;
+    LB.setAttribute('role', 'dialog');
+    LB.setAttribute('aria-modal', 'true');
+    LB.setAttribute('aria-label', 'Photo viewer');
+    LB.innerHTML =
+      '<div class="lb-scrim" data-lb-close></div>' +
+      '<figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure>' +
+      '<button type="button" class="lb-btn lb-close" data-lb-close aria-label="Close photo">' + icon('i-close') + '</button>' +
+      '<button type="button" class="lb-btn lb-prev" data-lb-step="-1" aria-label="Previous photo">' + icon('i-arrow') + '</button>' +
+      '<button type="button" class="lb-btn lb-next" data-lb-step="1" aria-label="Next photo">' + icon('i-arrow') + '</button>';
+    document.body.appendChild(LB);
+    LB.addEventListener('click', function (e) {
+      if (e.target.closest('[data-lb-close]')) closeLightbox();
+      var st = e.target.closest('[data-lb-step]');
+      if (st) showPhoto(lbIdx + Number(st.dataset.lbStep));
+    });
+    /* Capture phase, so Escape closes the photo before the drawer's own handler sees it. */
+    document.addEventListener('keydown', function (e) {
+      if (LB.hidden) return;
+      if (e.key === 'Escape') { e.stopImmediatePropagation(); closeLightbox(); }
+      else if (e.key === 'ArrowRight') showPhoto(lbIdx + 1);
+      else if (e.key === 'ArrowLeft') showPhoto(lbIdx - 1);
+    }, true);
+    return LB;
+  }
+
+  function showPhoto(i) {
+    var imgs = (CURRENT && CURRENT.images) || [];
+    if (!imgs.length) return;
+    lbIdx = (i + imgs.length) % imgs.length;
+    var im = imgs[lbIdx];
+    $('.lb-img', LB).src = 'img/' + im.file;
+    $('.lb-img', LB).alt = CURRENT.name + ' — photo ' + (lbIdx + 1) + ' of ' + imgs.length;
+    $('.lb-cap', LB).innerHTML = '<b>' + esc(CURRENT.name) + '</b>' +
+      (imgs.length > 1 ? '<span class="lb-n">' + (lbIdx + 1) + ' / ' + imgs.length + '</span>' : '') +
+      (im.sourceDomain ? '<a href="' + esc(im.sourceUrl) + '" target="_blank" rel="noopener">' + esc(im.sourceDomain) + '</a>' : '');
+    LB.classList.toggle('is-single', imgs.length < 2);
+  }
+
+  function openLightbox(i, from) {
+    lightbox();
+    lbReturn = from || null;
+    LB.hidden = false;
+    showPhoto(i);
+    $('.lb-close', LB).focus();
+  }
+
+  function closeLightbox() {
+    LB.hidden = true;
+    if (lbReturn) lbReturn.focus();
+  }
+
   /* ---------- events ---------- */
   function syncChips() {
     Array.prototype.forEach.call($('#filters').querySelectorAll('.chip'), function (c) {
@@ -687,6 +774,8 @@
        so its events are wired before the tracker-only controls. */
     if ($('#drawer')) {
       $('#drawer').addEventListener('click', function (e) {
+        var z = e.target.closest('[data-zoom]');
+        if (z) { openLightbox(Number(z.dataset.zoom), z); return; }
         if (e.target.closest('[data-close]')) closeDrawer();
       });
       document.addEventListener('keydown', function (e) {
