@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202609301541')
+  fetch('data.json?v=202609301542')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
