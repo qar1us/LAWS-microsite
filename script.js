@@ -96,7 +96,7 @@
       ? '<a href="' + esc(src.url) + '" target="_blank" rel="noopener">' + esc(src.label || src.url) + '</a>'
       : esc(src && src.label != null ? src.label : src);
   };
-  /* A photo shown whole and centred, over a blurred copy of itself that fills the
+  /* A photo shown whole and centered, over a blurred copy of itself that fills the
      frame — so no system is cropped out and no frame shows empty bars. */
   var photo = function (file, alt, lazy) {
     var src = 'img/' + esc(file), l = lazy ? ' loading="lazy" decoding="async"' : '';
@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202610011351')
+  fetch('data.json?v=202610011406')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -693,7 +693,7 @@
     document.body.style.overflow = '';
   }
 
-  /* ---------- lightbox: a gallery photo at full size, in colour ---------- */
+  /* ---------- lightbox: a gallery photo at full size, in color ---------- */
   var LB = null, lbIdx = 0, lbReturn = null;
 
   function lightbox() {

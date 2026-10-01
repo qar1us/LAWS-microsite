@@ -1,7 +1,7 @@
 # LAWS Tracker
 
 An interactive survey of deployed and operational **lethal autonomous weapon systems**,
-classified by where human judgement drops out of the kill chain.
+classified by where human judgment drops out of the kill chain.
 A National Security & Strategic Competition project for *Americans for Responsible Innovation*.
 
 Built on the dataset compiled 27 July 2026, with inclusion criteria revised August 2026:
@@ -13,7 +13,7 @@ Plain HTML, CSS and vanilla JavaScript. Fonts load from Google Fonts.
 ## Design
 
 Dark navy instrument surface for the tracker, cool paper for the reading sections, ARI
-crimson as the single signal colour. Photographs are duotoned to the navy palette through
+crimson as the single signal color. Photographs are duotoned to the navy palette through
 an inline SVG filter and washed with a class-tinted gradient — 155 images drawn from roughly
 80 different sources otherwise read as a scrapbook rather than a dataset. The gradient tint
 is keyed to autonomy class, so the imagery carries the analytical variable.

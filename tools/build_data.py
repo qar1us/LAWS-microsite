@@ -48,7 +48,22 @@ systems=[{k:(v if k.startswith("Effects Source") else _text(v)) for k,v in r.ite
 NAME_FIXES = {"LD-2000 land CIWS": "LD-2000 Land CIWS"}
 for r in systems:
     if r.get("System Name") in NAME_FIXES: r["System Name"] = NAME_FIXES[r["System Name"]]
-desc={r["System ID"]:_text(r.get("Description")) for r in sheet("Descriptions") if r.get("System ID")}
+# The site uses American spelling (1 Oct review). Applied to descriptive fields only:
+# company and programme names keep their official spelling (Kongsberg Defence &
+# Aerospace, UK Ministry of Defence). Fix in the workbook too, then remove.
+US_SPELLING = {"Fibre": "Fiber", "fibre": "fiber", "containerised": "containerized",
+               "Containerised": "Containerized"}
+SPELL_FIELDS = ("Engagement Envelope", "Analyst Notes", "Supervisory Control",
+                "Confirmed Effects", "Target Type Engaged", "Autonomous Mode Authorization")
+def us_spell(text):
+    if not isinstance(text, str): return text
+    for uk, us in US_SPELLING.items():
+        text = re.sub(r"\b%s\b" % uk, us, text)
+    return text
+for r in systems:
+    for f in SPELL_FIELDS:
+        r[f] = us_spell(r.get(f))
+desc={r["System ID"]:us_spell(_text(r.get("Description"))) for r in sheet("Descriptions") if r.get("System ID")}
 purposes=sheet("Purposes"); funcs=sheet("Autonomy_Functions")
 ops=sheet("Operators"); srcsys=sheet("Source_by_System"); srcph=sheet("Source_Photos")
 # The annex heading moved from "System / Programme" to "System / Program" between

@@ -216,7 +216,7 @@
         canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
         paint(1);
       }
-      function colour(d, region) {
+      function color(d, region) {
         if (d.region === region && d.op) return [214, 35, 77, 1];
         if (d.op) return [233, 138, 160, 0.42];
         return [154, 166, 196, 0.2];
@@ -227,7 +227,7 @@
         var step = W / 225, sz = Math.max(1.4, step * 0.62);
         for (var i = 0; i < dots.length; i++) {
           var d = dots[i];
-          var a = colour(d, from), b = colour(d, to);
+          var a = color(d, from), b = color(d, to);
           var c = a.map(function (v, k) { return v + (b[k] - v) * t; });
           ctx.fillStyle = 'rgba(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ',' + c[3].toFixed(3) + ')';
           var x = (d.lon - LON_L) / (LON_R - LON_L) * W, y = (LAT_T - d.lat) / (LAT_T - LAT_B) * H;

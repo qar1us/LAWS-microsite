@@ -88,7 +88,7 @@
       size();
       window.addEventListener('resize', function () { size(); if (STILL) draw(0); });
 
-      var TILT = 22 * RAD;               /* view centred slightly north */
+      var TILT = 22 * RAD;               /* view centered slightly north */
       var LON0 = -20;                    /* start over the Atlantic, Europe in view */
       function project(v, rot) {
         /* spin about the pole, then tilt towards the viewer */

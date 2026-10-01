@@ -8,7 +8,7 @@
 # Photos added straight to img/ without an original are left alone. At the end it lists:
 #   - img/ photos with no original (safe, but back them up to the originals folder)
 #   - slots that now exist in two formats (e.g. X-a.jpg and X-a.webp), which you
-#     resolve by hand, since picking one is a judgement, not a build step
+#     resolve by hand, since picking one is a judgment, not a build step
 #
 #   bash tools/build_images.sh            # add web files for new originals only
 #   DRY_RUN=1 bash tools/build_images.sh  # show what would be written, change nothing

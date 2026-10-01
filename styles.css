@@ -32,7 +32,7 @@
   --a3: #e0a63c;   /* bounded envelope */
   --b1: #6f8b96;   /* engagement completion only */
 
-  /* Categorical series colours — validated (light surface): lightness band, chroma
+  /* Categorical series colors — validated (light surface): lightness band, chroma
      floor, CVD separation and normal-vision floor all pass. Amber sits under 3:1
      against paper, which is why every bar carries a visible numeric label. */
   --cat-1: #3f6fd0;  --cat-2: #d6234d;  --cat-3: #0e9e86;
@@ -274,11 +274,14 @@ a { color: inherit; }
   filter: url(#duo); opacity: 0.94;
   transition: transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
 }
-/* Every photo sits whole and centred; a blurred, duotoned copy of the same image
+/* Every photo sits whole and centered; a blurred, duotoned copy of the same image
    fills the rest of the frame so nothing is cropped and no bars show. */
 .ph-bg {
-  position: absolute; inset: -10%; width: 120%; height: 120%;
-  object-fit: cover; filter: url(#duo) blur(16px); opacity: 0.55; pointer-events: none;
+  position: absolute; inset: -25%; width: 150%; height: 150%;
+  object-fit: cover; pointer-events: none;
+  /* Heavy blur and darkening turn the copy into a color wash. At 16px it kept
+     readable shapes, and tall photos such as SGR-A1 read as double vision. */
+  filter: url(#duo) blur(42px) brightness(0.7); opacity: 0.5;
 }
 /* Gradient wash: ties every photo back to the palette and keeps the title legible.
    The class tint is kept light and confined to the top-left corner — pushed further
@@ -500,7 +503,7 @@ a { color: inherit; }
   border: 1px solid var(--rule); background: var(--dark-2); cursor: zoom-in;
 }
 .gframe:hover { border-color: var(--signal); }
-.gframe .ph-bg { filter: blur(12px); opacity: 0.5; }   /* gallery photos stay in colour */
+.gframe .ph-bg { filter: blur(30px) brightness(0.75); opacity: 0.5; }   /* gallery photos stay in color */
 .gframe .ph { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .gcred {
   display: block; margin-top: 0.3rem; font-family: var(--mono);
@@ -652,7 +655,7 @@ a { color: inherit; }
 .evidence-dl { margin-top: 0.8rem; padding-top: 0.7rem; border-top: 1px solid var(--rule); }
 
 /* ---------- evidence of use (Aug 2026 dataset) ---------- */
-/* Only corroborated combat carries the signal colour. Uncorroborated reports keep
+/* Only corroborated combat carries the signal color. Uncorroborated reports keep
    the combat glyph in a muted register; deployed and tested read as record notes. */
 .flag.reported { color: #d9c3c9; border-color: rgba(214,35,77,0.3); border-style: dashed; }
 .evidence.is-reported { border-left-style: dashed; border-left-color: rgba(214,35,77,0.55); }
@@ -679,7 +682,7 @@ a { color: inherit; }
   column-gap: 3rem; align-items: center;
 }
 /* Spacer rows above and below the copy absorb the visual's height, so the copy
-   stays together and vertically centred against it. */
+   stays together and vertically centered against it. */
 .hero--alt .hero-inner { grid-template-rows: 1fr auto auto auto 1fr auto; }
 .hero--alt .eyebrow { grid-column: 1; grid-row: 2; }
 .hero--alt h1 { grid-column: 1; grid-row: 3; font-size: clamp(2.2rem, 3.7vw, 3.4rem); }
