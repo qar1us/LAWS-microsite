@@ -2503,7 +2503,16 @@
      "url": "https://www.iai.co.il/p/harpy"
     }
    },
-   "images": []
+   "images": [
+    {
+     "file": "ISR-AIR-001-A-a.jpg",
+     "slot": "a",
+     "status": "hold",
+     "category": "third-party-editorial",
+     "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
+     "sourceDomain": "theaviationist.com"
+    }
+   ]
   },
   {
    "id": "ISR-AIR-002",

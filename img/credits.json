@@ -300,6 +300,15 @@
       "category": "unsourced",
       "status": "hold"
     },
+    "ISR-AIR-001-A-a.jpg": {
+      "systemId": "ISR-AIR-001-A",
+      "system": "IAI Harpy NG",
+      "slot": "a",
+      "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
+      "sourceDomain": "theaviationist.com",
+      "category": "third-party-editorial",
+      "status": "hold"
+    },
     "ISR-AIR-001-a.webp": {
       "systemId": "ISR-AIR-001",
       "system": "IAI Harpy",
@@ -1424,6 +1433,15 @@
       "sourceDomain": "en.wikipedia.org",
       "category": "wikimedia",
       "status": "include"
+    },
+    "social-card.png": {
+      "systemId": null,
+      "system": null,
+      "slot": null,
+      "sourceUrl": null,
+      "sourceDomain": null,
+      "category": "unsourced",
+      "status": "hold"
     }
   }
 }

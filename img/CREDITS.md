@@ -11,7 +11,7 @@ All imagery in `img/` is credited below, keyed by system ID. Source URLs come fr
 - `hold` — third-party editorial (news, trade press, reference sites, social) or no recorded source.
   The file is stored in the repository but **must not be rendered on the site** until rights are cleared.
 
-Totals: **54 include**, **103 hold**, 157 files.
+Totals: **54 include**, **105 hold**, 159 files.
 
 ---
 
@@ -143,6 +143,12 @@ Totals: **54 include**, **103 hold**, 157 files.
 |---|---|---|---|
 | `ISR-AIR-001-a.webp` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
 | `ISR-AIR-001-b.jpg` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
+
+### ISR-AIR-001-A — IAI Harpy NG
+
+| File | Status | Category | Source |
+|---|---|---|---|
+| `ISR-AIR-001-A-a.jpg` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
 
 ### ISR-AIR-002 — IAI Mini Harpy
 
@@ -581,3 +587,7 @@ Totals: **54 include**, **103 hold**, 157 files.
 |---|---|---|---|
 | `USA-SUB-001-a.webp` | hold | third-party-editorial | [armyrecognition.com](https://www.armyrecognition.com/archives/archives-naval-defense/naval-defense-2020/netherlands-to-request-16-u-s-mk-48-mod-7-advanced-technology-torpedo-conversion-kits) |
 | `USA-SUB-001-b.jpg` | include | wikimedia | [en.wikipedia.org](https://en.wikipedia.org/wiki/Mark_48_torpedo) |
+
+### Files not matched to a system
+
+- `social-card.png`
