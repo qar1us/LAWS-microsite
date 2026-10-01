@@ -2405,16 +2405,8 @@
    },
    "images": [
     {
-     "file": "ISR-AIR-001-a.webp",
+     "file": "ISR-AIR-001-a.jpg",
      "slot": "a",
-     "status": "hold",
-     "category": "third-party-editorial",
-     "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
-     "sourceDomain": "theaviationist.com"
-    },
-    {
-     "file": "ISR-AIR-001-b.jpg",
-     "slot": "b",
      "status": "hold",
      "category": "third-party-editorial",
      "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
@@ -2505,7 +2497,7 @@
    },
    "images": [
     {
-     "file": "ISR-AIR-001-A-a.jpg",
+     "file": "ISR-AIR-001-A-a.png",
      "slot": "a",
      "status": "hold",
      "category": "third-party-editorial",

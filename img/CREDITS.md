@@ -11,7 +11,7 @@ All imagery in `img/` is credited below, keyed by system ID. Source URLs come fr
 - `hold` — third-party editorial (news, trade press, reference sites, social) or no recorded source.
   The file is stored in the repository but **must not be rendered on the site** until rights are cleared.
 
-Totals: **54 include**, **105 hold**, 159 files.
+Totals: **54 include**, **104 hold**, 158 files.
 
 ---
 
@@ -141,14 +141,13 @@ Totals: **54 include**, **105 hold**, 159 files.
 
 | File | Status | Category | Source |
 |---|---|---|---|
-| `ISR-AIR-001-a.webp` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
-| `ISR-AIR-001-b.jpg` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
+| `ISR-AIR-001-a.jpg` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
 
 ### ISR-AIR-001-A — IAI Harpy NG
 
 | File | Status | Category | Source |
 |---|---|---|---|
-| `ISR-AIR-001-A-a.jpg` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
+| `ISR-AIR-001-A-a.png` | hold | third-party-editorial | [theaviationist.com](https://theaviationist.com/2022/01/07/iai-loitering-munitions/) |
 
 ### ISR-AIR-002 — IAI Mini Harpy
 

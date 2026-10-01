@@ -300,7 +300,7 @@
       "category": "unsourced",
       "status": "hold"
     },
-    "ISR-AIR-001-A-a.jpg": {
+    "ISR-AIR-001-A-a.png": {
       "systemId": "ISR-AIR-001-A",
       "system": "IAI Harpy NG",
       "slot": "a",
@@ -309,19 +309,10 @@
       "category": "third-party-editorial",
       "status": "hold"
     },
-    "ISR-AIR-001-a.webp": {
+    "ISR-AIR-001-a.jpg": {
       "systemId": "ISR-AIR-001",
       "system": "IAI Harpy",
       "slot": "a",
-      "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
-      "sourceDomain": "theaviationist.com",
-      "category": "third-party-editorial",
-      "status": "hold"
-    },
-    "ISR-AIR-001-b.jpg": {
-      "systemId": "ISR-AIR-001",
-      "system": "IAI Harpy",
-      "slot": "b",
       "sourceUrl": "https://theaviationist.com/2022/01/07/iai-loitering-munitions/",
       "sourceDomain": "theaviationist.com",
       "category": "third-party-editorial",
