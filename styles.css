@@ -371,6 +371,20 @@ a { color: inherit; }
 }
 .bar:hover .bar-fill { filter: brightness(1.12); }
 .bar:hover .bar-l { color: var(--ink); }
+/* Linked bars open the tracker pre-filtered: a fourth column carries an arrow, and
+   the whole row lifts on hover/focus so it reads as a control, not a static chart. */
+.bar--link {
+  grid-template-columns: 9.5rem 1fr 2.2rem 1rem;
+  margin: 0 -0.5rem; padding: 0.3rem 0.5rem;
+  color: inherit; text-decoration: none; border-radius: 4px; cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.bar--link .bar-l { text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+.bar-go { width: 0.9rem; height: 0.9rem; color: var(--ink-2); opacity: 0.55; transition: transform 0.15s ease, opacity 0.15s ease; }
+.bar--link:hover, .bar--link:focus-visible { background: var(--paper-2); }
+.bar--link:hover .bar-l, .bar--link:focus-visible .bar-l { color: var(--ink); text-decoration-color: currentColor; }
+.bar--link:hover .bar-go, .bar--link:focus-visible .bar-go { opacity: 1; color: var(--signal); transform: translateX(3px); }
+.bar--link:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 3rem; }
 .two-col-b { margin-top: 2.5rem; }
 
@@ -532,6 +546,7 @@ a { color: inherit; }
   .band, .explorer { padding: 3.5rem 0; }
   .grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
   .bar { grid-template-columns: 7rem 1fr 2rem; }
+  .bar--link { grid-template-columns: 7rem 1fr 2rem 1rem; }
   .dl { grid-template-columns: 1fr; gap: 0.15rem 0; }
   .dl dd { margin-bottom: 0.6rem; }
   .frow { grid-template-columns: 1fr; gap: 0.15rem; }

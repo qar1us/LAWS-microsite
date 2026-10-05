@@ -343,14 +343,20 @@
   /* Bars grow from zero, top to bottom, the first time each chart scrolls into view.
      The final width is set inline, so without JS or with reduced motion the chart
      simply shows at full size. */
-  function barBlock(el, entries, color) {
+  /* With href(label), each bar is a link to the tracker filtered to that value. */
+  function barBlock(el, entries, color, href) {
     if (!el) return;
     var max = Math.max.apply(null, entries.map(function (e) { return e[1]; }));
     el.innerHTML = entries.map(function (e, i) {
       var c = typeof color === 'function' ? color(e[0], i, entries.length) : color;
-      return '<div class="bar" style="--i:' + i + '"><span class="bar-l">' + esc(e[0]) + '</span>' +
+      var inner = '<span class="bar-l">' + esc(e[0]) + '</span>' +
         '<span class="bar-track"><span class="bar-fill" style="width:' + (e[1] / max * 100) + '%;--bc:' + c + '"></span></span>' +
-        '<span class="bar-n">' + e[1] + '</span></div>';
+        '<span class="bar-n">' + e[1] + '</span>';
+      return href
+        ? '<a class="bar bar--link" style="--i:' + i + '" href="' + esc(href(e[0])) + '" aria-label="' +
+            esc(e[0] + ': ' + e[1] + ' system' + (e[1] === 1 ? '' : 's') + '. Show them on the tracker') + '">' +
+            inner + '<svg class="ico bar-go" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        : '<div class="bar" style="--i:' + i + '">' + inner + '</div>';
     }).join('');
     var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (still || !('IntersectionObserver' in window)) return;
@@ -391,13 +397,15 @@
       function (k, i, n) { return ramp('tseq', i, n); });
 
     barBlock($('#bars-domain'), sorted(DATA.counts.byDomain),
-      function (k, i) { return 'var(--cat-' + ((i % 5) + 1) + ')'; });
+      function (k, i) { return 'var(--cat-' + ((i % 5) + 1) + ')'; },
+      function (k) { return 'systems.html?domain=' + encodeURIComponent(k); });
 
     var tb = DATA.counts.byTier;
     barBlock($('#bars-tier'),
       TIER_ORDER.filter(function (t) { return tb[t]; })
         .map(function (t) { return [t + ' — ' + TIERS[t].name.replace(/&amp;/g, '&'), tb[t]]; }),
-      function (label) { return TIERS[label.slice(0, 2)].color; });
+      function (label) { return TIERS[label.slice(0, 2)].color; },
+      function (label) { return 'systems.html?tier=' + label.slice(0, 2); });
   }
 
   /* One company name per firm (V2 and V3 review). Cells are free text, so each
@@ -430,19 +438,14 @@
     'Israel Aerospace Industries': 'Israel Aerospace Industries (IAI)',
     'Rafael': 'Rafael Advanced Defense Systems',
     'UVision': 'UVision Air',
-    'Israel MoD DDR&D': 'Israel MoD Directorate of Defense Research & Development (DDR&D)',
-    /* Japan */
-    'ATLA': 'Acquisition, Technology & Logistics Agency (ATLA)',
     /* Norway */
     'Kongsberg': 'Kongsberg Defence & Aerospace',
     /* Russia */
     'KBM': 'KBM Machine-Building Design Bureau',
     'KBM Kolomna': 'KBM Machine-Building Design Bureau',
     'KBP': 'KBP Instrument Design Bureau',
-    'Russian Navy ordnance industry': 'Russian Navy',
     'Russia': null, 'Russian domestic': null, 'Russian domestic producers': null, 'Soviet': null,
     /* South Korea */
-    'ADD': 'Agency for Defense Development (ADD)',
     'DoDAAM': 'DoDAAM Systems',
     'Hanwha': 'Hanwha Aerospace',
     'Hanwha Defense': 'Hanwha Aerospace',
@@ -457,15 +460,17 @@
     /* United Kingdom */
     'MBDA UK': 'MBDA',
     'Leonardo UK and QinetiQ': ['Leonardo UK', 'QinetiQ'],
-    'Dstl': 'Defence Science and Technology Laboratory (Dstl)',
     /* United States */
     'RTX': 'RTX (Raytheon)',
     'Raytheon': 'RTX (Raytheon)',
     'Raytheon Systems Company': 'RTX (Raytheon)',
     'Anduril': 'Anduril Industries',
     'Lockheed Martin prime': 'Lockheed Martin',
-    'DARPA': 'Defense Advanced Research Projects Agency (DARPA)',
-    'US Army RCCTO': 'US Army Rapid Capabilities and Critical Technologies Office (RCCTO)'
+    /* Government agencies and military branches are not companies (final review).
+       Who operates a system is already recorded elsewhere, so they are dropped. */
+    'US Army': null, 'US Army RCCTO': null, 'US Navy': null, 'DARPA': null,
+    'Royal Australian Navy': null, 'Russian Navy': null, 'Russian Navy ordnance industry': null,
+    'Israel MoD DDR&D': null, 'ADD': null, 'Dstl': null, 'ATLA': null
   };
 
   /* Company names in one free-text manufacturer/developer cell. */
