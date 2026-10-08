@@ -1860,7 +1860,7 @@
      "url": "https://www.lockheedmartin.com/en-us/products/long-range-anti-ship-missile.html"
     },
     "Autonomy": {
-     "label": "GlobalMilitary.net; The Defense Post LRASM gu",
+     "label": "GlobalMilitary.net; The Defense Post",
      "url": "https://www.globalmilitary.net/missiles/lrasm/"
     },
     "Fielding": {
@@ -2387,7 +2387,7 @@
      "url": "https://www.iai.co.il/p/harpy"
     },
     "Autonomy": {
-     "label": "Automated Decision Research weapon profile ci",
+     "label": "Automated Decision Research weapon profile",
      "url": "https://automatedresearch.org/weapon/israel-aerospace-systems-harpy-loitering-munition/"
     },
     "Fielding": {
@@ -6234,11 +6234,11 @@
      "url": "https://www.aselsan.com/en/news/gokberk-successfully-eliminates-fpv-drone-threats"
     },
     "Autonomy": {
-     "label": "ASELSAN (Moderate Confidence) (Moderate Confidence)",
+     "label": "ASELSAN (Moderate Confidence)",
      "url": "https://www.aselsan.com/en/news/aselsan-showcases-integrated-counter-uav-capabilities-in-live-demonstration"
     },
     "Authorization": {
-     "label": "ASELSAN (Moderate Confidence) (Moderate Confidence)",
+     "label": "ASELSAN (Moderate Confidence)",
      "url": "https://www.aselsan.com/en/news/aselsan-showcases-integrated-counter-uav-capabilities-in-live-demonstration"
     },
     "Fielding": {
@@ -7611,7 +7611,7 @@
      "url": "https://automatedresearch.org/weapon/helsing-hx-2-karma-u/"
     },
     "Authorization": {
-     "label": "New York Times reporting summarised by The De",
+     "label": "New York Times reporting summarized by The Defense News",
      "url": "https://www.thedefensenews.com/Germanys-Secret-Factory-Is-Mass-Producing-AI-Powered-HX-2-Strike-Drones-for-Ukraine/"
     },
     "Fielding": {
@@ -8569,7 +8569,7 @@
      "label": "MBDA",
      "url": "https://www.mbda-systems.com/products/tactical-strike/brimstone"
     },
-    "Autonomy": "Established open-literature description of Br",
+    "Autonomy": "Established open-literature description of Brimstone",
     "Fielding": {
      "label": "European Security & Defence",
      "url": "https://euro-sd.com/2024/07/major-news/39193/brimstone-3-for-luftwaffe/"

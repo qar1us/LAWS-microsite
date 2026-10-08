@@ -14,9 +14,20 @@ ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORKBOOK=sys.argv[1] if len(sys.argv)>1 else os.path.join(ROOT,"Data","LAWS_Tracker_Dataset.xlsx")
 wb=openpyxl.load_workbook(WORKBOOK, data_only=True)
 
+# Source names cut off or doubled in the workbook (8 Oct review). Fix in the
+# workbook too, then remove.
+SOURCE_FIXES = {
+    "New York Times reporting summarised by The De": "New York Times reporting summarized by The Defense News",
+    "GlobalMilitary.net; The Defense Post LRASM gu": "GlobalMilitary.net; The Defense Post",
+    "Automated Decision Research weapon profile ci": "Automated Decision Research weapon profile",
+    "Established open-literature description of Br": "Established open-literature description of Brimstone",
+    "ASELSAN (Moderate Confidence) (Moderate Confidence)": "ASELSAN (Moderate Confidence)",
+}
+
 def _cell(c):
     v=c.value
     v=v.strip() if isinstance(v,str) else v
+    v=SOURCE_FIXES.get(v, v) if isinstance(v,str) else v
     # Source cells show a publisher name and keep the URL as the cell's hyperlink.
     if c.hyperlink and c.hyperlink.target and v: return {"label":v,"url":c.hyperlink.target}
     return v
