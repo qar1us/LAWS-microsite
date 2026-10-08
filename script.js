@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202610011424')
+  fetch('data.json?v=202610081835')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -195,12 +195,16 @@
       var T = TIERS[t];
       /* The count bar that used to sit here was read as a progress meter rather than a
          share-of-dataset comparison, so it is gone; the number carries it. */
-      return '<div class="tier" style="--tc:' + T.color + '">' +
-        '<span class="tier-n">' + (counts[t] || 0) + '</span>' +
-        '<span class="tier-code">' + t + '</span>' +
+      /* Each card opens the tracker filtered to its class. */
+      var n = counts[t] || 0;
+      return '<a class="tier" href="systems.html?tier=' + t + '" style="--tc:' + T.color + '">' +
+        '<span class="tier-head"><span class="tier-code">' + t + '</span>' +
+          '<span class="tier-n">' + n + '</span></span>' +
         '<p class="tier-name">' + T.name + '</p>' +
         '<p class="tier-desc">' + T.desc + '</p>' +
-        '</div>';
+        '<span class="tier-go">See ' + (n === 1 ? 'this system' : 'these ' + n + ' systems') +
+          ' <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>' +
+        '</a>';
     }).join('');
   }
 
@@ -678,7 +682,7 @@
       (s.effects ? '<h3 class="h-sub">Combat use</h3>' + evidenceHTML(s) : '') +
       recordHTML(s) +
       ((s.operators || []).length
-        ? '<h3 class="h-sub">Operators (' + s.operators.length + ')</h3><div class="pills">' +
+        ? '<h3 class="h-sub">National operators (' + s.operators.length + ')</h3><div class="pills">' +
           s.operators.map(function (o) {
             var label = o['Operator Country'] + (o['Military Service or Organization'] ? ' · ' + o['Military Service or Organization'] : '');
             return '<span class="pill">' + esc(label) + '</span>';

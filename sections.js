@@ -133,8 +133,8 @@
         '<p class="rg-kicker">Fielded in</p>' +
         '<h3 class="rg-name">' + esc(st.region) + '</h3>' +
         '<p class="rg-stat"><b>' + st.list.length + '</b> system' + (st.list.length === 1 ? '' : 's') +
-          '<span class="sep">·</span><b>' + st.countries.length + '</b> operator ' +
-          (st.countries.length === 1 ? 'country' : 'countries') + '</p>' +
+          '<span class="sep">·</span><b>' + st.countries.length + '</b> national ' +
+          (st.countries.length === 1 ? 'operator' : 'operators') + '</p>' +
         '<p class="rg-countries">' + esc(st.countries.slice(0, SHOW).join(', ')) + esc(more) + '</p>' +
         '<div class="minis">' + st.featured.map(function (s, k) { return mini(s, api, k); }).join('') + '</div>' +
         '<a class="rg-all" href="systems.html?region=' + encodeURIComponent(st.region) + '">See all ' +
