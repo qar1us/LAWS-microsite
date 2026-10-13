@@ -132,7 +132,7 @@ a { color: inherit; }
 .standfirst strong { color: #fff; font-weight: 700; }
 
 .statbar {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
   margin-top: 3.2rem; background: var(--dark-rule);
   border: 1px solid var(--dark-rule);
 }

@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202610081845')
+  fetch('data.json?v=202610132041')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -141,7 +141,6 @@
   /* ---------- hero stats ---------- */
   function renderStats() {
     var c = DATA.counts;
-    var noApproval = SYSTEMS.filter(function (s) { return s.tier !== 'B1'; }).length;
     var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
     set('stat-systems', c.systems);
     set('stat-origins', c.originCountries);
@@ -149,7 +148,6 @@
     /* The Aug 2026 criteria admit tested systems, so "fielded" is its own count. */
     countUp([
       ['s-systems', c.fielded != null ? c.fielded : c.systems],
-      ['s-nohuman', noApproval],
       ['s-ops', c.operatorCountries]
     ]);
   }
