@@ -56,7 +56,6 @@
   </div>
   <div class="stats">
     <div class="stat"><b id="n-fielded">—</b><span>Systems fielded</span></div>
-    <div class="stat"><b id="n-noapproval">—</b><span>No per-engagement approval</span></div>
     <div class="stat"><b id="n-ops">—</b><span>National operators</span></div>
   </div>
   <div class="foot">
@@ -78,7 +77,6 @@
   /* The same three figures as the hero stat bar. */
   var c = D.counts;
   document.getElementById('n-fielded').textContent = c.fielded != null ? c.fielded : c.systems;
-  document.getElementById('n-noapproval').textContent = D.systems.filter(s => s.tier !== 'B1').length;
   document.getElementById('n-ops').textContent = c.operatorCountries;
 
   /* A still frame of the hero globe: producing states in crimson, operator states
