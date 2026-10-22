@@ -1,0 +1,30 @@
+# Static site: no build step, publish the repository root.
+[build]
+  publish = "."
+  command = ""
+
+# Keep repo-only files off the public site.
+[[redirects]]
+  from = "/tools/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404"
+  status = 404
+  force = true
+
+# styles.css, script.js etc. are referenced with ?v= (tools/bump_version.sh),
+# so a short cache keeps reviewers from seeing stale assets.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=600, must-revalidate"
