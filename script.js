@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202611032102')
+  fetch('data.json?v=202611032106')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -160,13 +160,18 @@
       .filter(function (it) { return it[0]; });
     if (!els.length) return;
     var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* The ticking digits are drawn by CSS from data-n (.stat-n::before), so they are not
+       part of the page's text. Only the hidden twin holds the real figure as text;
+       otherwise anything that reads the page (search snippets, link previews, AI
+       summaries) joins the two and reports "76" + "0" as "760". */
     els.forEach(function (it) {
       it[0].setAttribute('aria-hidden', 'true');
       var twin = document.createElement('span');
       twin.className = 'sr-only';
       twin.textContent = it[1];
       it[0].parentNode.insertBefore(twin, it[0]);
-      it[0].textContent = still ? it[1] : 0;
+      it[0].textContent = '';
+      it[0].setAttribute('data-n', still ? it[1] : 0);
     });
     if (still) return;
     var DUR = 1600, STAGGER = 140, t0 = null;
@@ -176,7 +181,7 @@
       var done = true;
       els.forEach(function (it, i) {
         var t = Math.min(1, Math.max(0, (now - t0 - i * STAGGER) / DUR));
-        it[0].textContent = Math.round(ease(t) * it[1]);
+        it[0].setAttribute('data-n', Math.round(ease(t) * it[1]));
         if (t < 1) done = false;
       });
       if (!done) requestAnimationFrame(frame);

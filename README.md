@@ -87,7 +87,7 @@ python3 -m http.server 8747
 ## Deploy
 
 Netlify, from `main` at the repository root — live at
-<https://ai-weapons-watch.netlify.app/>. Pushing to `main` redeploys in under a minute;
+<https://aiweaponswatch.org/> (also <https://ai-weapons-watch.netlify.app/>). Pushing to `main` redeploys in under a minute;
 pushes to other branches and pull requests get their own preview URLs.
 `netlify.toml` sets the (empty) build, keeps `tools/` and this README off the public
 site, and sets the cache header.

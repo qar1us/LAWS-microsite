@@ -67,7 +67,7 @@
 <script>
 (async function () {
   var q = new URLSearchParams(location.search);
-  document.getElementById('url').textContent = q.get('url') || 'ai-weapons-watch.netlify.app';
+  document.getElementById('url').textContent = q.get('url') || 'aiweaponswatch.org';
 
   var [D, G] = await Promise.all([
     fetch('../data.json').then(r => r.json()),

@@ -940,3 +940,6 @@ a { color: inherit; }
 @media (max-width: 30rem) {
   .grid { grid-template-columns: 1fr; }
 }
+
+/* Hero figures: the visible digits come from data-n (see countUp in script.js). */
+.stat-n[data-n]::before { content: attr(data-n); }
