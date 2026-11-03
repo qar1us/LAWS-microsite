@@ -108,7 +108,7 @@
   };
 
   /* ---------- boot ---------- */
-  fetch('data.json?v=202610132041')
+  fetch('data.json?v=202611032102')
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
@@ -327,8 +327,8 @@
     $('#grid').innerHTML = list.map(cardHTML).join('');
     $('#empty').hidden = list.length > 0;
     $('#count').textContent = list.length === SYSTEMS.length
-      ? SYSTEMS.length + ' systems'
-      : list.length + ' of ' + SYSTEMS.length + ' systems';
+      ? SYSTEMS.length + ' systems fielded or tested'
+      : list.length + ' of ' + SYSTEMS.length + ' systems fielded or tested';
     var any = FILTERS.domain || FILTERS.tier || FILTERS.origin || FILTERS.region || FILTERS.evidence || Q;
     $('#reset').hidden = !any;
   }

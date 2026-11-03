@@ -130,9 +130,8 @@
       var SHOW = 6, more = st.countries.length > SHOW ? ' and ' + (st.countries.length - SHOW) + ' more' : '';
       panel.classList.remove('is-in');
       panel.innerHTML =
-        '<p class="rg-kicker">Fielded in</p>' +
         '<h3 class="rg-name">' + esc(st.region) + '</h3>' +
-        '<p class="rg-stat"><b>' + st.list.length + '</b> system' + (st.list.length === 1 ? '' : 's') +
+        '<p class="rg-stat"><b>' + st.list.length + '</b> system' + (st.list.length === 1 ? '' : 's') + ' fielded' +
           '<span class="sep">·</span><b>' + st.countries.length + '</b> national ' +
           (st.countries.length === 1 ? 'operator' : 'operators') + '</p>' +
         '<p class="rg-countries">' + esc(st.countries.slice(0, SHOW).join(', ')) + esc(more) + '</p>' +
